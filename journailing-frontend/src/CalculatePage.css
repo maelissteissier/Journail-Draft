@@ -1,0 +1,66 @@
+:root {
+  --bgDarkColor: #282c34;
+  --bgLighterColor: #535457;
+  --lightBlue: #a0ced9;
+  --darkerBlue: #699eaa;
+  --peach: #ffc09f;
+  --darkerPeach: #e89d79;
+  --flax: #ffee93;
+  --darkerFlax: #ffe144;
+}
+
+.calcEntry{
+    font-size: 50px;
+}
+
+.mb-3{
+    font-size: 50px;
+}
+
+.disabled{
+    background-color: #adf7b6 !important;
+}
+.choiceContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.calcTypeChosenButton{
+    font-size: 50px;
+    background-color: var(--peach);
+    border-color: var(--peach);
+    color: var(--bgDarkColor);
+    max-width: 45%;
+}
+
+.calcTypeChosenButton:hover, .calcTypeChosenButton:hover{
+    background-color: var(--darkerPeach);
+    border-color: var(--darkerPeach);
+    color: var(--bgDarkColor);
+}
+
+.calcTypeChosenButton:not(:disabled):not(:disabled):active{
+    background-color: var(--darkerPeach);
+    border-color: var(--darkerPeach);
+    color: var(--bgLighterColor);
+}
+
+.notChosenButton{
+    font-size: 50px;
+    background-color: var(--flax);
+    border-color: var(--flax);
+    color: var(--bgDarkColor);
+    max-width: 45%;
+}
+
+.notChosenButton:hover, .notChosenButton:hover{
+    background-color: var(--darkerFlax);
+    border-color: var(--darkerFlax);
+    color: var(--bgDarkColor);
+}
+
+.notChosenButton:not(:disabled):not(:disabled):active{
+    background-color: var(--darkerFlax);
+    border-color: var(--darkerFlax);
+    color: var(--bgLighterColor);
+}

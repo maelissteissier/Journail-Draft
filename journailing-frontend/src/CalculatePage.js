@@ -159,7 +159,7 @@ class CalculatePage extends Component {
     render() {
 
         return (
-            <Form>
+            <Form className={"calcForm"}>
                     {this.getChoiceCalcButtons()}
                     <Form.Group className="mb-3" controlId="originalQuantity">
                         <Form.Label>Quantité d'origine</Form.Label>

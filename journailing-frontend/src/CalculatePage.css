@@ -9,6 +9,8 @@
   --darkerFlax: #ffe144;
 }
 
+
+
 .calcEntry{
     font-size: 50px;
 }
@@ -31,6 +33,7 @@
     border-color: var(--peach);
     color: var(--bgDarkColor);
     max-width: 45%;
+    margin-bottom: 25px;
 }
 
 .calcTypeChosenButton:hover, .calcTypeChosenButton:hover{
@@ -51,6 +54,7 @@
     border-color: var(--flax);
     color: var(--bgDarkColor);
     max-width: 45%;
+    margin-bottom: 25px;
 }
 
 .notChosenButton:hover, .notChosenButton:hover{
@@ -63,4 +67,27 @@
     background-color: var(--darkerFlax);
     border-color: var(--darkerFlax);
     color: var(--bgLighterColor);
+}
+
+/*Phones*/
+@media only screen and (max-width: 800px) {
+    .calcForm{
+        width: 90%;
+    }
+
+    .calcEntry{
+        font-size: 35px;
+    }
+
+    .mb-3{
+        font-size: 30px;
+    }
+
+    .calcTypeChosenButton{
+        font-size: 30px;
+    }
+
+    .notChosenButton{
+        font-size: 30px;
+    }
 }

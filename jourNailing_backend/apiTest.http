@@ -1,0 +1,23 @@
+POST http://localhost:5000/foodrefs
+Content-Type: application/json
+
+{
+    "original_calory": 80,
+    "original_quantity": 55,
+    "name": "riz blanc"
+}
+
+###
+
+PUT http://localhost:5000/foodrefs/2
+Content-Type: application/json
+
+{
+    "original_calory": 80,
+    "original_quantity": 55,
+    "name": "riz"
+}
+
+###
+
+GET http://localhost:5000/foodrefs

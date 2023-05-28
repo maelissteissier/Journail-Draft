@@ -8,6 +8,10 @@ npm i --save @fortawesome/free-regular-svg-icons
 npm i --save @fortawesome/free-brands-svg-icons
 npm i --save @fortawesome/react-fontawesome@latest
 
+# install in python : 
+pip3 install flask-sqlalchemy
+
+
 # Liste features :
 - ajouter aliment calculé a une liste triable et cherchable (juste ajouter son nom et sa quantite + calorie)
 - ajouter la quantite+calorie calculé au log du jour

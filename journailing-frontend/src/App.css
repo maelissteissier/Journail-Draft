@@ -1,68 +1,157 @@
 /*variables*/
 :root {
-  --bgDarkColor: #282c34;
-  --bgLighterColor: #535457;
-  --lightBlue: #a0ced9;
-  --darkerBlue: #699eaa;
+    --bgDarkColor: #282c34;
+    --bgLighterColor: #535457;
+    --bgDarkerColor: #17191e;
+    --lightBlue: #a0ced9;
+    --darkerBlue: #699eaa;
+    --peach: #ffc09f;
+    --darkerPeach: #e89d79;
+    --flax: #ffee93;
+    --darkerFlax: #ffe24b;
+    --lemonChiffon: #fcf5c7;
+    --ultraViolet: #54428e;
+    --amethyste: #8963ba;
+    --celadon: #afe3c0;
+    --pistachio: #90c290;
+    --resedaGreen: #688b58;
+    --hookersGreen: #668586;
+    --verdigris: #82aeb1;
+    --skyBlue: #93c6d6;
+    --periwinkle: #a7acd9;
+    --roseQuartz: #9e8fb2;
+    --roseQuartzDarker: #755b98;
+    --rosee: #f8bcbc;
+    --roseeDarker: #d09090;
 }
 
 .App {
-  text-align: center;
+    text-align: center;
+    background-color: var(--bgDarkColor);
+
 }
 
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
+/* Need this one to be like the others App-Header but centered vertically*/
+.App-header-home {
+    margin: auto;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    max-width: 90%;
+    gap: 20px;
+}
+
+
+/* This one is used in the other pages*/
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 
 /*My css*/
-.homeButton{
-  width: 250px;
-  height:250px;
-  font-size: 100px;
-  border-radius: 25px;
-  color: var(--bgDarkColor);
-  background-color: var(--lightBlue);
-  border: none;
+.homeButton {
+    aspect-ratio: 1 / 1;
+    width: 40%;
+    font-size: 100px;
+    border-radius: 25px;
+    border: none;
 }
 
-.homeButton:hover, .homeButton:active{
-  background-color: var(--darkerBlue);
-  color: var(--bgDarkColor);
+.calcButton {
+    color: var(--bgDarkColor);
+    background-color: var(--lightBlue);
 }
-.homeButton:not(:disabled):not(:disabled):active{
-  background-color: var(--darkerBlue);
-  color: var(--bgLighterColor);
+
+.calcButton:hover, .calcButton:active {
+    background-color: var(--darkerBlue);
+    color: var(--bgDarkColor);
+}
+
+.calcButton:not(:disabled):not(:disabled):active {
+    background-color: var(--darkerBlue);
+    color: var(--bgLighterColor);
+}
+
+.listButton {
+    color: var(--bgDarkColor);
+    background-color: var(--roseQuartz);
+}
+
+.listButton:hover, .listButton:active {
+    background-color: var(--roseQuartzDarker);
+    color: var(--bgDarkColor);
+}
+
+.listButton:not(:disabled):not(:disabled):active {
+    background-color: var(--roseQuartzDarker);
+    color: var(--bgLighterColor);
+}
+
+.journalLogButton {
+    color: var(--bgDarkColor);
+    background-color: var(--rosee);
+}
+
+.journalLogButton:hover, .journalLogButton:active {
+    background-color: var(--roseeDarker);
+    color: var(--bgDarkColor);
+}
+
+.journalLogButton:not(:disabled):not(:disabled):active {
+    background-color: var(--roseeDarker);
+    color: var(--bgLighterColor);
+}
+
+.addJournalEntryButton {
+    color: var(--bgDarkColor);
+    background-color: var(--flax);
+}
+
+.addJournalEntryButton:hover, .addJournalEntryButton:active {
+    background-color: var(--darkerFlax);
+    color: var(--bgDarkColor);
+}
+
+.addJournalEntryButton:not(:disabled):not(:disabled):active {
+    background-color: var(--darkerFlax);
+    color: var(--bgLighterColor);
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

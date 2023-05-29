@@ -1,18 +1,16 @@
-:root {
-  --bgDarkColor: #282c34;
-  --bgLighterColor: #535457;
-  --lightBlue: #a0ced9;
-  --darkerBlue: #699eaa;
-  --peach: #ffc09f;
-  --darkerPeach: #e89d79;
-  --flax: #ffee93;
-  --darkerFlax: #ffe144;
-}
-
-
-
 .calcEntry{
     font-size: 50px;
+}
+.backBanner{
+    font-size: 30px;
+    padding-top: 15px ;
+    padding-bottom: 15px;
+    padding-left: 35px;
+    margin-bottom: 25px;
+    background-color: var(--bgDarkerColor);
+    text-align: left;
+    width: 100%;
+    border-radius: 0;
 }
 
 .mb-3{
@@ -69,10 +67,16 @@
     color: var(--bgLighterColor);
 }
 
+.saveFood{
+    background-color: var(--hookersGreen);
+    border-color: var(--hookersGreen);
+}
+
 /*Phones*/
 @media only screen and (max-width: 800px) {
     .calcForm{
         width: 90%;
+        margin: auto;
     }
 
     .calcEntry{

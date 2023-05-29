@@ -1,0 +1,26 @@
+.tableFood{
+    color: lightgray;
+    width: 90%
+}
+
+.table-striped-columns>:not(caption)>tr>:nth-child(2n) {
+    --bs-table-accent-bg: var(--bs-table-striped-bg);
+}
+
+tr:hover{
+    background-color: var(--bgLighterColor);
+    cursor: pointer;
+}
+
+.tableHead:hover{
+    background-color: var(--bgDarkColor);
+    cursor: default;
+}
+
+.tableLeft{
+    text-align: left;
+}
+
+.tableRight{
+    text-align: right;
+}

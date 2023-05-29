@@ -1,0 +1,37 @@
+.modal-content{
+    background-color: var(--lightBlue);
+}
+
+.modal-header{
+    border: none;
+    padding-bottom: 0;
+    font-size: 45px;
+}
+
+.modal-body{
+    padding-top:0;
+    padding-bottom: 0;
+}
+
+.modal-footer{
+    padding-top:0;
+    border: none;
+}
+
+.infoFoodContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoFoodTitle{
+    font-size: 25px;
+}
+
+hr{
+    color: var(--bgDarkColor);
+    border: none;
+    height: 3px;
+    background: var(--bgDarkColor);
+    border-radius: 25px;
+    opacity: initial;
+}

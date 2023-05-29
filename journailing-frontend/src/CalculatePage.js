@@ -2,22 +2,33 @@ import React, {Component} from 'react';
 import Form from "react-bootstrap/Form";
 import "./CalculatePage.css"
 import Button from "react-bootstrap/Button";
+import SaveFoodRefModal from "./SaveFoodRefModal";
+import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import App from "./App";
 
 const calcType = {
     CALORIES: 0,
     QUANTITY: 1
 }
 
+const page = {
+    CALCULATE_PAGE: 0,
+    HOME: 1
+}
+
 class CalculatePage extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             originalQuantity: 100,
             originalCalories: 50,
             wantedQuantity: 0,
             resultCalories: 0,
             typeCalculate: calcType.CALORIES,
-            error: { err:false, mess:""}
+            error: {err: false, mess: ""},
+            modalShow: false,
+            pageState: page.CALCULATE_PAGE
         }
         this.handleOriginalQuantityChange = this.handleOriginalQuantityChange.bind(this);
         this.handleOriginalCaloryChange = this.handleOriginalCaloryChange.bind(this);
@@ -25,90 +36,110 @@ class CalculatePage extends Component {
         this.handleResultCaloriesChange = this.handleResultCaloriesChange.bind(this);
         this.onCaloryCalcClick = this.onCaloryCalcClick.bind(this);
         this.onQuantityCalcClick = this.onQuantityCalcClick.bind(this);
+        this.getState = this.getState.bind(this);
     }
 
-    onCaloryCalcClick(){
-            this.setState({typeCalculate: calcType.CALORIES});
-            console.log(this.state.typeCalculate);
-    }
-
-    onQuantityCalcClick(){
-            this.setState({typeCalculate: calcType.QUANTITY});
-            console.log(this.state.typeCalculate);
+    static getDerivedStateFromProps(props, state) {
+        return {
+            originalQuantity: props.foodChosen.original_quantity,
+            originalCalories: props.foodChosen.original_calory
+        }
     }
 
 
-    handleOriginalQuantityChange(e){
+    getState() {
+        return this.state.originalCalories
+    }
+
+    onCaloryCalcClick() {
+        this.setState({typeCalculate: calcType.CALORIES});
+        console.log(this.state.typeCalculate);
+    }
+
+    onQuantityCalcClick() {
+        this.setState({typeCalculate: calcType.QUANTITY});
+        console.log(this.state.typeCalculate);
+    }
+
+
+    handleOriginalQuantityChange(e) {
         let originQuantity = isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value);
         if (originQuantity === 0) {
-            this.setState({error: {err:true, mess:"La quantité originale est invalide"}});
-        } else if (this.state.typeCalculate === calcType.CALORIES){
-            let resultCals = Math.round((this.state.originalCalories/originQuantity) * this.state.wantedQuantity);
+            this.setState({error: {err: true, mess: "La quantité originale est invalide"}});
+        } else if (this.state.typeCalculate === calcType.CALORIES) {
+            let resultCals = Math.round((this.state.originalCalories / originQuantity) * this.state.wantedQuantity);
             console.log(resultCals);
-            this.setState({originalQuantity: originQuantity, resultCalories: resultCals });
-        } else{
-            let resultQuant = Math.round(this.state.resultCalories / (this.state.originalCalories/originQuantity))
+            this.setState({originalQuantity: originQuantity, resultCalories: resultCals});
+        } else {
+            let resultQuant = Math.round(this.state.resultCalories / (this.state.originalCalories / originQuantity))
             console.log(resultQuant);
-            this.setState({originalQuantity: originQuantity, wantedQuantity: resultQuant });
+            this.setState({originalQuantity: originQuantity, wantedQuantity: resultQuant});
         }
     }
-    handleOriginalCaloryChange(e){
+
+    handleOriginalCaloryChange(e) {
         let originCalories = isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value);
         if (originCalories === 0) {
-            this.setState({error: {err:true, mess:"Le nombre de calories originales est invalide"}});
-        } else if (this.state.typeCalculate === calcType.CALORIES){
-            let resultCals = Math.round((originCalories/this.state.originalQuantity) * this.state.wantedQuantity);
+            this.setState({error: {err: true, mess: "Le nombre de calories originales est invalide"}});
+        } else if (this.state.typeCalculate === calcType.CALORIES) {
+            let resultCals = Math.round((originCalories / this.state.originalQuantity) * this.state.wantedQuantity);
             console.log(resultCals);
-            this.setState({originalCalories: originCalories, resultCalories: resultCals });
-        } else{
-            let resultQuant = Math.round(this.state.resultCalories / (originCalories/this.state.originalQuantity));
+            this.setState({originalCalories: originCalories, resultCalories: resultCals});
+        } else {
+            let resultQuant = Math.round(this.state.resultCalories / (originCalories / this.state.originalQuantity));
             console.log(resultQuant);
-            this.setState({originalCalories: originCalories, wantedQuantity: resultQuant });
+            this.setState({originalCalories: originCalories, wantedQuantity: resultQuant});
         }
     }
-    handleWantedQuantityChange(e){
+
+    handleWantedQuantityChange(e) {
         let wantedQuant = isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value);
         if (wantedQuant === 0) {
-            this.setState({error: {err:true, mess:"La quantité visée est invalide"}});
-        } else if (this.state.typeCalculate === calcType.CALORIES){
-            let resultCals = Math.round((this.state.originalCalories/this.state.originalQuantity) * wantedQuant);
+            this.setState({error: {err: true, mess: "La quantité visée est invalide"}});
+        } else if (this.state.typeCalculate === calcType.CALORIES) {
+            let resultCals = Math.round((this.state.originalCalories / this.state.originalQuantity) * wantedQuant);
 
-            this.setState({wantedQuantity: wantedQuant, resultCalories: resultCals });
+            this.setState({wantedQuantity: wantedQuant, resultCalories: resultCals});
         }
     }
-    handleResultCaloriesChange(e){
+
+    handleResultCaloriesChange(e) {
         let resCalories = isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value);
         console.log(resCalories);
         if (resCalories === 0) {
-            this.setState({error: {err:true, mess:"Le nombre de calories visé est invalide"}});
-        } else if (this.state.typeCalculate === calcType.QUANTITY){
-            let resultQuant = Math.round(resCalories / (this.state.originalCalories/this.state.originalQuantity));
+            this.setState({error: {err: true, mess: "Le nombre de calories visé est invalide"}});
+        } else if (this.state.typeCalculate === calcType.QUANTITY) {
+            let resultQuant = Math.round(resCalories / (this.state.originalCalories / this.state.originalQuantity));
             console.log(resultQuant)
-            this.setState({resultCalories: resCalories, wantedQuantity: resultQuant });
+            this.setState({resultCalories: resCalories, wantedQuantity: resultQuant});
             console.log(this.state);
         }
     }
 
-    getChoiceCalcButtons(){
-        if (this.state.typeCalculate === calcType.CALORIES){
+    getChoiceCalcButtons() {
+        if (this.state.typeCalculate === calcType.CALORIES) {
             return (
                 <div className={"choiceContainer"}>
-                        <Button className={"calcTypeChosenButton"} variant="primary" onClick={this.onCaloryCalcClick}>Calculer Calories</Button>
-                        <Button className={"notChosenButton"} variant="primary" onClick={this.onQuantityCalcClick}>Calculer Quantité</Button>
+                    <Button className={"calcTypeChosenButton"} variant="primary" onClick={this.onCaloryCalcClick}>Calculer
+                        Calories</Button>
+                    <Button className={"notChosenButton"} variant="primary" onClick={this.onQuantityCalcClick}>Calculer
+                        Quantité</Button>
                 </div>
             );
-        } else{
+        } else {
             return (
                 <div className={"choiceContainer"}>
-                        <Button className={"notChosenButton"} variant="primary" onClick={this.onCaloryCalcClick}>Calculer Calories</Button>
-                        <Button className={"calcTypeChosenButton"} variant="primary" onClick={this.onQuantityCalcClick}>Calculer Quantité</Button>
+                    <Button className={"notChosenButton"} variant="primary" onClick={this.onCaloryCalcClick}>Calculer
+                        Calories</Button>
+                    <Button className={"calcTypeChosenButton"} variant="primary" onClick={this.onQuantityCalcClick}>Calculer
+                        Quantité</Button>
                 </div>
             );
         }
     }
 
-    getCalcFormEntries(){
-        if (this.state.typeCalculate === calcType.CALORIES){
+    getCalcFormEntries() {
+        if (this.state.typeCalculate === calcType.CALORIES) {
             return (
                 <div>
                     <Form.Group className="mb-3" controlId="wantedQuantity">
@@ -129,7 +160,7 @@ class CalculatePage extends Component {
                         />
                     </Form.Group>
                 </div>
-        );
+            );
         } else {
             return (
                 <div>
@@ -151,36 +182,61 @@ class CalculatePage extends Component {
                         />
                     </Form.Group>
                 </div>
-        );
+            );
         }
 
     }
 
     render() {
 
-        return (
-            <Form className={"calcForm"}>
-                    {this.getChoiceCalcButtons()}
-                    <Form.Group className="mb-3" controlId="originalQuantity">
-                        <Form.Label>Quantité d'origine</Form.Label>
-                        <Form.Control className={ "calcEntry" }
-                                      type="text"
-                                      placeholder={this.state.originalQuantity.toString()}
-                                      onChange={this.handleOriginalQuantityChange}/>
-                    </Form.Group>
+        if (this.state.pageState === page.CALCULATE_PAGE) {
+            return (
+                <div>
+                    <Button className={"backBanner"}
+                            variant="dark"
+                            onClick={() => {
+                                this.setState({pageState: page.HOME})
+                            }}
+                    ><FontAwesomeIcon icon={faChevronLeft}/> Return Home</Button>
+
+                    <Form className={"calcForm"}>
+                        {this.getChoiceCalcButtons()}
+                        <Form.Group className="mb-3" controlId="originalQuantity">
+                            <Form.Label>Quantité d'origine</Form.Label>
+                            <Form.Control className={"calcEntry"}
+                                          type="text"
+                                          placeholder={this.state.originalQuantity.toString()}
+                                          onChange={this.handleOriginalQuantityChange}/>
+                        </Form.Group>
 
 
-                    <Form.Group className="mb-3" controlId="originalCalories">
-                        <Form.Label>Calories d'origine</Form.Label>
-                        <Form.Control className={ "calcEntry" }
-                                      type="text"
-                                      placeholder={this.state.originalCalories.toString()}
-                                      onChange={this.handleOriginalCaloryChange}
+                        <Form.Group className="mb-3" controlId="originalCalories">
+                            <Form.Label>Calories d'origine</Form.Label>
+                            <Form.Control className={"calcEntry"}
+                                          type="text"
+                                          placeholder={this.state.originalCalories.toString()}
+                                          onChange={this.handleOriginalCaloryChange}
+                            />
+                        </Form.Group>
+                        {this.getCalcFormEntries()}
+                        <Button className={"saveFood"} variant="primary"
+                                onClick={() => this.setState({modalShow: true})}>Sauvegarder
+                            Aliment</Button>
+                        <SaveFoodRefModal show={this.state.modalShow}
+                                          onHide={() => this.setState({modalShow: false})}
+                                          quantity={this.state.originalQuantity}
+                                          calories={this.state.originalCalories}
                         />
-                    </Form.Group>
-                    {this.getCalcFormEntries()}
-            </Form>
-        );
+                    </Form>
+                </div>
+            );
+        } else if (this.state.pageState === page.HOME) {
+            return (
+                <App/>
+            );
+        }
+
+
     }
 }
 

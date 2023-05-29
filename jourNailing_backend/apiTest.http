@@ -1,3 +1,4 @@
+# FOOD REF
 POST http://localhost:5000/foodrefs
 Content-Type: application/json
 
@@ -21,3 +22,64 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/foodrefs
+
+###
+
+# FOOD JOURNAL ENTRY
+
+POST http://localhost:5000/food-journal-entry
+Content-Type: application/json
+
+{   
+    "date": "2023-05-29T15:11:14.198Z",
+    "quantity": 56,
+    "quantity_type": "morceaux",
+    "calories": 250,
+    "thoughts": "je me sens bien aujourd'hui",
+    "journal_category": {
+        "id":1,
+        "name":"food"
+    }
+}
+
+### 
+POST http://localhost:5000/food-journal-entry
+Content-Type: application/json
+
+{   
+    "date": "2023-05-28T15:11:14.198Z",
+    "quantity": 34,
+    "quantity_type": "carré",
+    "calories": 345,
+    "thoughts": "je me sens bien bien bien aujourd'hui",
+    "journal_category": {
+        "id":1,
+        "name":"food"
+    }
+}
+
+###
+GET http://localhost:5000/food-journal-entries/
+
+###
+GET http://localhost:5000/food-journal-entries/date?date=2023-05-28
+
+###
+
+# JOURNAL CATEGORY
+
+POST http://localhost:5000/journal-category
+Content-Type: application/json
+
+{
+    "name":"food"
+}
+
+###
+
+GET http://localhost:5000/journal-category/1
+
+###
+
+GET http://localhost:5000/journal-categories
+

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, abort
-from database import db, FoodRef
+from jourNailing_backend.database.database import db, FoodRef
 
 foodref_bp = Blueprint('foodref', __name__)
 

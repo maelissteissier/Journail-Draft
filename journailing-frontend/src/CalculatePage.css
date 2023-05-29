@@ -2,7 +2,6 @@
     font-size: 50px;
 }
 .backBanner{
-    font-size: 30px;
     padding-top: 15px ;
     padding-bottom: 15px;
     padding-left: 35px;
@@ -13,6 +12,44 @@
     border-radius: 0;
 }
 
+.iconBackBanner{
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.toastSaveSuccess{
+    background-color: var(--hookersGreen);
+    border-radius: 20px;
+}
+
+.toastSaveSuccess .toast-header{
+    background-color: var(--hookersGreen);
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+}
+
+.toastSaveSuccess .toast-body{
+    background-color: var(--hookersGreen);
+    border-radius: 20px;
+}
+
+.toastSaveFail{
+    background-color: var(--redFail);
+    border-radius: 20px;
+}
+
+.toastSaveFail .toast-header{
+    background-color: var(--redFail);
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+}
+
+.toastSaveFail .toast-body{
+    background-color: var(--redFail);
+    border-radius: 20px;
+}
 .mb-3{
     font-size: 50px;
 }

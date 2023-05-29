@@ -1,10 +1,7 @@
 .tableFood{
     color: lightgray;
-    width: 90%
-}
-
-.table-striped-columns>:not(caption)>tr>:nth-child(2n) {
-    --bs-table-accent-bg: var(--bs-table-striped-bg);
+    width: 95%;
+    margin: auto;
 }
 
 tr:hover{
@@ -23,4 +20,10 @@ tr:hover{
 
 .tableRight{
     text-align: right;
+}
+
+.tableMidle{
+    color: lightgrey !important;
+    text-align: center;
+    background-color: var(--bgDarkColor);
 }

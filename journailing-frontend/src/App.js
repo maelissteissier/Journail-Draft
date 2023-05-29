@@ -1,41 +1,43 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBook, faCalculator, faCirclePlus, faMagnifyingGlass, faRectangleList} from '@fortawesome/free-solid-svg-icons'
+import {faBook, faCalculator, faCirclePlus, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import React, {useState} from "react";
 import CalculatePage from "./CalculatePage";
 import ListFoodRefPage from "./ListFoodRefPage";
+import {page} from "./PageEnum";
+
 
 
 function App() {
-    const [state, setState] = useState({pageState: 'homePage'});
-    if (state.pageState === "homePage") {
+    const [state, setState] = useState({pageState: page.HOME});
+    if (state.pageState === page.HOME) {
         return (
             <div className="App">
                 <div className="App-header-home">
 
                     <Button className="homeButton calcButton" variant="primary" onClick={() =>
                         setState({
-                            pageState: 'calculatePage'
+                            pageState: page.CALCULATE_PAGE
                         })}>
                         <FontAwesomeIcon icon={faCalculator}/>
                     </Button>{' '}
                     <Button className="homeButton listButton" variant="primary" onClick={() =>
                         setState({
-                            pageState: 'foodRefList'
+                            pageState: page.FOODLIST
                         })}>
                         <FontAwesomeIcon icon={faMagnifyingGlass}/>
                     </Button>{' '}
                     <Button className="homeButton journalLogButton" variant="primary" onClick={() =>
                         setState({
-                            pageState: 'foodRefList'
+                            pageState: page.FOODLIST
                         })}>
                         <FontAwesomeIcon icon={faBook} />
                     </Button>{' '}
                     <Button className="homeButton addJournalEntryButton" variant="primary" onClick={() =>
                         setState({
-                            pageState: 'foodRefList'
+                            pageState: page.FOODLIST
                         })}>
                         <FontAwesomeIcon icon={faCirclePlus} />
                     </Button>{' '}
@@ -43,15 +45,15 @@ function App() {
                 </div>
             </div>
         );
-    } else if (state.pageState === "calculatePage") {
+    } else if (state.pageState === page.CALCULATE_PAGE) {
         return (
             <div className="App">
                 <header className="App-header">
-                    <CalculatePage foodChosen={{original_quantity: 100, original_calory: 50}}/>
+                    <CalculatePage foodChosen={{original_quantity: 0, original_calory: 0}}/>
                 </header>
             </div>
         );
-    } else if (state.pageState === "foodRefList") {
+    } else if (state.pageState === page.FOODLIST) {
         return (
             <div className="App">
                 <header className="App-header">

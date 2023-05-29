@@ -18,25 +18,18 @@ class SaveFoodRefModal extends Component {
         this.onSaveFood = this.onSaveFood.bind(this);
     }
 
-    static getDerivedStateFromProps(props, state){
-        return {
-            quantity:props.quantity,
-            calories:props.calories
-        }
-    }
-
 
     handleFoodNameChange(e){
         this.setState({foodName: e.target.value});
     }
 
     handleQuantityChange(e){
-        let originQuantity = isNaN(parseFloat(this.state.quantity)) ? 0 : parseFloat(this.state.quantity);
+        let originQuantity = isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value);
         this.setState({quantity: originQuantity});
     }
 
     handleCaloriesChange(e){
-        let originCalories = isNaN(parseFloat(this.state.calories)) ? 0 : parseFloat(this.state.calories);
+        let originCalories = isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value);
         this.setState({calories: originCalories});
     }
 
@@ -48,7 +41,7 @@ class SaveFoodRefModal extends Component {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/foodrefs', {
+            const response = await fetch('http://192.168.2.31:5000/foodrefs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -57,10 +50,12 @@ class SaveFoodRefModal extends Component {
             });
 
             if (!response.ok) {
+                this.props.onFailSave();
                 throw new Error('Failed to create FoodRef');
             }
 
             const newFoodRef = await response.json();
+            this.props.onSuccessSave();
             console.log('New FoodRef:', newFoodRef);
         } catch (error) {
             console.error('Error creating FoodRef:', error);
@@ -122,6 +117,7 @@ class SaveFoodRefModal extends Component {
                     <Button className={"saveButton"} onClick={this.onSaveFood}>Enregistrer</Button>
                 </Modal.Footer>
             </Modal>
+
         );
     }
 }

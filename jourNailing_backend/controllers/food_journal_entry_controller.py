@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, abort
-from jourNailing_backend.database.database import db, FoodJournalEntry, JournalCategory
+from jourNailing_backend.database.database import db, FoodJournalEntry, JournalCategory, FoodRef
 from datetime import datetime, date, timedelta
 
 foodJournalEntry_bp = Blueprint('foodJournalEntry', __name__)
@@ -14,7 +14,19 @@ def create_food_journal_entry():
     journal_category_id = data['journal_category']['id']
     journal_category = JournalCategory.query.get(journal_category_id)
 
-    # If the JournalCategory doesn't exist
+    # FoodRef isn't required so returns error only in case there is one and it doesn't exists
+    food_ref = None
+    try:
+        if data['food_ref'] is not None:
+            food_ref_id = data['food_ref']['id']
+            food_ref = FoodRef.query.get(food_ref_id)
+            # If the FoodRef doesn't exist
+            if food_ref is None:
+                return jsonify({'error': 'FoodRef not found'}), 404
+    except KeyError:
+        pass
+
+    # If the JournalCategory doesn't exist (required)
     if journal_category is None:
         return jsonify({'error': 'JournalCategory not found'}), 404
 
@@ -23,13 +35,14 @@ def create_food_journal_entry():
     except ValueError:
         return jsonify({'error': 'Invalid date format'}), 400
 
-
     new_entry = FoodJournalEntry(
         date=entry_date,
         quantity=data['quantity'],
         quantity_type=data['quantity_type'],
         calories=data['calories'],
         thoughts=data['thoughts'],
+        name=data['name'],
+        foodRef=food_ref,
         journalCategory=journal_category
     )
 
@@ -39,6 +52,7 @@ def create_food_journal_entry():
     db.session.add(new_entry)
     db.session.commit()
     return jsonify(new_entry.to_json()), 201
+
 
 # Get one entry
 @foodJournalEntry_bp.route('/food-journal-entry/<entry_id>', methods=['GET'])

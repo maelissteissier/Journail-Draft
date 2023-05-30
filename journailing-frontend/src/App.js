@@ -7,6 +7,7 @@ import React, {useState} from "react";
 import CalculatePage from "./CalculatePage";
 import ListFoodRefPage from "./ListFoodRefPage";
 import {page} from "./PageEnum";
+import JournalLog from "./JournalLog";
 
 
 
@@ -31,7 +32,7 @@ function App() {
                     </Button>{' '}
                     <Button className="homeButton journalLogButton" variant="primary" onClick={() =>
                         setState({
-                            pageState: page.FOODLIST
+                            pageState: page.JOURNAL_LOG
                         })}>
                         <FontAwesomeIcon icon={faBook} />
                     </Button>{' '}
@@ -61,8 +62,15 @@ function App() {
                 </header>
             </div>
         );
+    } else if (state.pageState === page.JOURNAL_LOG) {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <JournalLog day={new Date()}/>
+                </header>
+            </div>
+        );
     }
-
 }
 
 export default App;

@@ -7,11 +7,14 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight, faCirclePlus} from "@fortawesome/free-solid-svg-icons";
 import "./JournalLog.css"
 import {addOneDayToDatetime, getDayDateFromDatetime, getTimeFromDatetime, removeOneDayToDatetime} from "./DateUtils";
+import SaveFoodRefModal from "./SaveFoodRefModal";
+import AddFoodJournalEntryModal from "./AddFoodJournalEntryModal";
 
 const dayState = {
     TODAY: 0,
     NAVIGATING: 1
 }
+
 class JournalLog extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +22,10 @@ class JournalLog extends Component {
             pageState: page.LOADING,
             foodEntries: [],
             day: props.day,
-            pageDayState: dayState.TODAY
+            pageDayState: dayState.TODAY,
+            modalShow: false,
+            toastFailShow: false,
+            toastSuccessShow: false,
 
         }
         // this.handleFoodNameChange = this.handleFoodNameChange.bind(this);
@@ -28,6 +34,7 @@ class JournalLog extends Component {
         // this.onSaveFood = this.onSaveFood.bind(this);
         this.getTotalCalories = this.getTotalCalories.bind(this);
         this.getFoodLogTable = this.getFoodLogTable.bind(this);
+        this.createModal = this.createModal.bind(this);
     }
 
     async componentDidMount() {
@@ -84,6 +91,38 @@ class JournalLog extends Component {
         return this.state.foodEntries.reduce((acc, currVal) => acc + currVal.calories, 0);
     }
 
+    createModal() {
+        if (this.state.modalShow) {
+            return (
+                <AddFoodJournalEntryModal show={this.state.modalShow}
+                                          onHide={() => this.setState({modalShow: false})}
+                                          quantity={this.state.originalQuantity}
+                                          calories={this.state.originalCalories}
+                                          foodEntry={{
+                                              "date": new Date(),
+                                              "quantity": 34,
+                                              "quantity_type": "grammes",
+                                              "calories": 345,
+                                              "thoughts": "ehlala",
+                                              "journal_category": {
+                                                  "id": 1,
+                                                  "name": "food"
+                                              },
+                                              "name": "Caprice des dieux"
+                                          }}
+                                          onSuccessSave={() => {
+                                              this.setState({modalShow: false, toastSuccessShow: true})
+                                          }}
+                                          onFailSave={() => {
+                                              this.setState({modalShow: false, toastFailShow: true})
+                                          }}
+                />
+            );
+        } else {
+            return null;
+        }
+    }
+
     render() {
         if (this.state.pageState === page.HOME) {
             return (
@@ -92,7 +131,7 @@ class JournalLog extends Component {
         } else if (this.state.pageState === page.JOURNAL_LOG && this.state.pageDayState === dayState.NAVIGATING) {
             return (<JournalLog day={this.state.day}/>);
 
-        }else if (this.state.pageState === page.JOURNAL_LOG) {
+        } else if (this.state.pageState === page.JOURNAL_LOG) {
             return (<div>
                     <Button className={"backBanner"}
                             variant="dark"
@@ -111,25 +150,29 @@ class JournalLog extends Component {
                         <span className={"dayBeforeIcon"}
                               onClick={() => {
                                   const actualDay = this.state.day;
-                                  this.setState({day: removeOneDayToDatetime(actualDay), pageDayState: dayState.NAVIGATING})
+                                  this.setState({
+                                      day: removeOneDayToDatetime(actualDay),
+                                      pageDayState: dayState.NAVIGATING
+                                  })
                               }}><FontAwesomeIcon icon={faChevronLeft}/></span>
                         <span className={"dateLog"}>{getDayDateFromDatetime(this.state.day)}</span>
                         <span className={"dayAfterIcon"}
                               onClick={() => {
                                   const actualDay = this.state.day;
-                                  this.setState({day: addOneDayToDatetime(actualDay), pageDayState: dayState.NAVIGATING})
+                                  this.setState({
+                                      day: addOneDayToDatetime(actualDay),
+                                      pageDayState: dayState.NAVIGATING
+                                  })
                               }}><FontAwesomeIcon icon={faChevronRight}/></span>
                     </div>
                     {this.getFoodLogTable()}
 
                     <Button className="addFoodEntryButton"
                             variant="primary"
-                            onClick={() =>
-                                this.setState({
-                                    pageState: page.HOME
-                                })}>
+                            onClick={() => this.setState({modalShow: true})}>
                         <FontAwesomeIcon icon={faCirclePlus}/>
                     </Button>{' '}
+                    {this.createModal()}
                 </div>
             );
         } else if (this.state.pageState === page.LOADING) {

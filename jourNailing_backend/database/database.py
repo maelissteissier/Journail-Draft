@@ -19,13 +19,15 @@ class FoodRef(db.Model):
     original_calory = db.Column(db.Integer, nullable=False)
     original_quantity = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(80), nullable=False, unique=True)
+    quantity_type = db.Column(db.String(80), nullable=False, unique=True)
 
     def to_json(self):
         return {
             'id': self.id,
             'original_calory': self.original_calory,
             'original_quantity': self.original_quantity,
-            'name': self.name
+            'name': self.name,
+            'quantity_type': self.quantity_type
         }
 
 

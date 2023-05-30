@@ -1,0 +1,1 @@
+ALTER TABLE food_ref ADD COLUMN quantity_type VARCHAR(80);

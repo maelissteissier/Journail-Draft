@@ -1,5 +1,53 @@
+html{
+    background-color: var(--bgDarkColor);
+}
+.calcPageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+}
+
+.calculatorContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.calcForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.entryColumns{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.calcEntryContainer{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+
+}
+
+.choiceContainer{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+
 .calcEntry{
-    font-size: 50px;
+    font-size: 25px;
+
+}
+
+.foodRefSelect{
+    margin-bottom: 25px;
+    background-color: var(--ultraViolet);
+    border-color: var(--ultraViolet);
+    color: white;
 }
 .backBanner{
     padding-top: 15px ;
@@ -51,23 +99,21 @@
     border-radius: 20px;
 }
 .mb-3{
-    font-size: 50px;
+    font-size: 15px;
+    width:50%;
 }
 
 .disabled{
     background-color: #adf7b6 !important;
 }
-.choiceContainer{
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .calcTypeChosenButton{
-    font-size: 50px;
+    font-size: 30px;
     background-color: var(--peach);
     border-color: var(--peach);
     color: var(--bgDarkColor);
-    max-width: 45%;
+    width: 50%;
     margin-bottom: 25px;
 }
 
@@ -84,11 +130,11 @@
 }
 
 .notChosenButton{
-    font-size: 50px;
+    font-size: 30px;
     background-color: var(--flax);
     border-color: var(--flax);
     color: var(--bgDarkColor);
-    max-width: 45%;
+    width: 50%;
     margin-bottom: 25px;
 }
 
@@ -107,6 +153,7 @@
 .saveFood{
     background-color: var(--hookersGreen);
     border-color: var(--hookersGreen);
+    width: 50%;
 }
 
 /*Phones*/
@@ -117,18 +164,18 @@
     }
 
     .calcEntry{
-        font-size: 35px;
+        font-size: 25px;
     }
 
     .mb-3{
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .calcTypeChosenButton{
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .notChosenButton{
-        font-size: 30px;
+        font-size: 20px;
     }
 }

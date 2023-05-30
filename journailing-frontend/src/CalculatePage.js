@@ -22,6 +22,7 @@ class CalculatePage extends Component {
         this.state = {
             originalQuantity: props.foodChosen.original_quantity,
             originalCalories: props.foodChosen.original_calory,
+            foodChosen: props.foodChosen,
             wantedQuantity: 0,
             resultCalories: 0,
             typeCalculate: calcType.CALORIES,
@@ -29,7 +30,8 @@ class CalculatePage extends Component {
             modalShow: false,
             toastFailShow: false,
             toastSuccessShow: false,
-            pageState: page.CALCULATE_PAGE
+            pageState: page.LOADING,
+            foodRefList: []
         }
         this.handleOriginalQuantityChange = this.handleOriginalQuantityChange.bind(this);
         this.handleOriginalCaloryChange = this.handleOriginalCaloryChange.bind(this);
@@ -38,8 +40,37 @@ class CalculatePage extends Component {
         this.onCaloryCalcClick = this.onCaloryCalcClick.bind(this);
         this.onQuantityCalcClick = this.onQuantityCalcClick.bind(this);
         this.createModal = this.createModal.bind(this);
+        this.getSelectFoodRefForm = this.getSelectFoodRefForm.bind(this);
     }
 
+    async componentDidMount() {
+        try {
+            const response = await fetch('http://192.168.2.31:5000/foodrefs');
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch FoodRefs');
+            }
+
+            const foodRefs = await response.json();
+            console.log('FoodRefs:', foodRefs);
+            this.setState({foodRefList: foodRefs, pageState: page.CALCULATE_PAGE})
+        } catch (error) {
+            console.error('Error fetching FoodRefs:', error);
+        }
+    }
+
+    getSelectFoodRefForm() {
+        return (
+            <Form.Select aria-label="Food References Select" className={"foodRefSelect"}>
+                <option>Choisir un aliment référence (ou pas)</option>
+                {this.state.foodRefList.map((item) => (
+                    <option key={item.id} value={item.id}>
+                        {item.name + ", " + item.original_quantity + " Qté," + item.original_calory + " Cals"}
+                    </option>
+                ))}
+            </Form.Select>
+        );
+    }
 
     onCaloryCalcClick() {
         this.setState({typeCalculate: calcType.CALORIES});
@@ -131,7 +162,7 @@ class CalculatePage extends Component {
     getCalcFormEntries() {
         if (this.state.typeCalculate === calcType.CALORIES) {
             return (
-                <div>
+                <div className={"calcEntryContainer"}>
                     <Form.Group className="mb-3" controlId="wantedQuantity">
                         <Form.Label>Quantité voulue</Form.Label>
                         <Form.Control className={"calcEntry"}
@@ -153,7 +184,7 @@ class CalculatePage extends Component {
             );
         } else if (this.state.typeCalculate === calcType.QUANTITY) {
             return (
-                <div>
+                <div className={"calcEntryContainer"}>
                     <Form.Group className="mb-3" controlId="wantedQuantity">
                         <Form.Label>Quantité voulue</Form.Label>
                         <Form.Control className={"calcEntry disabled"}
@@ -201,7 +232,7 @@ class CalculatePage extends Component {
 
         if (this.state.pageState === page.CALCULATE_PAGE) {
             return (
-                <div>
+                <div className={"calcPageContainer"}>
                     <Button className={"backBanner"}
                             variant="dark"
                             onClick={() => {
@@ -211,56 +242,99 @@ class CalculatePage extends Component {
                         <span className={"iconBackBanner"}><FontAwesomeIcon icon={faChevronLeft}/></span> <span
                         className={"textBackBanner"}>Return Home</span>
                     </Button>
-                    {/*Toast notif in case of success save of new food ref*/}
-                    <ToastContainer position="middle-center" className="p-3">
-                        <Toast className={"toastSaveSuccess"} onClose={() => this.setState({toastSuccessShow: false})}
-                               show={this.state.toastSuccessShow} delay={3000}
-                               autohide>
-                            <Toast.Header>
-                                <strong className="me-auto">Aliment sauvé avec succès !</strong>
-                            </Toast.Header>
-
-                        </Toast>
-                    </ToastContainer>
-                    {/*Toast notif in case of failing save of new food ref*/}
-                    <ToastContainer position="middle-center" className="p-3">
-                        <Toast className={"toastSaveFail"} onClose={() => this.setState({toastFailShow: false})}
-                               show={this.state.toastFailShow} delay={3000}
-                               autohide>
-                            <Toast.Header>
-                                <strong className="me-auto">Echec de la sauvegarde de l'aliment !</strong>
-                            </Toast.Header>
-                        </Toast>
-                    </ToastContainer>
-                    <Form className={"calcForm"}>
-                        {this.getChoiceCalcButtons()}
-                        <Form.Group className="mb-3" controlId="originalQuantity">
-                            <Form.Label>Quantité d'origine</Form.Label>
-                            <Form.Control className={"calcEntry"}
-                                          type="text"
-                                          placeholder={this.state.originalQuantity.toString()}
-                                          onChange={this.handleOriginalQuantityChange}
-                                          value={this.state.originalQuantity === 0 ? "" : this.state.originalQuantity}
-                            />
-                        </Form.Group>
+                    <div className={"calculatorContainer"}>
 
 
-                        <Form.Group className="mb-3" controlId="originalCalories">
-                            <Form.Label>Calories d'origine</Form.Label>
-                            <Form.Control className={"calcEntry"}
-                                          type="text"
-                                          placeholder={this.state.originalCalories.toString()}
-                                          onChange={this.handleOriginalCaloryChange}
-                                          value={this.state.originalCalories === 0 ? "" : this.state.originalCalories}
-                            />
-                        </Form.Group>
-                        {this.getCalcFormEntries()}
-                        <Button className={"saveFood"} variant="primary"
-                                onClick={() => this.setState({modalShow: true})}>Sauvegarder
-                            Aliment</Button>
-                        {this.createModal()}
+                        {/*Toast notif in case of success save of new food ref*/}
+                        <ToastContainer position="middle-center" className="p-3">
+                            <Toast className={"toastSaveSuccess"}
+                                   onClose={() => this.setState({toastSuccessShow: false})}
+                                   show={this.state.toastSuccessShow} delay={3000}
+                                   autohide>
+                                <Toast.Header>
+                                    <strong className="me-auto">Aliment sauvé avec succès !</strong>
+                                </Toast.Header>
 
-                    </Form>
+                            </Toast>
+                        </ToastContainer>
+                        {/*Toast notif in case of failing save of new food ref*/}
+                        <ToastContainer position="middle-center" className="p-3">
+                            <Toast className={"toastSaveFail"} onClose={() => this.setState({toastFailShow: false})}
+                                   show={this.state.toastFailShow} delay={3000}
+                                   autohide>
+                                <Toast.Header>
+                                    <strong className="me-auto">Echec de la sauvegarde de l'aliment !</strong>
+                                </Toast.Header>
+                            </Toast>
+                        </ToastContainer>
+                        <Form className={"calcForm"}>
+                            {this.getSelectFoodRefForm()}
+                            <div className={"entryColumns"}>
+                                <Form.Group className="entryColItem" controlId="name">
+                                    <Form.Label>Nom de l'aliment</Form.Label>
+                                    <Form.Control className={"calcEntry"}
+                                                  type="text"
+                                                  placeholder={this.state.originalQuantity.toString()}
+                                                  onChange={this.handleOriginalQuantityChange}
+                                                  value={this.props.foodChosen.name}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="entryColItem" controlId="rapidCalories">
+                                    <Form.Label>Calories Rapides</Form.Label>
+                                    <Form.Control className={"calcEntry"}
+                                                  type="text"
+                                                  placeholder={this.state.originalQuantity.toString()}
+                                                  onChange={this.handleOriginalQuantityChange}
+                                                  value={this.state.name}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="entryColItem" controlId="time">
+                                    <Form.Label>Heure</Form.Label>
+                                    <Form.Control className={"calcEntry"}
+                                                  type="time"
+                                                  placeholder={this.state.originalCalories.toString()}
+                                                  onChange={this.handleOriginalCaloryChange}
+                                                  value={this.state.date}
+                                    />
+                                </Form.Group>
+                            </div>
+                            {this.getChoiceCalcButtons()}
+                            <div className={"calcEntryContainer"}>
+                                <Form.Group className="mb-3" controlId="originalQuantity">
+                                    <Form.Label>Quantité d'origine</Form.Label>
+                                    <Form.Control className={"calcEntry"}
+                                                  type="text"
+                                                  placeholder={this.state.originalQuantity.toString()}
+                                                  onChange={this.handleOriginalQuantityChange}
+                                                  value={this.state.originalQuantity === 0 ? "" : this.state.originalQuantity}
+                                    />
+                                </Form.Group>
+
+
+                                <Form.Group className="mb-3" controlId="originalCalories">
+                                    <Form.Label>Calories d'origine</Form.Label>
+                                    <Form.Control className={"calcEntry"}
+                                                  type="text"
+                                                  placeholder={this.state.originalCalories.toString()}
+                                                  onChange={this.handleOriginalCaloryChange}
+                                                  value={this.state.originalCalories === 0 ? "" : this.state.originalCalories}
+                                    />
+                                </Form.Group>
+                            </div>
+                            {this.getCalcFormEntries()}
+                            <div className={"calcEntryContainer"}>
+                                <Button className={"saveFood"} variant="primary"
+                                        onClick={() => this.setState({modalShow: true})}>Sauvegarder
+                                    Aliment Référence</Button>
+                                <Button className={"saveFood"} variant="primary"
+                                        onClick={() => this.setState({modalShow: true})}>Sauvegarder
+                                    dans le journal</Button>
+                            </div>
+
+                            {this.createModal()}
+
+                        </Form>
+                    </div>
                 </div>
             );
         } else if (this.state.pageState === page.HOME) {

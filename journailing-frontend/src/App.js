@@ -10,7 +10,6 @@ import {page} from "./PageEnum";
 import JournalLog from "./JournalLog";
 
 
-
 function App() {
     const [state, setState] = useState({pageState: page.HOME});
     if (state.pageState === page.HOME) {
@@ -34,13 +33,13 @@ function App() {
                         setState({
                             pageState: page.JOURNAL_LOG
                         })}>
-                        <FontAwesomeIcon icon={faBook} />
+                        <FontAwesomeIcon icon={faBook}/>
                     </Button>{' '}
                     <Button className="homeButton addJournalEntryButton" variant="primary" onClick={() =>
                         setState({
                             pageState: page.FOODLIST
                         })}>
-                        <FontAwesomeIcon icon={faCirclePlus} />
+                        <FontAwesomeIcon icon={faCirclePlus}/>
                     </Button>{' '}
 
                 </div>
@@ -49,9 +48,7 @@ function App() {
     } else if (state.pageState === page.CALCULATE_PAGE) {
         return (
             <div className="App">
-                <header className="App-header">
-                    <CalculatePage foodChosen={{original_quantity: 0, original_calory: 0}}/>
-                </header>
+                <CalculatePage foodChosen={{name: "", original_quantity: 0, original_calory: 0}}/>
             </div>
         );
     } else if (state.pageState === page.FOODLIST) {

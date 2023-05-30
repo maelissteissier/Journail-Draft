@@ -1,6 +1,7 @@
 /*variables*/
 :root {
     --bgDarkColor: #282c34;
+    --bgDarkLightColor: #363b46;
     --bgLighterColor: #535457;
     --bgDarkerColor: #17191e;
     --lightBlue: #a0ced9;
@@ -155,4 +156,9 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+/*Phones*/
+@media only screen and (max-width: 800px) {
+
 }

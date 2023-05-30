@@ -57,9 +57,10 @@ class FoodJournalEntry(db.Model):
     quantity = db.Column(db.Integer)
     quantity_type = db.Column(db.String(80))
     calories = db.Column(db.Integer, nullable=False)
-    # foodRef_id = db.Column(db.Integer, db.ForeignKey('food_ref.id'))
-    # foodRef = db.relationship('FoodRef', backref='food_entry', uselist=False)
     thoughts = db.Column(db.String(1000))
+    name = db.Column(db.String(100))
+    foodRef_id = db.Column(db.Integer, db.ForeignKey('food_ref.id'))
+    foodRef = db.relationship('FoodRef', backref='food_entry', uselist=False)
     journalCategory_id = db.Column(db.Integer, db.ForeignKey('journal_category.id'))
     journalCategory = db.relationship('JournalCategory', backref='food_entry', uselist=False)
 
@@ -71,6 +72,8 @@ class FoodJournalEntry(db.Model):
             'quantity_type': self.quantity_type,
             'calories': self.calories,
             'thoughts': self.thoughts,
+            'food_ref': {} if self.foodRef is None else self.foodRef.to_json(),
+            'name': self.name,
             'journal_category': self.journalCategory.to_json()
         }
 

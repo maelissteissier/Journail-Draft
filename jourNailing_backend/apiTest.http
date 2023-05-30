@@ -39,7 +39,14 @@ Content-Type: application/json
     "journal_category": {
         "id":1,
         "name":"food"
-    }
+    },
+    "food_ref": {
+        "id": 1,
+        "name": "riz blanc",
+        "original_calory": 80,
+        "original_quantity": 55
+        },
+    "name": "riz blanc"
 }
 
 ### 
@@ -47,7 +54,7 @@ POST http://localhost:5000/food-journal-entry
 Content-Type: application/json
 
 {   
-    "date": "2023-05-28T15:11:14.198Z",
+    "date": "2023-05-29T15:11:14.198Z",
     "quantity": 34,
     "quantity_type": "carré",
     "calories": 345,
@@ -55,7 +62,25 @@ Content-Type: application/json
     "journal_category": {
         "id":1,
         "name":"food"
-    }
+    },
+    "name":"pain au chocolat"
+}
+
+###
+POST http://localhost:5000/food-journal-entry
+Content-Type: application/json
+
+{   
+    "date": "2023-05-29T15:11:14.198Z",
+    "quantity": 34,
+    "quantity_type": "grammes",
+    "calories": 345,
+    "thoughts": "ehlala",
+    "journal_category": {
+        "id":1,
+        "name":"food"
+    },
+    "name":"Caprice des dieux"
 }
 
 ###

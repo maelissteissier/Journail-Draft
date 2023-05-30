@@ -70,6 +70,7 @@ def edit_food_ref(food_ref_id):
     food_ref.name = data.get('name')
     food_ref.original_calory = data.get('original_calory')
     food_ref.original_quantity = data.get('original_quantity')
+    food_ref.quantity_type = data.get('quantity_type')
 
     # Ensure fields are integers
     if not isinstance(food_ref.original_calory, int) or not isinstance(food_ref.original_quantity, int):

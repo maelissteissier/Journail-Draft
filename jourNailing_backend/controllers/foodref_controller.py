@@ -3,6 +3,7 @@ from jourNailing_backend.database.database import db, FoodRef
 
 foodref_bp = Blueprint('foodref', __name__)
 
+
 @foodref_bp.route('/foodrefs', methods=['POST'])
 def create_food_ref():
     if not request.json:
@@ -14,13 +15,15 @@ def create_food_ref():
     name = data.get('name')
     original_calory = data.get('original_calory')
     original_quantity = data.get('original_quantity')
+    quantity_type = data.get('quantity_type', "")
+
 
     # Ensure fields are integers
     if not isinstance(original_calory, int) or not isinstance(original_quantity, int):
         return jsonify({'error': 'original_calory or original_quantity not an int'}), 400
 
     # Create a new FoodRef object
-    new_food_ref = FoodRef(name=name, original_calory=original_calory, original_quantity=original_quantity)
+    new_food_ref = FoodRef(name=name, original_calory=original_calory, original_quantity=original_quantity, quantity_type=quantity_type)
 
     try:
         # Add the new FoodRef to the database session and commit the changes

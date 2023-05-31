@@ -35,7 +35,7 @@ const addPageState = {
 class CalculatePage extends Component {
     constructor(props) {
         super(props)
-        const now = new Date;
+        const now = new Date();
         this.state = {
             originalQuantity: props.foodChosen.original_quantity,
             originalCalories: props.foodChosen.original_calory,

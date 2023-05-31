@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBook, faCalculator, faCirclePlus, faMagnifyingGlass, faQuestion} from '@fortawesome/free-solid-svg-icons'
+import {faBook, faCirclePlus, faMagnifyingGlass, faQuestion} from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import React, {useState} from "react";
 import CalculatePage from "./CalculatePage";

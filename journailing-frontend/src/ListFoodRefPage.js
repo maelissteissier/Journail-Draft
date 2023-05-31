@@ -20,7 +20,6 @@ class ListFoodRefPage extends Component {
 
     async componentDidMount() {
         try {
-            const url = `${process.env.REACT_APP_BACKEND_URL}/foodrefs`;
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`);
 
             if (!response.ok) {

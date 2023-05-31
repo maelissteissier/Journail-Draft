@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form, Modal, Table} from "react-bootstrap";
+import {Modal, Table} from "react-bootstrap";
 import "./ChooseFoodRefModal.css";
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'

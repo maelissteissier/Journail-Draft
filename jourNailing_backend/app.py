@@ -4,6 +4,7 @@ from jourNailing_backend.controllers.foodref_controller import foodref_bp
 from jourNailing_backend.controllers.food_journal_entry_controller import foodJournalEntry_bp
 from jourNailing_backend.controllers.text_journal_entry_controller import textJournalEntry_bp
 from flask_cors import CORS
+import os
 
 
 # Create the Flask app instance
@@ -12,7 +13,7 @@ from jourNailing_backend.controllers.journal_category_controller import journalC
 app = Flask(__name__)
 # Configure the database
 configure_database(app)
-CORS(app, origins=['http://localhost:3000',  'http://192.168.2.31:3000'])
+CORS(app, origins=[os.environ.get('CORS_ORIGIN_LOCALHOST'),  os.environ.get('CORS_ORIGIN_LOCAL_IP')])
 
 # Register the blueprints
 
@@ -23,4 +24,4 @@ app.register_blueprint(journalCategory_bp)
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=os.environ.get('FLASK_PORT'))

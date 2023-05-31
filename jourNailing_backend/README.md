@@ -8,6 +8,9 @@ npm i --save @fortawesome/free-regular-svg-icons
 npm i --save @fortawesome/free-brands-svg-icons
 npm i --save @fortawesome/react-fontawesome@latest
 
+(For env variables)
+npm install webpack webpack-cli --save-dev
+
 # install in python : 
 pip3 install flask-sqlalchemy
 

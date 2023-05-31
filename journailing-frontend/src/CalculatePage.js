@@ -14,6 +14,7 @@ import ChooseFoodRefModal from "./ChooseFoodRefModal";
 import {getDatetimeFromDateAndTime, getDayDateFromDatetime, getTimeFromDatetime} from "./DateUtils";
 import {faFloppyDisk as farFloppyDisk} from "@fortawesome/free-regular-svg-icons";
 
+
 const calcType = {
     CALORIES: 0,
     QUANTITY: 1
@@ -170,7 +171,7 @@ class CalculatePage extends Component {
             });
         }
         try {
-            const response = await fetch('http://192.168.2.31:5000/food-journal-entry', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/food-journal-entry`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

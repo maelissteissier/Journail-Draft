@@ -1,9 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import React, {Component} from 'react';
-import {Form} from "react-bootstrap";
 import "./AddFoodJournalEntryModal.css"
 import CalculatePage from "./CalculatePage";
+
 
 class AddFoodJournalEntryModal extends Component {
     constructor(props) {
@@ -48,7 +48,7 @@ class AddFoodJournalEntryModal extends Component {
         };
 
         try {
-            const response = await fetch('http://192.168.2.31:5000/foodrefs', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

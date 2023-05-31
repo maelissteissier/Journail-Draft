@@ -7,9 +7,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight, faCirclePlus} from "@fortawesome/free-solid-svg-icons";
 import "./JournalLog.css"
 import {addOneDayToDatetime, getDayDateFromDatetime, getTimeFromDatetime, removeOneDayToDatetime} from "./DateUtils";
-import SaveFoodRefModal from "./SaveFoodRefModal";
 import AddFoodJournalEntryModal from "./AddFoodJournalEntryModal";
 import CalculatePage from "./CalculatePage";
+
 
 const dayState = {
     TODAY: 0,
@@ -42,7 +42,7 @@ class JournalLog extends Component {
         const formattedDate = getDayDateFromDatetime(this.state.day);
 
         try {
-            const response = await fetch(`http://192.168.2.31:5000/food-journal-entries/date?date=${formattedDate}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/food-journal-entries/date?date=${formattedDate}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch food journal entries');
             }

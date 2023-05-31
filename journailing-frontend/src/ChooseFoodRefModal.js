@@ -4,7 +4,8 @@ import "./ChooseFoodRefModal.css";
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
-import {page} from "./PageEnum";
+
+
 
 const modalState = {
     LOADING: 0,
@@ -24,7 +25,7 @@ class ChooseFoodRef extends Component {
 
     async componentDidMount() {
         try {
-            const response = await fetch('http://192.168.2.31:5000/foodrefs');
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`);
 
             if (!response.ok) {
                 throw new Error('Failed to fetch FoodRefs');

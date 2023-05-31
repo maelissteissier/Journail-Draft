@@ -20,7 +20,8 @@ class ListFoodRefPage extends Component {
 
     async componentDidMount() {
         try {
-            const response = await fetch('http://192.168.2.31:5000/foodrefs');
+            const url = `${process.env.REACT_APP_BACKEND_URL}/foodrefs`;
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`);
 
             if (!response.ok) {
                 throw new Error('Failed to fetch FoodRefs');

@@ -17,14 +17,17 @@
     --pistachio: #90c290;
     --resedaGreen: #688b58;
     --hookersGreen: #668586;
+    --hookersGreenDarker: #556f70;
     --verdigris: #82aeb1;
     --skyBlue: #93c6d6;
     --periwinkle: #a7acd9;
+    --periwinkleLighter: #d3d7fd;
     --roseQuartz: #9e8fb2;
     --roseQuartzDarker: #755b98;
     --rosee: #f8bcbc;
     --roseeDarker: #d09090;
     --redFail: #ff4b4b;
+    --orange: #ff904b;
 }
 
 .App {
@@ -32,7 +35,6 @@
     background-color: var(--bgDarkColor);
 
 }
-
 
 .App-logo {
     height: 40vmin;
@@ -58,8 +60,9 @@
     align-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-    max-width: 90%;
+    width: 90%;
     gap: 20px;
+    max-width: 800px;
 }
 
 
@@ -84,7 +87,7 @@
 .homeButton {
     aspect-ratio: 1 / 1;
     width: 40%;
-    font-size: 100px;
+    font-size: 150px;
     border-radius: 25px;
     border: none;
 }
@@ -160,5 +163,7 @@
 
 /*Phones*/
 @media only screen and (max-width: 800px) {
-
+    .homeButton{
+        font-size: 9vh;
+    }
 }

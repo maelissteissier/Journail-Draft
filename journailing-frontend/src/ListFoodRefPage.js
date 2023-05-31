@@ -58,18 +58,20 @@ class ListFoodRefPage extends Component {
                                 this.setState({pageState: page.HOME})
                             }}
                     ><FontAwesomeIcon icon={faChevronLeft}/> Return Home</Button>
-                    <Table striped="columns" className={"tableFood"}>
-                        <thead>
-                        <tr className={"tableHead"}>
-                            <th className={"tableLeft"}>Aliment</th>
-                            <th className={"tableMidle"}>Quantité Référence</th>
-                            <th className={"tableRight"}>Calories Référence</th>
-                        </tr>
-                        </thead>
-                        {
-                            table
-                        }
-                    </Table>
+                    <div className={"listFoodRefContainer"}>
+                        <Table striped="columns" className={"tableFood"}>
+                            <thead>
+                            <tr className={"tableHead"}>
+                                <th className={"tableLeft"}>Aliment</th>
+                                <th className={"tableMidle"}>Quantité Référence</th>
+                                <th className={"tableRight"}>Calories Référence</th>
+                            </tr>
+                            </thead>
+                            {
+                                table
+                            }
+                        </Table>
+                    </div>
                 </div>);
         } else if (this.state.pageState === page.CALCULATE_PAGE) {
             return (

@@ -1,22 +1,29 @@
-th.journalTableHeaderElem{
-    color: white !important;
-    background-color: var(--roseQuartzDarker);
-    border-top-left-radius: 20px ;
-    border-top-right-radius: 20px ;
+.journalLogContainer {
+    max-width: 800px;
+    width: 95%;
+    margin: auto;
 }
 
-.journalLogTable{
+th.journalTableHeaderElem {
+    color: white !important;
+    background-color: var(--roseQuartzDarker);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.journalLogTable {
     color: lightgray;
     margin: auto;
     margin-bottom: 25px;
 }
 
-.journalTableElem{
+.journalTableElem {
     color: lightgray !important;
 }
-.caloriesTotal{
+
+.caloriesTotal {
     background-color: var(--rosee);
-    margin:auto;
+    margin: auto;
     font-size: 45px;
     font-weight: bold;
     color: var(--bgDarkColor);
@@ -24,7 +31,7 @@ th.journalTableHeaderElem{
     margin-bottom: 25px;
 }
 
-.addFoodEntryButton{
+.addFoodEntryButton {
     aspect-ratio: 1 / 1;
     border-radius: 30px;
     font-size: 60px;
@@ -36,23 +43,23 @@ th.journalTableHeaderElem{
 
 }
 
-.dateLogNavigating{
+.dateLogNavigating {
     margin-bottom: 25px;
     font-size: 30px;
     color: var(--rosee);
 }
 
-.dateLog{
+.dateLog {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.dayBeforeIcon, .dayAfterIcon{
+.dayBeforeIcon, .dayAfterIcon {
     background-color: var(--bgDarkLightColor);
     border-radius: 25px;
 }
 
-.dayBeforeIcon:hover, .dayAfterIcon:hover{
+.dayBeforeIcon:hover, .dayAfterIcon:hover {
     background-color: var(--bgLighterColor);
     cursor: pointer;
 }

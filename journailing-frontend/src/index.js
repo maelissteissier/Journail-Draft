@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './fonts/VarelaRound-Regular.ttf';
+// import './fonts/Mukta-Light.ttf';
+// import './fonts/Mukta-ExtraLight.ttf';
+// import './fonts/Mukta-Medium.ttf';
+// import './fonts/Mukta-Bold.ttf';
+// import './fonts/Mukta-SemiBold.ttf';
+// import './fonts/Mukta-ExtraBold.ttf';
+import './global.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

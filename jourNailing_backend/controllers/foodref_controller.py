@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, abort
 from jourNailing_backend.database.database import db, FoodRef
+from jourNailing_backend.database.food_ref_service import save_food_ref_from_json
 
 foodref_bp = Blueprint('foodref', __name__)
 
@@ -11,31 +12,11 @@ def create_food_ref():
 
     data = request.get_json()
 
-    # Extract the relevant data from the request JSON
-    name = data.get('name')
-    original_calory = data.get('original_calory')
-    original_quantity = data.get('original_quantity')
-    quantity_type = data.get('quantity_type', "")
-
-
-    # Ensure fields are integers
-    if not isinstance(original_calory, int) or not isinstance(original_quantity, int):
-        return jsonify({'error': 'original_calory or original_quantity not an int'}), 400
-
-    # Create a new FoodRef object
-    new_food_ref = FoodRef(name=name, original_calory=original_calory, original_quantity=original_quantity, quantity_type=quantity_type)
-
-    try:
-        # Add the new FoodRef to the database session and commit the changes
-        db.session.add(new_food_ref)
-        db.session.commit()
-
-        # Return a JSON response with the newly created FoodRef
-        return jsonify(new_food_ref.to_json()), 201
-    except Exception as e:
-        # Handle any errors that occur during the creation process
-        db.session.rollback()
-        return jsonify({'error': str(e)}), 500
+    saved_food_ref, err = save_food_ref_from_json(data, db)
+    if err is None:
+        return jsonify(saved_food_ref.to_json()), 201
+    else:
+        return jsonify(err), 400
 
 
 @foodref_bp.route('/foodrefs', methods=['GET'])
@@ -49,6 +30,25 @@ def get_all_food_refs():
 
         # Return a JSON response with all FoodRef objects
         return jsonify(food_refs_json), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@foodref_bp.route('/foodrefs/<food_ref_id>', methods=['GET'])
+def get_food_ref(food_ref_id):
+    try:
+        # Query the FoodRef object from the database by its ID
+        food_ref = FoodRef.query.get(food_ref_id)
+
+        # If the FoodRef doesn't exist
+        if food_ref is None:
+            return jsonify({'error': 'FoodRef not found'}), 404
+
+        # Convert the FoodRef object to JSON format
+        food_ref_json = food_ref.to_json()
+
+        # Return a JSON response with the FoodRef object
+        return jsonify(food_ref_json), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -86,3 +86,5 @@ def edit_food_ref(food_ref_id):
         # Handle any errors that occur during the update process
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
+
+

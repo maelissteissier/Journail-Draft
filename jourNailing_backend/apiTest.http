@@ -168,6 +168,15 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:9876/journal-category
+Content-Type: application/json
+
+{
+    "name":"food"
+}
+
+###
+
 GET http://localhost:5000/journal-category/1
 
 ###

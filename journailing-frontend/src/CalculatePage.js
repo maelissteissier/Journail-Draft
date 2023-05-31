@@ -28,7 +28,8 @@ const foodState = {
 const addPageState = {
     BUTTONS: 0,
     QUICK_ADD: 1,
-    FROM_REF_FOOD_ADD: 2
+    FROM_REF_FOOD_ADD: 2,
+    RESET: 3
 }
 
 
@@ -186,11 +187,14 @@ class CalculatePage extends Component {
 
             const newEntry = await response.json();
             console.log('Food entry saved:', newEntry);
-            this.setState({modalShow: false, toastSuccessShow: true});
+            this.setState({
+                toastSuccessShow: true,
+                addState: addPageState.RESET
+            });
 
         } catch (error) {
             console.error('Error saving food entry:', error.message);
-            this.setState({modalShow: false, toastFailShow: true});
+            this.setState({toastFailShow: true});
         }
     }
 
@@ -367,8 +371,9 @@ class CalculatePage extends Component {
                                   calories={this.state.originalCalories}
                                   quantityType={this.state.quantity_type}
                                   foodName={this.state.foodName}
-                                  onSuccessSave={() => {
-                                      this.setState({modalShow: false, toastSuccessShow: true})
+                                  onSuccessSave={(newFoodRef) => {
+                                      ;
+                                      this.setState({modalShow: false, toastSuccessShow: true, foodChosen: newFoodRef})
                                   }}
                                   onFailSave={() => {
                                       this.setState({modalShow: false, toastFailShow: true})
@@ -531,6 +536,14 @@ class CalculatePage extends Component {
                     thoughts={this.state.thoughts}
                 />
             )
+        } else if (this.state.addState === addPageState.RESET) {
+            return (
+                <CalculatePage
+                    foodChosen={{name: "", original_quantity: null, original_calory: null, quantity_type: "", id: null}}
+                    thoughts={""}
+                />);
+
+
         } else if (this.state.pageState === page.CALCULATE_PAGE) {
             return (
                 <div className={"calcPageContainer"}>

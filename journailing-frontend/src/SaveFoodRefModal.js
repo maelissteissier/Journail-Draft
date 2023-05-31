@@ -66,7 +66,7 @@ class SaveFoodRefModal extends Component {
             }
 
             const newFoodRef = await response.json();
-            this.props.onSuccessSave();
+            this.props.onSuccessSave(newFoodRef);
             console.log('New FoodRef:', newFoodRef);
         } catch (error) {
             console.error('Error creating FoodRef:', error);

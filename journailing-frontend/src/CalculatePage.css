@@ -1,7 +1,8 @@
-html{
+html {
     background-color: var(--bgDarkColor);
 }
-.calcPageContainer{
+
+.calcPageContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,48 +10,108 @@ html{
     color: white;
 }
 
-.calculatorContainer{
+.calculatorContainer {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1000px;
+}
+
+.calcForm {
     display: flex;
     flex-direction: column;
 }
 
-.calcForm{
-    display: flex;
-    flex-direction: column;
-}
-
-.entryColumns{
+.entryColumns {
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
 }
 
-.calcEntryContainer{
+.calcEntryContainer {
     display: flex;
     justify-content: center;
-    gap:10px;
+    gap: 10px;
 
 }
 
-.choiceContainer{
+.choiceContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dateTimeInputContainer {
     display: flex;
     justify-content: center;
     gap:10px;
 }
 
-.calcEntry{
+.addMethodChoiceContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.addMethodChoiceContainer button {
+    width: 50%;
+}
+
+.calculationAddButton {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: var(--hookersGreenDarker);
+    border-color: var(--hookersGreenDarker);
+    font-size: 25px;
+}
+
+.calculationAddButton:hover, .calculationAddButton:hover {
+    background-color: var(--roseeDarker);
+    border-color: var(--roseeDarker);
+    color: var(--bgDarkColor);
+}
+
+.calculationAddButton:not(:disabled):not(:disabled):active {
+    background-color: var(--roseeDarker);
+    border-color: var(--roseeDarker);
+    color: var(--bgLighterColor);
+}
+
+.fastAddButton {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--hookersGreen);
+    border-color: var(--hookersGreen);
+    font-size: 25px;
+}
+
+.fastAddButton:hover, .fastAddButton:hover {
+    background-color: var(--roseeDarker);
+    border-color: var(--roseeDarker);
+    color: var(--bgDarkColor);
+}
+
+.fastAddButton:not(:disabled):not(:disabled):active {
+    background-color: var(--roseeDarker);
+    border-color: var(--roseeDarker);
+    color: var(--bgLighterColor);
+}
+
+
+.calcEntry {
     font-size: 25px;
 
 }
 
-.foodRefSelect{
+.foodRefSelect {
     margin-bottom: 25px;
     background-color: var(--ultraViolet);
     border-color: var(--ultraViolet);
     color: white;
 }
-.backBanner{
-    padding-top: 15px ;
+
+.backBanner {
+    padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 35px;
     margin-bottom: 25px;
@@ -60,122 +121,184 @@ html{
     border-radius: 0;
 }
 
-.iconBackBanner{
+.iconBackBanner {
     font-size: 20px;
     padding-right: 5px;
 }
 
-.toastSaveSuccess{
+.iconSpan{
+    padding-right: 20px;
+}
+.toastSaveSuccess {
     background-color: var(--hookersGreen);
     border-radius: 20px;
 }
 
-.toastSaveSuccess .toast-header{
+.toastSaveSuccess .toast-header {
     background-color: var(--hookersGreen);
     border-radius: 20px;
     color: white;
     text-align: center;
 }
 
-.toastSaveSuccess .toast-body{
+.toastSaveSuccess .toast-body {
     background-color: var(--hookersGreen);
     border-radius: 20px;
 }
 
-.toastSaveFail{
+.toastSaveFail {
     background-color: var(--redFail);
     border-radius: 20px;
 }
 
-.toastSaveFail .toast-header{
+.toastSaveFail .toast-header {
     background-color: var(--redFail);
     border-radius: 20px;
     color: white;
     text-align: center;
 }
 
-.toastSaveFail .toast-body{
+.toastSaveFail .toast-body {
     background-color: var(--redFail);
     border-radius: 20px;
 }
-.mb-3{
+
+.formEntries {
     font-size: 15px;
-    width:50%;
+    width: 50%;
 }
 
-.disabled{
+.disabled {
     background-color: #adf7b6 !important;
 }
 
-
-.calcTypeChosenButton{
+.choiceCalcButton {
     font-size: 30px;
-    background-color: var(--peach);
-    border-color: var(--peach);
-    color: var(--bgDarkColor);
     width: 50%;
     margin-bottom: 25px;
+
 }
 
-.calcTypeChosenButton:hover, .calcTypeChosenButton:hover{
-    background-color: var(--darkerPeach);
-    border-color: var(--darkerPeach);
+.calcTypeChosenButton {
+    background-color: var(--rosee);
+    border-color: var(--rosee);
+    color: var(--bgDarkColor);
+    font-weight: 500;
+
+}
+
+.calcTypeChosenButton:hover, .calcTypeChosenButton:hover {
+    background-color: var(--roseeDarker);
+    border-color: var(--roseeDarker);
     color: var(--bgDarkColor);
 }
 
-.calcTypeChosenButton:not(:disabled):not(:disabled):active{
-    background-color: var(--darkerPeach);
-    border-color: var(--darkerPeach);
+.calcTypeChosenButton:not(:disabled):not(:disabled):active {
+    background-color: var(--roseeDarker);
+    border-color: var(--roseeDarker);
     color: var(--bgLighterColor);
 }
 
-.notChosenButton{
-    font-size: 30px;
-    background-color: var(--flax);
-    border-color: var(--flax);
-    color: var(--bgDarkColor);
-    width: 50%;
-    margin-bottom: 25px;
-}
-
-.notChosenButton:hover, .notChosenButton:hover{
-    background-color: var(--darkerFlax);
-    border-color: var(--darkerFlax);
+.notChosenButton {
+    background-color: var(--verdigris);
+    border-color: var(--verdigris);
     color: var(--bgDarkColor);
 }
 
-.notChosenButton:not(:disabled):not(:disabled):active{
-    background-color: var(--darkerFlax);
-    border-color: var(--darkerFlax);
-    color: var(--bgLighterColor);
-}
-
-.saveFood{
+.notChosenButton:hover, .notChosenButton:hover {
     background-color: var(--hookersGreen);
     border-color: var(--hookersGreen);
+    color: var(--bgDarkColor);
+}
+
+.notChosenButton:not(:disabled):not(:disabled):active {
+    background-color: var(--hookersGreen);
+    border-color: var(--hookersGreen);
+    color: var(--bgLighterColor);
+}
+
+.foodRefModalBtn {
+    background-color: var(--roseQuartzDarker);
+    border-color: var(--roseQuartzDarker);
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.foodRefModalBtn:hover, .foodRefModalBtn:hover {
+    background-color: var(--flax);
+    border-color: var(--flax);
+    color: var(--bgLighterColor);
+}
+
+.foodRefModalBtn:not(:disabled):not(:disabled):active {
+    background-color: var(--flax);
+    border-color: var(--flax);
+    color: var(--bgLighterColor);
+}
+
+.saveFoodBtn {
+    background-color: var(--darkerBlue);
+    border-color: var(--darkerBlue);
     width: 50%;
+    font-size: 20px;
+}
+
+.entryColItem {
+    margin-bottom: 25px;
+}
+
+.thoughtsModalBtn {
+    background-color: var(--periwinkle);
+    border-color: var(--periwinkle);
+    color: var(--bgDarkColor);
+    font-size: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.thoughtsModalBtn:hover, .thoughtsModalBtn:hover {
+    background-color: var(--lemonChiffon);
+    border-color: var(--lemonChiffon);
+    color: var(--bgLighterColor);
+}
+
+.thoughtsModalBtn:not(:disabled):not(:disabled):active {
+    background-color: var(--lemonChiffon);
+    border-color: var(--lemonChiffon);
+    color: var(--bgLighterColor);
+}
+
+.thoughtsBubble {
+
+    background-color: var(--periwinkleLighter);
+    min-height: 80px;
+    text-align: center;
+    padding-top: 25px;
+    color: var(--bgDarkColor);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 /*Phones*/
 @media only screen and (max-width: 800px) {
-    .calcForm{
+    .calcForm {
         width: 90%;
         margin: auto;
     }
 
-    .calcEntry{
-        font-size: 25px;
-    }
-
-    .mb-3{
+    .calcEntry {
         font-size: 20px;
     }
 
-    .calcTypeChosenButton{
+    .formEntries {
         font-size: 20px;
     }
 
-    .notChosenButton{
+    .calcTypeChosenButton {
+        font-size: 20px;
+    }
+
+    .notChosenButton {
         font-size: 20px;
     }
 }

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBook, faCalculator, faCirclePlus, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import {faBook, faCalculator, faCirclePlus, faMagnifyingGlass, faQuestion} from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import React, {useState} from "react";
 import CalculatePage from "./CalculatePage";
@@ -21,7 +21,8 @@ function App() {
                         setState({
                             pageState: page.CALCULATE_PAGE
                         })}>
-                        <FontAwesomeIcon icon={faCalculator}/>
+                        <FontAwesomeIcon icon={faCirclePlus}/>
+
                     </Button>{' '}
                     <Button className="homeButton listButton" variant="primary" onClick={() =>
                         setState({
@@ -39,7 +40,7 @@ function App() {
                         setState({
                             pageState: page.FOODLIST
                         })}>
-                        <FontAwesomeIcon icon={faCirclePlus}/>
+                        <FontAwesomeIcon icon={faQuestion} />
                     </Button>{' '}
 
                 </div>
@@ -48,23 +49,26 @@ function App() {
     } else if (state.pageState === page.CALCULATE_PAGE) {
         return (
             <div className="App">
-                <CalculatePage foodChosen={{name: "", original_quantity: 0, original_calory: 0}}/>
+                <CalculatePage
+                    foodChosen={{name: "", original_quantity: null, original_calory: null, quantity_type:"", id:null}}
+                    thoughts={""}
+                />
             </div>
         );
     } else if (state.pageState === page.FOODLIST) {
         return (
             <div className="App">
-                <header className="App-header">
+
                     <ListFoodRefPage/>
-                </header>
+
             </div>
         );
     } else if (state.pageState === page.JOURNAL_LOG) {
         return (
             <div className="App">
-                <header className="App-header">
+
                     <JournalLog day={new Date()}/>
-                </header>
+
             </div>
         );
     }

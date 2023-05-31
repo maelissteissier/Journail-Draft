@@ -9,6 +9,7 @@ import "./JournalLog.css"
 import {addOneDayToDatetime, getDayDateFromDatetime, getTimeFromDatetime, removeOneDayToDatetime} from "./DateUtils";
 import SaveFoodRefModal from "./SaveFoodRefModal";
 import AddFoodJournalEntryModal from "./AddFoodJournalEntryModal";
+import CalculatePage from "./CalculatePage";
 
 const dayState = {
     TODAY: 0,
@@ -128,6 +129,13 @@ class JournalLog extends Component {
             return (
                 <App/>
             );
+        } else if (this.state.pageState === page.CALCULATE_PAGE) {
+            return (
+                <CalculatePage
+                    foodChosen={{name: "", original_quantity: null, original_calory: null, type_quantity: "", id: null}}
+                    thoughts={""}/>
+            )
+
         } else if (this.state.pageState === page.JOURNAL_LOG && this.state.pageDayState === dayState.NAVIGATING) {
             return (<JournalLog day={this.state.day}/>);
 
@@ -142,11 +150,12 @@ class JournalLog extends Component {
                         <span className={"iconBackBanner"}><FontAwesomeIcon icon={faChevronLeft}/></span> <span
                         className={"textBackBanner"}>Return Home</span>
                     </Button>
+                    <div className={"journalLogContainer"}>
 
-                    <div className={"caloriesTotal"}>
-                        {this.getTotalCalories()} cals
-                    </div>
-                    <div className={"dateLogNavigating"}>
+                        <div className={"caloriesTotal"}>
+                            {this.getTotalCalories()} cals
+                        </div>
+                        <div className={"dateLogNavigating"}>
                         <span className={"dayBeforeIcon"}
                               onClick={() => {
                                   const actualDay = this.state.day;
@@ -155,24 +164,25 @@ class JournalLog extends Component {
                                       pageDayState: dayState.NAVIGATING
                                   })
                               }}><FontAwesomeIcon icon={faChevronLeft}/></span>
-                        <span className={"dateLog"}>{getDayDateFromDatetime(this.state.day)}</span>
-                        <span className={"dayAfterIcon"}
-                              onClick={() => {
-                                  const actualDay = this.state.day;
-                                  this.setState({
-                                      day: addOneDayToDatetime(actualDay),
-                                      pageDayState: dayState.NAVIGATING
-                                  })
-                              }}><FontAwesomeIcon icon={faChevronRight}/></span>
-                    </div>
-                    {this.getFoodLogTable()}
+                            <span className={"dateLog"}>{getDayDateFromDatetime(this.state.day)}</span>
+                            <span className={"dayAfterIcon"}
+                                  onClick={() => {
+                                      const actualDay = this.state.day;
+                                      this.setState({
+                                          day: addOneDayToDatetime(actualDay),
+                                          pageDayState: dayState.NAVIGATING
+                                      })
+                                  }}><FontAwesomeIcon icon={faChevronRight}/></span>
+                        </div>
+                        {this.getFoodLogTable()}
 
-                    <Button className="addFoodEntryButton"
-                            variant="primary"
-                            onClick={() => this.setState({modalShow: true})}>
-                        <FontAwesomeIcon icon={faCirclePlus}/>
-                    </Button>{' '}
-                    {this.createModal()}
+                        <Button className="addFoodEntryButton"
+                                variant="primary"
+                                onClick={() => this.setState({pageState: page.CALCULATE_PAGE})}>
+                            <FontAwesomeIcon icon={faCirclePlus}/>
+                        </Button>{' '}
+                        {this.createModal()}
+                    </div>
                 </div>
             );
         } else if (this.state.pageState === page.LOADING) {

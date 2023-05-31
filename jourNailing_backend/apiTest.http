@@ -32,6 +32,17 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:5000/foodrefs
+Content-Type: application/json
+
+{
+    "original_calory": 100,
+    "original_quantity": 80,
+    "quantity_type": "grammes",
+    "name": "dfsdsf"
+}
+
+###
 
 POST http://localhost:5000/foodrefs
 Content-Type: application/json
@@ -60,8 +71,33 @@ GET http://localhost:5000/foodrefs
 
 ###
 
+GET http://localhost:5000/foodrefs/6
+###
+
 # FOOD JOURNAL ENTRY
 
+POST http://localhost:5000/food-journal-entry
+Content-Type: application/json
+
+{   
+    "date": "2023-05-31T15:11:14.198Z",
+    "quantity": 56,
+    "quantity_type": "morceaux",
+    "calories": 250,
+    "thoughts": "je me sens bien aujourd'hui",
+    "journal_category": {
+        "id":1,
+        "name":"food"
+    },
+    "food_ref": {
+        "name": "etoile",
+        "original_calory": 80,
+        "original_quantity": 55
+        },
+    "name": "riz blanc"
+}
+
+###
 POST http://localhost:5000/food-journal-entry
 Content-Type: application/json
 
@@ -75,12 +111,7 @@ Content-Type: application/json
         "id":1,
         "name":"food"
     },
-    "food_ref": {
-        "id": 1,
-        "name": "riz blanc",
-        "original_calory": 80,
-        "original_quantity": 55
-        },
+    "food_ref": null,
     "name": "riz blanc"
 }
 

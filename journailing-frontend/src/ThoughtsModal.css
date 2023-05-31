@@ -1,0 +1,54 @@
+.thoughtsModalHeader{
+    border: none;
+    color: lightgrey;
+}
+
+.thoughtsModalFooter{
+    border: none;
+}
+
+.thoughtsModal > .modal-dialog > .modal-content > .modal-header{
+    justify-content: center;
+}
+
+.thoughtsModal > .modal-dialog > .modal-content > .modal-footer{
+    justify-content: center;
+    gap: 25px;
+}
+
+.thoughtsModal > .modal-dialog > .modal-content > .modal-header .btn-close{
+    display:none;
+}
+
+.thoughtsModal > .modal-dialog > .modal-content{
+    border-radius: 50px;
+    border: none;
+    background-color: var(--bgDarkColor);
+
+}
+
+textarea#thoughtsTextArea{
+    background-color: var(--bgDarkColor);
+    color: lightgrey;
+}
+
+.thoughtsModalButtons{
+    aspect-ratio: 1/1;
+    font-size: 50px;
+    font-weight: bold;
+    border-radius: 50px;
+    width:90px;
+}
+
+.cancelThoughtModal{
+    color: var(--bgDarkColor);
+    background-color: var(--rosee);
+    border-color: var(--rosee);
+
+}
+
+.validateThoughtModal{
+    background-color: var(--lightBlue);
+    border-color: var(--lightBlue);
+    color: var(--bgDarkColor);
+}

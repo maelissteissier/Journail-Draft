@@ -4,8 +4,8 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-def configure_database(app):
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///journailing.db'
+def configure_database(app, database_uri):
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # Initialize the SQLAlchemy instance with the Flask app
     db.init_app(app)

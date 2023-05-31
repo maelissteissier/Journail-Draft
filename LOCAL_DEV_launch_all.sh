@@ -8,5 +8,6 @@ export PYTHONPATH=/Users/maelissteissier/PycharmProjects/jourNailing:/Users/mael
 export CORS_ORIGIN_LOCALHOST='http://localhost:3000'
 export CORS_ORIGIN_LOCAL_IP='http://192.168.2.31:3000'
 export FLASK_PORT='5000'
+export SQLALCHEMY_DATABASE_URI='sqlite:///journailing_local_dev.db'
 /usr/local/bin/python3.9 /Users/maelissteissier/PycharmProjects/jourNailing/jourNailing_backend/app.py
 

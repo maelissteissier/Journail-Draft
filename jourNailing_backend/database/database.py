@@ -7,6 +7,7 @@ db = SQLAlchemy()
 def configure_database(app, database_uri):
     app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_ECHO'] = True
     # Initialize the SQLAlchemy instance with the Flask app
     db.init_app(app)
     # Create the database tables

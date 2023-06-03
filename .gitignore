@@ -2,3 +2,4 @@
 instance/
 jourNailing_backend/instance/
 journailing-frontend/src/fonts/
+node_modules/

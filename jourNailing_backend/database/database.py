@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timezone
 
 db = SQLAlchemy()
 
@@ -56,6 +56,7 @@ class JournalCategory(db.Model):
 
 class FoodJournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    # Date saved in UTC
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     quantity = db.Column(db.Integer)
     quantity_type = db.Column(db.String(80))
@@ -70,7 +71,7 @@ class FoodJournalEntry(db.Model):
     def to_json(self):
         return {
             'id': self.id,
-            'date': self.date.isoformat(),
+            'date': self.date.strftime("%Y-%m-%dT%H:%M:%SZ"),
             'quantity': self.quantity,
             'quantity_type': self.quantity_type,
             'calories': self.calories,

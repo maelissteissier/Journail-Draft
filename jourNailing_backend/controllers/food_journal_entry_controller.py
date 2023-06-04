@@ -1,9 +1,13 @@
 from flask import Blueprint, jsonify, request, abort
 from jourNailing_backend.database.database import db, FoodJournalEntry, JournalCategory, FoodRef
 from jourNailing_backend.database.food_ref_service import save_food_ref_from_json
-from datetime import datetime, date, timedelta
+from datetime import datetime, timedelta
+import pytz
 
 foodJournalEntry_bp = Blueprint('foodJournalEntry', __name__)
+
+DEFAULT_TIMEZONE = -4
+
 
 # POST new entry
 @foodJournalEntry_bp.route('/food-journal-entry', methods=['POST'])
@@ -43,12 +47,12 @@ def create_food_journal_entry():
 
 
     try:
-        entry_date = datetime.strptime(data['date'], "%Y-%m-%dT%H:%M:%S.%fZ")
+        entry_date_utc = datetime.strptime(data['date'], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=pytz.UTC)
     except ValueError:
         return jsonify({'error': 'Invalid date format'}), 400
 
     new_entry = FoodJournalEntry(
-        date=entry_date,
+        date=entry_date_utc,
         quantity=data.get('quantity', ""),
         quantity_type=data.get('quantity_type', ""),
         calories=data['calories'],
@@ -88,17 +92,32 @@ def get_all_food_journal_entries():
 def get_entries_by_date():
     # Get the date from the request parameters or use today's date as default
     date_str = request.args.get('date')
+    timezone = request.args.get('timezone')
+
+    if timezone:
+        try:
+            tz = int(timezone)
+        except Exception:
+            return jsonify({'error': 'Invalid timezone'})
+    else:
+        tz = -DEFAULT_TIMEZONE
+
     if date_str:
         try:
-            query_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+            query_date_min = datetime.strptime(date_str, '%Y-%m-%d') + timedelta(hours=tz)
+            query_date_max = datetime.strptime(date_str, '%Y-%m-%d') + timedelta(days=1, hours=tz)
         except ValueError:
             return jsonify({'error': 'Invalid date format'}), 400
     else:
-        query_date = date.today()
+        query_date_min = datetime.today() + timedelta(hours=tz)
+        query_date_max = datetime.today() + timedelta(days=1, hours=tz)
+
+    print(query_date_min)
+    print(query_date_max)
 
     # Query the database for entries matching the specified date
-    entries = FoodJournalEntry.query.filter(FoodJournalEntry.date >= query_date,
-                                            FoodJournalEntry.date < query_date + timedelta(days=1)).all()
+    entries = FoodJournalEntry.query.filter(FoodJournalEntry.date >= query_date_min,
+                                            FoodJournalEntry.date < query_date_max).all()
 
     # Convert entries to JSON format
     entries_json = [entry.to_json() for entry in entries]

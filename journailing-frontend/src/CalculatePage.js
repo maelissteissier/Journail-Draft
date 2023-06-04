@@ -11,7 +11,7 @@ import Toast from "react-bootstrap/Toast";
 import {ToastContainer} from "react-bootstrap";
 import ThoughtsModal from "./ThoughtsModal";
 import ChooseFoodRefModal from "./ChooseFoodRefModal";
-import {getDatetimeFromDateAndTime, getDayDateFromDatetime, getTimeFromDatetime} from "./DateUtils";
+import {getUTCDateStringFromDateAndTime, getDateStringFromDatetime, getTimeStringFromDatetime} from "./DateUtils";
 import {faFloppyDisk as farFloppyDisk} from "@fortawesome/free-regular-svg-icons";
 
 
@@ -44,8 +44,8 @@ class CalculatePage extends Component {
             foodChosen: props.foodChosen,
             thoughts: props.thoughts,
             foodName: props.foodChosen.name,
-            date: getDayDateFromDatetime(now),
-            hour: getTimeFromDatetime(now),
+            date: getDateStringFromDatetime(now),
+            hour: getTimeStringFromDatetime(now),
             quickCalories: 0,
             wantedQuantity: 0,
             resultCalories: 0,
@@ -152,7 +152,7 @@ class CalculatePage extends Component {
 
             jsonBody = JSON.stringify({
                 journal_category: {id: 1},
-                date: getDatetimeFromDateAndTime(this.state.date, this.state.hour),
+                date: getUTCDateStringFromDateAndTime(this.state.date, this.state.hour),
                 calories: this.state.quickCalories,
                 thoughts: this.state.thoughts,
                 name: this.state.foodName,
@@ -163,7 +163,7 @@ class CalculatePage extends Component {
             jsonBody = JSON.stringify({
                 journal_category: {id: 1},
                 food_ref: this.state.foodChosen,
-                date: getDatetimeFromDateAndTime(this.state.date, this.state.hour),
+                date: getUTCDateStringFromDateAndTime(this.state.date, this.state.hour),
                 quantity: this.state.wantedQuantity,
                 quantity_type: this.state.quantity_type,
                 calories: this.state.resultCalories,
@@ -372,7 +372,6 @@ class CalculatePage extends Component {
                                   quantityType={this.state.quantity_type}
                                   foodName={this.state.foodName}
                                   onSuccessSave={(newFoodRef) => {
-                                      ;
                                       this.setState({modalShow: false, toastSuccessShow: true, foodChosen: newFoodRef})
                                   }}
                                   onFailSave={() => {

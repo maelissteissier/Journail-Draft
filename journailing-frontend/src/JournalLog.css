@@ -19,8 +19,11 @@ th.journalTableHeaderElem {
 
 .journalTableElem {
     color: lightgray !important;
+    font-weight: bold;
 }
-
+.lunchTypeRow{
+    background-color: var(--hookersGreen) !important;
+}
 .caloriesTotal {
     background-color: var(--rosee);
     margin: auto;

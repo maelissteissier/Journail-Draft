@@ -3,8 +3,8 @@
     text-align: center;
 }
 
-table tbody { height:300px; overflow-y:scroll; display:block; }
-table thead { display:block; }
+table tbody.tbodyScroll { height:300px; overflow-y:scroll; display:block; }
+table thead.theadScroll { display:block; }
 
 .foodNameCell {
     width: 50%;

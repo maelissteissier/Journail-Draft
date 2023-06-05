@@ -21,9 +21,18 @@ th.journalTableHeaderElem {
     color: lightgray !important;
     font-weight: bold;
 }
-.lunchTypeRow{
+
+.lunchTypeRow {
     background-color: var(--hookersGreen) !important;
 }
+
+
+.caloriesStats {
+    display: flex;
+    justify-content: space-between;
+
+}
+
 .caloriesTotal {
     background-color: var(--rosee);
     margin: auto;
@@ -32,6 +41,18 @@ th.journalTableHeaderElem {
     color: var(--bgDarkColor);
     border-radius: 30px;
     margin-bottom: 25px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.calorieStatsLabel {
+    background-color: var(--celadon);
+    margin: auto;
+    font-weight: bold;
+    color: var(--bgDarkColor);
+    border-radius: 30px;
+    margin-bottom: 5px;
+
 }
 
 .addFoodEntryButton {

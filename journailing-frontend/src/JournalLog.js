@@ -84,7 +84,7 @@ class JournalLog extends Component {
         const lunchTypeMaxDate = changeTimeOfDatetime(this.state.day, lunchType.timeMax);
         const lunchtypeHead = (<tr key={lunchType.tag}>
             <td className={"journalTableElem lunchTypeRow"}
-                colSpan={5}>{ lunchType.tag.toUpperCase() + " : " + lunchCalories + " cals"}
+                colSpan={5}>{lunchType.tag.toUpperCase() + " : " + lunchCalories + " cals"}
             </td>
         </tr>);
         const lunchTypeEntries = this.state.foodEntries.sort((a, b) => {
@@ -152,7 +152,6 @@ class JournalLog extends Component {
         return entries.sort((a, b) => {
             const dateA = new Date(a.date);
             const dateB = new Date(b.date);
-            const compare = dateA - dateB;
             return dateA - dateB;
         }).filter(entry => {
             const entryDate = new Date(entry.date);
@@ -226,9 +225,28 @@ class JournalLog extends Component {
                     </Button>
                     <div className={"journalLogContainer"}>
 
-                        <div className={"caloriesTotal"}>
-                            {this.getTotalCalories()} cals
+                        <div className={"caloriesStats"}>
+                            <div>
+                                <div className={"calorieStatsLabel"}>goal</div>
+                                <div className={"caloriesTotal"}>2100</div>
+                            </div>
+                            <div>
+                                <div className={"calorieStatsLabel"}>eaten</div>
+                                <div className={"caloriesTotal"}>
+                                    {this.getTotalCalories()}
+                                </div>
+                            </div>
+                            <div>
+                                <div className={"calorieStatsLabel"}>left</div>
+                                <div className={"caloriesTotal"}>
+                                    {(() => {
+                                        let totalcals = this.getTotalCalories();
+                                        return (2100 - totalcals);
+                                    })()}
+                                </div>
+                            </div>
                         </div>
+
                         <div className={"dateLogNavigating"}>
                         <span className={"dayBeforeIcon"}
                               onClick={() => {

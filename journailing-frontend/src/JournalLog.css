@@ -87,3 +87,10 @@ th.journalTableHeaderElem {
     background-color: var(--bgLighterColor);
     cursor: pointer;
 }
+
+/*Phones*/
+@media only screen and (max-width: 800px) {
+    .caloriesTotal{
+        font-size: 30px;
+    }
+}

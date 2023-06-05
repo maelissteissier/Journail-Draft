@@ -227,17 +227,17 @@ class JournalLog extends Component {
 
                         <div className={"caloriesStats"}>
                             <div>
-                                <div className={"calorieStatsLabel"}>goal</div>
+                                <div className={"calorieStatsLabel"}>objectif</div>
                                 <div className={"caloriesTotal"}>2100</div>
                             </div>
                             <div>
-                                <div className={"calorieStatsLabel"}>eaten</div>
+                                <div className={"calorieStatsLabel"}>mangées</div>
                                 <div className={"caloriesTotal"}>
                                     {this.getTotalCalories()}
                                 </div>
                             </div>
                             <div>
-                                <div className={"calorieStatsLabel"}>left</div>
+                                <div className={"calorieStatsLabel"}>restantes</div>
                                 <div className={"caloriesTotal"}>
                                     {(() => {
                                         let totalcals = this.getTotalCalories();

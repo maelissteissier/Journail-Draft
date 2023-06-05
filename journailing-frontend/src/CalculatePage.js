@@ -44,6 +44,7 @@ class CalculatePage extends Component {
             foodChosen: props.foodChosen,
             thoughts: props.thoughts,
             foodName: props.foodChosen.name,
+            foodRefList: props.foodRefList,
             date: getDateStringFromDatetime(now),
             hour: getTimeStringFromDatetime(now),
             quickCalories: 0,
@@ -137,6 +138,7 @@ class CalculatePage extends Component {
                                         this.setState({showFoodRefModal: false})
                                     }}
                                     setFoodChosen={this.setFoodChosenFields}
+                                    foodRefList={this.state.foodRefList}
 
                 />
             );

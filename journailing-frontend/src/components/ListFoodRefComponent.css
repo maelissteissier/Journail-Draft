@@ -1,0 +1,23 @@
+.tableCell {
+    color: lightgrey !important;
+    text-align: center;
+}
+
+table tbody { height:300px; overflow-y:scroll; display:block; }
+table thead { display:block; }
+
+.foodNameCell {
+    width: 50%;
+}
+
+.qteRefCell{
+    width: 15%;
+}
+
+.qteTypeCell{
+    width:20%;
+}
+
+.calRefCell{
+    width: 15px;
+}

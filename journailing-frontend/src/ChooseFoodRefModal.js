@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Modal, Table} from "react-bootstrap";
+import {Form, Modal, Table} from "react-bootstrap";
 import "./ChooseFoodRefModal.css";
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
-
+import ListFoodRefComponent from "./components/ListFoodRefComponent";
 
 
 const modalState = {
@@ -16,52 +16,32 @@ class ChooseFoodRef extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            foodRefList: [],
-            modalState: modalState.LOADING
+            foodRefList: this.props.foodRefList,
+            modalState: modalState.LOADED,
+            search: ""
         }
 
-        this.getSelectFoodRefForm = this.getSelectFoodRefForm.bind(this);
+        this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.getFoodRefListComponent = this.getFoodRefListComponent.bind(this);
     }
 
-    async componentDidMount() {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`);
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch FoodRefs');
-            }
-
-            const foodRefs = await response.json();
-            console.log('FoodRefs:', foodRefs);
-            this.setState({foodRefList: foodRefs, modalState: modalState.LOADED})
-        } catch (error) {
-            console.error('Error fetching FoodRefs:', error);
-        }
+    handleSearchChange(e) {
+        this.setState({search: e.target.value});
     }
 
-    getSelectFoodRefForm() {
-        var table = [];
+    getFoodRefListComponent(foodRefs) {
+        return (
+            <ListFoodRefComponent foodRefList={foodRefs}
+                                  onFoodRefChosen={this.props.setFoodChosen}
+            />);
 
-        for (let i = 0; i < this.state.foodRefList.length; i++) {
-            table.push(
-                <tr onClick={() => {
-                    this.props.setFoodChosen(this.state.foodRefList[i]);
-                    this.props.onHide();
-                }}>
-                    <td className={"tableLeft"}>{this.state.foodRefList[i].name}</td>
-                    <td>{this.state.foodRefList[i].original_quantity}</td>
-                    <td>{this.state.foodRefList[i].quantity_type}</td>
-                    <td className={"tableRight"}>{this.state.foodRefList[i].original_calory}</td>
-                </tr>);
-        }
-        return table;
     }
-
 
     render() {
+
         return (
             <>
-
                 <Modal
                     show={this.props.show}
                     onHide={this.props.onHide}
@@ -70,23 +50,23 @@ class ChooseFoodRef extends Component {
                     centered
                     className={"thoughtsModal"}
                 >
-                    <Modal.Header className={"thoughtsModalHeader"} closeButton>
+                    <Modal.Header className={"chooseFoodRefModalHeader"} closeButton>
                         <Modal.Title>Choisir un aliment reférence</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body className={"thoughtsModalBody"}>
-                    <Table striped="columns" className={"tableFood"}>
-                        <thead>
-                        <tr className={"tableHead"}>
-                            <th className={"tableLeft"}>Aliment</th>
-                            <th className={"tableMidle"}>Qté Réf</th>
-                            <th className={"tableMidle"}>Qté Type</th>
-                            <th className={"tableRight"}>Cal Réf</th>
-                        </tr>
-                        </thead>
-                        {
-                            this.getSelectFoodRefForm()
-                        }
-                    </Table>
+                    <Modal.Body className={"chooseFoodRefModalBody"}>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="searchFoodRef">
+                                <Form.Control className={"searchFoodRefEntry"}
+                                              type="text"
+                                              placeholder={"Tapez votre recherche"}
+                                              onChange={this.handleSearchChange}
+                                />
+                            </Form.Group>
+                        </Form>
+                        {this.state.search === "" ?
+                            this.getFoodRefListComponent(this.props.foodRefList)
+                            : this.getFoodRefListComponent(
+                                this.props.foodRefList.filter(food => food.name.includes(this.state.search)))}
                     </Modal.Body>
                     <Modal.Footer className={"thoughtsModalFooter"}>
                         <Button className={"cancelThoughtModal thoughtsModalButtons"} variant="danger"

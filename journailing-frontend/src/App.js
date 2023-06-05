@@ -10,17 +10,39 @@ import {page} from "./PageEnum";
 import JournalLog from "./JournalLog";
 
 
+const fetchFoodRefList = async () => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch FoodRefs');
+        }
+
+        const foodRefs = await response.json();
+        console.log('FoodRefs:', foodRefs);
+        return foodRefs;
+
+    } catch (error) {
+        console.error('Error fetching FoodRefs:', error);
+    }
+}
+
 function App() {
-    const [state, setState] = useState({pageState: page.HOME});
+    const [state, setState] = useState({pageState: page.HOME, foodRefList: []});
     if (state.pageState === page.HOME) {
         return (
             <div className="App">
                 <div className="App-header-home">
 
-                    <Button className="homeButton calcButton" variant="primary" onClick={() =>
-                        setState({
-                            pageState: page.CALCULATE_PAGE
-                        })}>
+                    <Button className="homeButton calcButton" variant="primary" onClick={() => {
+                        fetchFoodRefList().then(foodRefs => {
+                            setState({foodRefList: foodRefs, pageState: page.CALCULATE_PAGE})
+                        }).catch(err => {
+                            setState({
+                                pageState: page.LOADING_CALCULATE_PAGE
+                            });
+                        }) // I think this catch is useless
+                    }}>
                         <FontAwesomeIcon icon={faCirclePlus}/>
 
                     </Button>{' '}
@@ -40,7 +62,7 @@ function App() {
                         setState({
                             pageState: page.FOODLIST
                         })}>
-                        <FontAwesomeIcon icon={faQuestion} />
+                        <FontAwesomeIcon icon={faQuestion}/>
                     </Button>{' '}
 
                 </div>
@@ -50,8 +72,9 @@ function App() {
         return (
             <div className="App">
                 <CalculatePage
-                    foodChosen={{name: "", original_quantity: null, original_calory: null, quantity_type:"", id:null}}
+                    foodChosen={{name: "", original_quantity: null, original_calory: null, quantity_type: "", id: null}}
                     thoughts={""}
+                    foodRefList={state.foodRefList}
                 />
             </div>
         );
@@ -59,7 +82,7 @@ function App() {
         return (
             <div className="App">
 
-                    <ListFoodRefPage/>
+                <ListFoodRefPage/>
 
             </div>
         );
@@ -67,11 +90,12 @@ function App() {
         return (
             <div className="App">
 
-                    <JournalLog day={new Date()}/>
+                <JournalLog day={new Date()}/>
 
             </div>
         );
     }
+
 }
 
 export default App;

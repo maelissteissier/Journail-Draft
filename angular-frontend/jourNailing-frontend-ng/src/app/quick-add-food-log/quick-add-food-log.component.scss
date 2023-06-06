@@ -1,0 +1,95 @@
+@import "../../variables.scss";
+.calcForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.entryColItem {
+    margin-bottom: 25px;
+}
+
+.calcEntryContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.entryColumns {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.formEntries {
+    font-size: 15px;
+    width: 50%;
+}
+.dateTimeInputContainer {
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+
+
+.saveFoodBtn {
+    background-color: $darkerBlue;
+    border-color: $darkerBlue;
+    width: 50%;
+    font-size: 20px;
+}
+
+.iconSpan{
+    padding-right: 20px;
+}
+
+.thoughtsModalBtn {
+    background-color: $periwinkle;
+    border-color: $periwinkle;
+    color: $bgDarkColor;
+    font-size: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.thoughtsModalBtn:hover, .thoughtsModalBtn:hover {
+    background-color: $lemonChiffon;
+    border-color: $lemonChiffon;
+    color: $bgLighterColor;
+}
+
+.thoughtsModalBtn:not(:disabled):not(:disabled):active {
+    background-color: $lemonChiffon;
+    border-color: $lemonChiffon;
+    color: $bgLighterColor;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .calcForm {
+        width: 90%;
+        margin: auto;
+    }
+
+    .calcEntry {
+        font-size: 20px;
+    }
+
+    .formEntries {
+        font-size: 20px;
+    }
+
+
+}
+
+/* Really small phone screens*/
+@media only screen and (max-width: 400px) {
+
+    .quickAddButton{
+        font-size: 20px;
+    }
+    .calculationAddButton{
+        font-size: 20px;
+    }
+}

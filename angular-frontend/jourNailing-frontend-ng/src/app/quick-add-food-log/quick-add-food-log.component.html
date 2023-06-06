@@ -1,0 +1,40 @@
+<form class="calcForm">
+    <div class="entryColumns">
+        <div class="entryColItem form-group">
+            <label>Nom de l'aliment</label>
+            <input class="calcEntry form-control"
+                   type="text"
+                   placeholder="Nom de l'aliment"
+                   id="nameEntry"/>
+        </div>
+        <div class="entryColItem form-group" controlId="quickCalories">
+            <label>Calories</label>
+            <input class="calcEntry form-control"
+                   type="text"
+                   placeholder="0"/>
+        </div>
+        <div class="dateTimeInputContainer">
+            <div class="entryColItem formEntries form-group" controlId="dayDate">
+                <label>Jour</label>
+                <input class="calcEntry form-control"
+                       type="date"
+                       [placeholder]="day"/>
+            </div>
+            <div class="entryColItem formEntries form-group" controlId="time">
+                <label>Heure</label>
+                <input class="calcEntry form-control"
+                       type="time"
+                       [placeholder]="time"/>
+            </div>
+        </div>
+        <button class="thoughtsModalBtn btn btn-primary">
+            Ajouter/Editer vos pensées ou émotions
+        </button>
+    </div>
+    <div class="calcEntryContainer">
+        <button class="saveFoodBtn btn btn-primary">
+            <span class="iconSpan"><fa-icon [icon]="faFloppyDisk"></fa-icon></span>
+            Sauvegarder dans le journal
+        </button>
+    </div>
+</form>

@@ -1,0 +1,66 @@
+@import "../../variables";
+
+.addFoodLogPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+}
+
+.calculatorContainer {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1000px;
+}
+
+.addMethodChoiceContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.calculationAddButton {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: $hookersGreenDarker;
+    border-color: $hookersGreenDarker;
+    font-size: 25px;
+}
+
+.calculationAddButton:hover, .calculationAddButton:hover {
+    background-color: $roseeDarker;
+    border-color: $roseeDarker;
+    color: $bgDarkColor;
+}
+
+.calculationAddButton:not(:disabled):not(:disabled):active {
+    background-color: $roseeDarker;
+    border-color: $roseeDarker;
+    color: $bgLighterColor;
+}
+
+
+.quickAddButton {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: $hookersGreen;
+    border-color: $hookersGreen;
+    font-size: 25px;
+}
+
+
+
+
+.quickAddButton:hover, .quickAddButton:hover {
+    background-color: $roseeDarker;
+    border-color: $roseeDarker;
+    color: $bgDarkColor;
+}
+
+.quickAddButton:not(:disabled):not(:disabled):active {
+    background-color: $roseeDarker;
+    border-color: $roseeDarker;
+    color: $bgLighterColor;
+}

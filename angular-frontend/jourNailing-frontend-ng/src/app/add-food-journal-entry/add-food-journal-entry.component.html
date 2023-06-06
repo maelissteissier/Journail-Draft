@@ -1,0 +1,21 @@
+<div class="addFoodLogPageContainer">
+
+    <div class="calculatorContainer">
+        <div class="addMethodChoiceContainer">
+            <button class="calculationAddButton btn btn-primary" (click)="disableQuickAdd()">
+                {{  'addfoodLog.CALCULATOR' | translate }}
+            </button>
+            <button class="quickAddButton btn btn-primary" (click)="enableQuickAdd()">
+                {{ 'addfoodLog.QUICK_ADD' | translate }}
+            </button>
+        </div>
+        <div *ngIf="quickAdd">
+            <app-quick-add-food-log></app-quick-add-food-log>
+        </div>
+
+        <div *ngIf="!quickAdd">
+            <app-calculator-add-food-log></app-calculator-add-food-log>
+        </div>
+
+    </div>
+</div>

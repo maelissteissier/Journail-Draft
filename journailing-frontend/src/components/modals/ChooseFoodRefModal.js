@@ -4,7 +4,7 @@ import "./ChooseFoodRefModal.css";
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
-import ListFoodRefComponent from "./components/ListFoodRefComponent";
+import ListFoodRefComponent from "../ListFoodRefComponent";
 
 
 const modalState = {
@@ -33,7 +33,10 @@ class ChooseFoodRef extends Component {
     getFoodRefListComponent(foodRefs) {
         return (
             <ListFoodRefComponent foodRefList={foodRefs}
-                                  onFoodRefChosen={this.props.setFoodChosen}
+                                  onFoodRefChosen={(foodRefChosen) => {
+                                      this.props.onHide();
+                                      this.props.setFoodChosen(foodRefChosen);
+                                  }}
             />);
 
     }

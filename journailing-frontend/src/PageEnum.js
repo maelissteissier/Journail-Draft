@@ -4,5 +4,6 @@ export const page = {
     FOODLIST: 2,
     CALCULATE_PAGE: 3,
     LOADING_CALCULATE_PAGE:4,
-    JOURNAL_LOG: 5
+    JOURNAL_LOG: 5,
+    LOADING_FOOD_JOURNAL_LOG_PAGE: 6
 }

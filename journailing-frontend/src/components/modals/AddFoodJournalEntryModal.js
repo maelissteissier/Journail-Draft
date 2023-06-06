@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import React, {Component} from 'react';
 import "./AddFoodJournalEntryModal.css"
-import CalculatePage from "./CalculatePage";
+import CalculatePage from "../../CalculatePage";
 
 
 class AddFoodJournalEntryModal extends Component {

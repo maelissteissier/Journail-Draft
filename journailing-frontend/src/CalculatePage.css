@@ -50,6 +50,7 @@ html {
 .addMethodChoiceContainer {
     display: flex;
     justify-content: center;
+    justify-content: center;
     margin-bottom: 25px;
 }
 
@@ -108,22 +109,6 @@ html {
     background-color: var(--ultraViolet);
     border-color: var(--ultraViolet);
     color: white;
-}
-
-.backBanner {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 35px;
-    margin-bottom: 25px;
-    background-color: var(--bgDarkerColor);
-    text-align: left;
-    width: 100%;
-    border-radius: 0;
-}
-
-.iconBackBanner {
-    font-size: 20px;
-    padding-right: 5px;
 }
 
 .iconSpan{
@@ -299,6 +284,18 @@ html {
     }
 
     .notChosenButton {
+        font-size: 20px;
+    }
+
+}
+
+/* Really small phone screens*/
+@media only screen and (max-width: 400px) {
+
+    .fastAddButton{
+        font-size: 20px;
+    }
+    .calculationAddButton{
         font-size: 20px;
     }
 }

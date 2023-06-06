@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './fonts/VarelaRound-Regular.ttf';
+// import './fonts/VarelaRound-Regular.ttf';
 // import './fonts/Mukta-Light.ttf';
 // import './fonts/Mukta-ExtraLight.ttf';
 // import './fonts/Mukta-Medium.ttf';

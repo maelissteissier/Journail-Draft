@@ -469,7 +469,6 @@ class CalculatePage extends Component {
                                                           type="text"
                                                           onChange={this.handleFoodNameChange}
                                                           placeholder={"Nom de l'aliment"}
-                                                          value={""}
                                     />);
                                 } else {
                                     return (
@@ -501,7 +500,6 @@ class CalculatePage extends Component {
                                                   type="text"
                                                   onChange={this.handleQuantityTypeChange}
                                                   placeholder={"(grammes, ml, tasse ... )"}
-                                                  value={""}
                                     />
                                 );
                             } else {
@@ -526,7 +524,6 @@ class CalculatePage extends Component {
                                                       type="text"
                                                       placeholder={"0"}
                                                       onChange={this.handleOriginalQuantityChange}
-                                                      value={""}
                                         />
                                     );
                                 } else {
@@ -551,7 +548,6 @@ class CalculatePage extends Component {
                                                       type="text"
                                                       placeholder={"0"}
                                                       onChange={this.handleOriginalCaloryChange}
-                                                      value={""}
                                         />
                                     );
                                 } else {

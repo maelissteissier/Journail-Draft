@@ -69,7 +69,7 @@ class ChooseFoodRef extends Component {
                         {this.state.search === "" ?
                             this.getFoodRefListComponent(this.props.foodRefList)
                             : this.getFoodRefListComponent(
-                                this.props.foodRefList.filter(food => food.name.includes(this.state.search)))}
+                                this.props.foodRefList.filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase())))}
                     </Modal.Body>
                     <Modal.Footer className={"thoughtsModalFooter"}>
                         <Button className={"cancelThoughtModal thoughtsModalButtons"} variant="danger"

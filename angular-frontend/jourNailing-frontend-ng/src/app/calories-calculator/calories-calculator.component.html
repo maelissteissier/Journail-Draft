@@ -1,1 +1,66 @@
-<p>calories-calculator works!</p>
+<form>
+    <div class="entryColItem form-group">
+        <label>Type Quantité</label>
+        <input class="calcEntry form-control"
+               type="text"
+               placeholder="(grammes, ml, tasse ... )"
+               id="quantityTypeEntry"
+        />
+    </div>
+    <div class="choiceContainer">
+        <button class="calcTypeChosenButton choiceCalcButton btn btn-primary">Calculer
+            Calories
+        </button>
+        <button class="notChosenButton choiceCalcButton btn btn-primary">Calculer
+            Quantité
+        </button>
+    </div>
+    <div class="calcEntryContainer">
+        <div class="mb-3 formEntries form-group">
+            <label>Qté. d'origine</label>
+            <input class="calcEntry form-control"
+                   type="text"
+                   placeholder="parametre"
+                   id="originalQuantity"
+            />
+        </div>
+
+        <div class="mb-3 formEntries form-group">
+            <label>Calories d'origine</label>
+            <input class="calcEntry form-control"
+                   type="text"
+                   placeholder="parametre"
+                   id="originalCalories"
+            />
+        </div>
+    </div>
+    <div class="calcEntryContainer">
+        <div class="mb-3 formEntries form-group">
+            <label>Qté. voulue</label>
+            <input class="calcEntry  form-control"
+                   type="text"
+                   placeholder="parametre"
+                   id="wantedQuantity"
+            />
+        </div>
+        <div class="mb-3 formEntries form-group">
+            <label>Cal. obtenues</label>
+            <input class="calcEntry disabled form-control"
+                   type="text"
+                   placeholder="parametre"
+                   id="wantedCalories"
+                   disabled
+            />
+        </div>
+    </div>
+    <div class="calcEntryContainer">
+        <button class="saveFoodBtn btn btn-primary">
+            <span class="iconSpan"><fa-icon [icon]="farFloppyDisk"></fa-icon></span>
+            Sauvegarder nouvel Aliment
+        </button>
+        <button class="saveFoodBtn btn btn-primary">
+            <span class="iconSpan"><fa-icon [icon]="faFloppyDisk"></fa-icon></span>
+            Sauvegarder entrée journal
+        </button>
+    </div>
+</form>

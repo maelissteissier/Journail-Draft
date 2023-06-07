@@ -21,6 +21,10 @@
     margin-bottom: 25px;
 }
 
+.addMethodChoiceContainer button {
+    width: 50%;
+}
+
 .calculationAddButton {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -63,4 +67,15 @@
     background-color: $roseeDarker;
     border-color: $roseeDarker;
     color: $bgLighterColor;
+}
+
+/* Really small phone screens*/
+@media only screen and (max-width: 400px) {
+
+    .quickAddButton{
+        font-size: 20px;
+    }
+    .calculationAddButton{
+        font-size: 20px;
+    }
 }

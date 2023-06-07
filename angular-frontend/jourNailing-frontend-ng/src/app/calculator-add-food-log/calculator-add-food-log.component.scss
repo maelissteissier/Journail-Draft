@@ -1,0 +1,85 @@
+@import "../../variables.scss";
+
+.foodRefModalBtn {
+    background-color: $roseQuartzDarker;
+    border-color: $roseQuartzDarker;
+    margin-bottom: 25px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.foodRefModalBtn:hover, .foodRefModalBtn:hover {
+    background-color: $flax;
+    border-color: $flax;
+    color: $bgLighterColor;
+}
+
+.foodRefModalBtn:not(:disabled):not(:disabled):active {
+    background-color: $flax;
+    border-color: $flax;
+    color: $bgLighterColor;
+}
+
+.entryColumns {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.entryColItem {
+    margin-bottom: 25px;
+}
+
+.calcEntry {
+    font-size: 25px;
+}
+
+.dateTimeInputContainer {
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+.formEntries {
+    font-size: 15px;
+    width: 50%;
+}
+
+.thoughtsModalBtn {
+    background-color: $periwinkle;
+    border-color: $periwinkle;
+    color: $bgDarkColor;
+    font-size: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.thoughtsModalBtn:hover, .thoughtsModalBtn:hover {
+    background-color: $lemonChiffon;
+    border-color: $lemonChiffon;
+    color: $bgLighterColor;
+}
+
+.thoughtsModalBtn:not(:disabled):not(:disabled):active {
+    background-color: $lemonChiffon;
+    border-color: $lemonChiffon;
+    color: $bgLighterColor;
+}
+
+
+/*Phones*/
+@media only screen and (max-width: 800px) {
+    .calcForm {
+        width: 90%;
+        margin: auto;
+    }
+
+    .calcEntry {
+        font-size: 20px;
+    }
+
+    .formEntries {
+        font-size: 20px;
+    }
+
+
+}

@@ -1,8 +1,4 @@
 @import "../../variables.scss";
-.calcForm {
-    display: flex;
-    flex-direction: column;
-}
 
 .entryColItem {
     margin-bottom: 25px;
@@ -67,10 +63,6 @@
 
 
 @media only screen and (max-width: 800px) {
-    .calcForm {
-        width: 90%;
-        margin: auto;
-    }
 
     .calcEntry {
         font-size: 20px;
@@ -81,15 +73,4 @@
     }
 
 
-}
-
-/* Really small phone screens*/
-@media only screen and (max-width: 400px) {
-
-    .quickAddButton{
-        font-size: 20px;
-    }
-    .calculationAddButton{
-        font-size: 20px;
-    }
 }

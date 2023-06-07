@@ -1,1 +1,40 @@
-<p>calculator-add-food-log works!</p>
+<form>
+    <button class="foodRefModalBtn btn btn-primary">
+        Choisir un aliment (optionnel)
+    </button>
+    <div class="entryColumns">
+        <div class="entryColItem form-group">
+            <label>Nom de l'aliment</label>
+            <input class="calcEntry form-control"
+                   type="text"
+                   placeholder="Nom de l'aliment"
+                   id="nameEntry"
+            />
+        </div>
+        <div class="dateTimeInputContainer">
+            <div class="entryColItem formEntries form-group">
+                <label>Jour</label>
+                <input class="calcEntry form-control"
+                       type="date"
+                       id="dayDate"
+                       [placeholder]="day"/>
+            </div>
+            <div class="entryColItem formEntries form-group">
+                <label>Heure</label>
+                <input class="calcEntry form-control"
+                       type="time"
+                       id="time"
+                       [placeholder]="time"/>
+            </div>
+        </div>
+        <button class="thoughtsModalBtn btn btn-primary">
+            Ajouter/Editer vos pensées ou émotions
+        </button>
+    </div>
+</form>
+<app-calories-calculator></app-calories-calculator>
+
+
+
+
+

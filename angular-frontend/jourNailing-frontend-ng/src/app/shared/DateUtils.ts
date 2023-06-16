@@ -1,6 +1,6 @@
 export default class DateUtils {
 // Result = 2023-05-28
-    static getDateStringFromDatetime(datetime: Date): string {
+    static getDateStringFromDatetime(datetime: Date): string{
         const year = datetime.getFullYear();
         const month = String(datetime.getMonth() + 1).padStart(2, '0'); // Months are zero-based
         const day = String(datetime.getDate()).padStart(2, '0');
@@ -9,7 +9,7 @@ export default class DateUtils {
     }
 
 // Result = 3:11 AM
-    static getTimeStringFromDatetime(datetime: Date): string {
+    static getTimeStringFromDatetime(datetime: Date): string  {
         var timeString = datetime.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: 'numeric',
@@ -36,18 +36,22 @@ export default class DateUtils {
     }
 
 // The strings need to be in format 2023-05-28 and 15:11
-    static getUTCDateStringFromDateAndTime(dateString: string, timeString: string): string {
-        // Extract the date components from the date string
-        const [year, month, day] = dateString.split("-");
-
-// Extract the time components from the time string
-        const [hours, minutes] = timeString.split(":");
+    static getUTCDateStringFromDateAndTime(dateString: string | undefined | null, timeString: string | undefined | null): string{
+        var dateUTC = "";
+        if (dateString && timeString) {
+            // Extract the date components from the date string
+            const [year, month, day] = dateString.split("-");
+            // Extract the time components from the time string
+            const [hours, minutes] = timeString.split(":");
 
 // Create a new Date object using the extracted components
-        var dateutc = Date.UTC(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes))
+            var dateutc = Date.UTC(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes))
 
-        var date = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes))
-        var dateUTC = date.toISOString();
+            var date = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes))
+            dateUTC = date.toISOString();
+        }
+
+
         return dateUTC;
     }
 

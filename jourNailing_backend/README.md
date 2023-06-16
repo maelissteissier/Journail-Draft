@@ -11,6 +11,9 @@ npm i --save @fortawesome/react-fontawesome@latest
 (For env variables)
 npm install webpack webpack-cli --save-dev
 
+(For navigation)
+npm install react-router-dom
+
 # install in python : 
 pip3 install flask-sqlalchemy
 

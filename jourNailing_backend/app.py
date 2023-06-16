@@ -13,7 +13,10 @@ from jourNailing_backend.controllers.journal_category_controller import journalC
 app = Flask(__name__)
 # Configure the database
 configure_database(app, os.environ.get('SQLALCHEMY_DATABASE_URI'))
-CORS(app, origins=[os.environ.get('CORS_ORIGIN_LOCALHOST'),  os.environ.get('CORS_ORIGIN_LOCAL_IP')])
+CORS(app, origins=[os.environ.get('CORS_ORIGIN_LOCALHOST'),
+                   os.environ.get('CORS_ORIGIN_LOCAL_IP'),
+                   os.environ.get('CORS_ORIGIN_LOCALHOST_ANGULAR'),
+                   os.environ.get('CORS_ORIGIN_LOCAL_IP_ANGULAR')])
 
 # Register the blueprints
 

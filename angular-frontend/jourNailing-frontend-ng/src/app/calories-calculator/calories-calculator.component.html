@@ -1,66 +1,64 @@
-<form>
+<form [formGroup]="caloriesCalculatorForm">
     <div class="entryColItem form-group">
-        <label>Type Quantité</label>
+        <label for="quantityTypeEntry">Type Quantité</label>
         <input class="calcEntry form-control"
                type="text"
                placeholder="(grammes, ml, tasse ... )"
                id="quantityTypeEntry"
-        />
+               formControlName="quantityTypeEntry"
+        >
     </div>
     <div class="choiceContainer">
-        <button class="calcTypeChosenButton choiceCalcButton btn btn-primary">Calculer
+        <button class="calcTypeChosenButton choiceCalcButton btn btn-primary" (click)="enableCalculateCaloriesFromWantedQuantity()">
+            Calculer
             Calories
         </button>
-        <button class="notChosenButton choiceCalcButton btn btn-primary">Calculer
+        <button class="notChosenButton choiceCalcButton btn btn-primary" (click)="enableCalculateQuantityFromWantedCalories()">Calculer
             Quantité
         </button>
     </div>
     <div class="calcEntryContainer">
         <div class="mb-3 formEntries form-group">
-            <label>Qté. d'origine</label>
+            <label for="originalQuantity">Qté. d'origine</label>
             <input class="calcEntry form-control"
                    type="text"
-                   placeholder="parametre"
+                   placeholder="Exemple : 234"
                    id="originalQuantity"
-            />
+                   formControlName="originalQuantity"
+            >
         </div>
 
         <div class="mb-3 formEntries form-group">
-            <label>Calories d'origine</label>
+            <label for="originalCalories">Calories d'origine</label>
             <input class="calcEntry form-control"
                    type="text"
-                   placeholder="parametre"
+                   placeholder="Exemple : 234"
                    id="originalCalories"
-            />
+                   formControlName="originalCalories"
+            >
         </div>
     </div>
     <div class="calcEntryContainer">
         <div class="mb-3 formEntries form-group">
-            <label>Qté. voulue</label>
+            <label for="wantedQuantity">Qté. voulue</label>
             <input class="calcEntry  form-control"
+                   [class.disabled]="!calculateCaloriesFromWantedQuantity"
                    type="text"
-                   placeholder="parametre"
+                   [placeholder]="placeholderWantedQuantity"
                    id="wantedQuantity"
-            />
+                   formControlName="wantedQuantity"
+            >
         </div>
         <div class="mb-3 formEntries form-group">
-            <label>Cal. obtenues</label>
-            <input class="calcEntry disabled form-control"
+            <label for="wantedCalories">Cal. obtenues</label>
+            <input class="calcEntry form-control"
+                   [class.disabled]="calculateCaloriesFromWantedQuantity"
                    type="text"
-                   placeholder="parametre"
                    id="wantedCalories"
-                   disabled
-            />
+                   [placeholder]="placeholderWantedCalories"
+                   formControlName="wantedCalories"
+            >
         </div>
     </div>
-    <div class="calcEntryContainer">
-        <button class="saveFoodBtn btn btn-primary">
-            <span class="iconSpan"><fa-icon [icon]="farFloppyDisk"></fa-icon></span>
-            Sauvegarder nouvel Aliment
-        </button>
-        <button class="saveFoodBtn btn btn-primary">
-            <span class="iconSpan"><fa-icon [icon]="faFloppyDisk"></fa-icon></span>
-            Sauvegarder entrée journal
-        </button>
-    </div>
+
 </form>

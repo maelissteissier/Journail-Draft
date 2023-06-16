@@ -10,11 +10,11 @@
             </button>
         </div>
         <div *ngIf="quickAdd">
-            <app-quick-add-food-log></app-quick-add-food-log>
+            <app-quick-add-food-log (saveFoodEntry)="saveFoodEntry($event)"></app-quick-add-food-log>
         </div>
 
         <div *ngIf="!quickAdd">
-            <app-calculator-add-food-log></app-calculator-add-food-log>
+            <app-calculator-add-food-log (saveFoodEntry)="saveFoodEntry($event)"></app-calculator-add-food-log>
         </div>
 
     </div>

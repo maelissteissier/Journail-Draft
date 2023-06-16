@@ -1,30 +1,36 @@
-<form>
+<form [formGroup]="quickFoodAddForm" (ngSubmit)="onSubmit()">
     <div class="entryColumns">
         <div class="entryColItem form-group">
-            <label>Nom de l'aliment</label>
+            <label for="foodName">Nom de l'aliment</label>
             <input class="calcEntry form-control"
                    type="text"
                    placeholder="Nom de l'aliment"
-                   id="nameEntry"/>
+                   id="foodName"
+                   formControlName="foodName">
         </div>
-        <div class="entryColItem form-group" controlId="quickCalories">
-            <label>Calories</label>
+        <div class="entryColItem form-group">
+            <label for="quickCalories">Calories</label>
             <input class="calcEntry form-control"
                    type="text"
-                   placeholder="0"/>
+                   placeholder="Nombre de calories"
+                   pattern="[0-9]*"
+                   id="quickCalories"
+                   formControlName="quickCalories">
         </div>
         <div class="dateTimeInputContainer">
-            <div class="entryColItem formEntries form-group" controlId="dayDate">
-                <label>Jour</label>
+            <div class="entryColItem formEntries form-group">
+                <label for="dayDate">Jour</label>
                 <input class="calcEntry form-control"
                        type="date"
-                       [placeholder]="day"/>
+                       id="dayDate"
+                       formControlName="dayDate">
             </div>
-            <div class="entryColItem formEntries form-group" controlId="time">
-                <label>Heure</label>
+            <div class="entryColItem formEntries form-group">
+                <label for="time">Heure</label>
                 <input class="calcEntry form-control"
                        type="time"
-                       [placeholder]="time"/>
+                       id="time"
+                       formControlName="time">
             </div>
         </div>
         <button class="thoughtsModalBtn btn btn-primary">
@@ -32,7 +38,7 @@
         </button>
     </div>
     <div class="calcEntryContainer">
-        <button class="saveFoodBtn btn btn-primary">
+        <button class="saveFoodBtn btn btn-primary" type="submit">
             <span class="iconSpan"><fa-icon [icon]="faFloppyDisk"></fa-icon></span>
             Sauvegarder dans le journal
         </button>

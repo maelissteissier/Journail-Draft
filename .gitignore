@@ -1,3 +1,5 @@
 .idea/
 journailing-frontend/src/fonts/
 node_modules/
+.DS_Store
+

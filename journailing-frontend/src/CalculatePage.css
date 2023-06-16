@@ -17,10 +17,6 @@ html {
     max-width: 1000px;
 }
 
-.calcForm {
-    display: flex;
-    flex-direction: column;
-}
 
 .entryColumns {
     display: flex;
@@ -101,7 +97,6 @@ html {
 
 .calcEntry {
     font-size: 25px;
-
 }
 
 .foodRefSelect {

@@ -13,6 +13,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

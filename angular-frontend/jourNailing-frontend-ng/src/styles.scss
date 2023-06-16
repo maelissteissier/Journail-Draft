@@ -5,3 +5,11 @@
 html{
     background-color: $bgDarkColor;
 }
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.leftAlignText{
+    text-align: left;
+}

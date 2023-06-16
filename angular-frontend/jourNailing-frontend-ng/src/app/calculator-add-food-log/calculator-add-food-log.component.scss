@@ -30,9 +30,9 @@
     margin-bottom: 25px;
 }
 
-.calcEntry {
-    font-size: 25px;
-}
+//.calcEntry {
+//    font-size: 25px;
+//}
 
 .dateTimeInputContainer {
     display: flex;
@@ -63,6 +63,19 @@
     background-color: $lemonChiffon;
     border-color: $lemonChiffon;
     color: $bgLighterColor;
+}
+
+.saveFoodBtn {
+    background-color: $darkerBlue;
+    border-color: $darkerBlue;
+    width: 50%;
+    font-size: 20px;
+}
+
+.saveBtnContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 

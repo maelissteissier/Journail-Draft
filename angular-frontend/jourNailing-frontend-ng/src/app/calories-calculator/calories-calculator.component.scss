@@ -56,12 +56,11 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-
 }
 
-.calcEntry {
-    font-size: 25px;
-}
+//.calcEntry {
+//    font-size: 25px;
+//}
 
 .formEntries {
     font-size: 15px;
@@ -70,13 +69,6 @@
 
 .disabled {
     background-color: $celadon !important;
-}
-
-.saveFoodBtn {
-    background-color: $darkerBlue;
-    border-color: $darkerBlue;
-    width: 50%;
-    font-size: 20px;
 }
 
 .iconSpan{

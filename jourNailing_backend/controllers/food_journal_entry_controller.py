@@ -16,58 +16,71 @@ def create_food_journal_entry():
         abort(400)
 
     data = request.json
-    journal_category_id = data['journal_category']['id']
-    journal_category = JournalCategory.query.get(journal_category_id)
+
+    new_entry, errors = food_journal_entry_validation(data)
+    if errors is not None:
+        return jsonify({"errors": errors}), 400
+    else:
+        db.session.add(new_entry)
+        db.session.commit()
+        return jsonify(new_entry.to_json()), 201
+
+
+def food_journal_entry_validation(food_journal_entry_json):
+    errors = []
+    new_entry = None
+    # FoodEntry journal_category should always be food
+    journal_category = JournalCategory.query.filter(JournalCategory.name == 'food').first()
 
     # If the JournalCategory doesn't exist (required)
     if journal_category is None:
-        return jsonify({'error': 'JournalCategory not found'}), 404
+        errors.append('JournalCategory not found')
+    else:
+        # FoodRef isn't required, if present but new, we save it
+        food_ref = food_journal_entry_json.get('food_ref', None)
+
+        # Food_ref received
+        if food_ref is not None:
+            food_ref_id = food_journal_entry_json['food_ref'].get('id', None)
+            # Food ref exists in DB (because it has an ID) :
+            if food_ref_id is not None:
+                food_ref = FoodRef.query.get(food_ref_id)
+                # Error retreiving food_ref in DB :
+                if food_ref is None:
+                    return errors.append('FoodRef not found')
+            # FoodRef doesn't exist in DB :
+            else:
+                food_ref_saved, err = save_food_ref_from_json(food_ref, db)
+                food_ref = FoodRef.query.get(food_ref_saved.id)
+                if err is not None:
+                    errors.append('food reference saving error')
+
+        try:
+            entry_date_utc = datetime.strptime(food_journal_entry_json['date'], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=pytz.UTC)
+            new_entry = FoodJournalEntry(
+                date=entry_date_utc,
+                quantity=food_journal_entry_json.get('quantity', ""),
+                quantity_type=food_journal_entry_json.get('quantity_type', ""),
+                calories=food_journal_entry_json.get('calories', ""),
+                thoughts=food_journal_entry_json.get('thoughts', ""),
+                name=food_journal_entry_json.get('name', ""),
+                foodRef=food_ref,
+                journalCategory=journal_category
+            )
+
+            if new_entry.calories == "":
+                errors.append("calories must not be empty")
+            if new_entry.name == "":
+                errors.append("foodname must not be empty")
+
+            if (not isinstance(new_entry.quantity, int) and new_entry.quantity != None) \
+                    or not isinstance(new_entry.calories, int):
+                errors.append('original_calory or original_quantity not an int')
+        except ValueError:
+            errors.append('Invalid date format')
+    return new_entry, None if len(errors) == 0 else errors
 
 
-
-    # FoodRef isn't required, if present but new, we save it
-    food_ref = data.get('food_ref', None)
-
-    # Food_ref received
-    if food_ref is not None:
-        food_ref_id = data['food_ref'].get('id', None)
-        # Food ref exists in DB (because it has an ID) :
-        if food_ref_id is not None:
-            food_ref = FoodRef.query.get(food_ref_id)
-            # Error retreiving food_ref in DB :
-            if food_ref is None:
-                return jsonify({'error': 'FoodRef not found'}), 404
-        # FoodRef doesn't exist in DB :
-        else:
-            food_ref_saved, err = save_food_ref_from_json(food_ref, db)
-            food_ref = FoodRef.query.get(food_ref_saved.id)
-            if err is not None:
-                return jsonify(err), 400
-
-
-
-    try:
-        entry_date_utc = datetime.strptime(data['date'], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=pytz.UTC)
-    except ValueError:
-        return jsonify({'error': 'Invalid date format'}), 400
-
-    new_entry = FoodJournalEntry(
-        date=entry_date_utc,
-        quantity=data.get('quantity', ""),
-        quantity_type=data.get('quantity_type', ""),
-        calories=data['calories'],
-        thoughts=data.get('thoughts', ""),
-        name=data.get('name', ""),
-        foodRef=food_ref,
-        journalCategory=journal_category
-    )
-
-    if (not isinstance(new_entry.quantity, int) and new_entry.quantity != "") or not isinstance(new_entry.calories, int):
-        return jsonify({'error': 'original_calory or original_quantity not an int'}), 400
-
-    db.session.add(new_entry)
-    db.session.commit()
-    return jsonify(new_entry.to_json()), 201
 
 
 # Get one entry

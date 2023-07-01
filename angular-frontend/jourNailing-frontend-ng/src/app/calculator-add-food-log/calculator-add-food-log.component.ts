@@ -106,6 +106,7 @@ export class CalculatorAddFoodLogComponent {
                     time: this.time
                 });
             }
+            this.caloriesCalculatorComponent.resetForm();
         }
     }
 

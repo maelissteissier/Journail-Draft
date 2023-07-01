@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {combineAll, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-calories-calculator',
@@ -39,8 +39,8 @@ export class CaloriesCalculatorComponent implements OnChanges {
 
     private subscribeToFormChanges() {
         // Calculator
-        const originalQuantityControl = this.caloriesCalculatorForm.get('originalQuantity')
-        const originalCaloriesControl = this.caloriesCalculatorForm.get('originalCalories')
+        const originalQuantityControl = this.caloriesCalculatorForm.get('originalQuantity');
+        const originalCaloriesControl = this.caloriesCalculatorForm.get('originalCalories');
         const wantedQuantityControl = this.caloriesCalculatorForm.get('wantedQuantity');
         const wantedCaloriesControl = this.caloriesCalculatorForm.get('wantedCalories');
 
@@ -127,5 +127,9 @@ export class CaloriesCalculatorComponent implements OnChanges {
             this.unsubscribeFromFormChanges();
             this.subscribeToFormChanges();
         }
+    }
+
+    resetForm() {
+        this.caloriesCalculatorForm.reset(); // Reset the form to its initial state
     }
 }

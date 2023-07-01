@@ -11,7 +11,6 @@ export class FoodRefListModalComponent {
     @Output() rowClicked: EventEmitter<any> = new EventEmitter<any>();
     @Output() onHide = new EventEmitter<void>();
     @Input() show!: boolean;
-    search: string = "";
     faCheck = faCheck;
     faXmark = faXmark;
 
@@ -20,15 +19,8 @@ export class FoodRefListModalComponent {
         this.onHide.emit();
     }
 
-    handleContentClick(event: MouseEvent) {
-        event.stopPropagation();
-    }
-
-    handleSearchChange(value: string) {
-        this.search = value;
-    }
-
     handleRowClicked(data: FoodRef) {
         this.rowClicked.emit(data);
+        this.onHide.emit();
   }
 }

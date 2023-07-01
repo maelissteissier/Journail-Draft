@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {FoodJournalEntry} from "./food-journal-entry";
+import {FoodJournalEntry} from "../shared/models/food-journal-entry";
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 
@@ -16,14 +16,8 @@ export class FoodJournalEntryService {
     ) {
     }
 
-
-    getShippingPrices() {
-        return this.http.get<{ type: string, price: number }[]>('/assets/shipping.json');
-    }
-
     saveFoodEntry(foodEntryData: FoodJournalEntry) {
-
-        this.http.post(this.baseURL+'food-journal-entry', foodEntryData)
+        this.http.post(`${this.baseURL}/food-journal-entry`, foodEntryData)
             .subscribe(
                 {
                     next: (response) => {
@@ -37,6 +31,12 @@ export class FoodJournalEntryService {
                 }
             );
     }
+
+// TODO remove those example lines
+    getShippingPrices() {
+        return this.http.get<{ type: string, price: number }[]>('/assets/shipping.json');
+    }
+
 
 }
 

@@ -14,6 +14,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { FoodRefListModalComponent } from './food-ref-list-modal/food-ref-list-modal.component';
+import { FoodRefListComponent } from './food-ref-list/food-ref-list.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import {ReactiveFormsModule} from "@angular/forms";
         QuickAddFoodLogComponent,
         CalculatorAddFoodLogComponent,
         CaloriesCalculatorComponent,
-        AppLayoutComponent
+        AppLayoutComponent,
+        FoodRefListModalComponent,
+        FoodRefListComponent
     ],
     imports: [
         CommonModule,

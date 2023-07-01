@@ -1,0 +1,20 @@
+<div class="listFoodRefContainer">
+    <table striped="columns" class="tableFood tableScroll">
+        <thead class="theadScroll">
+        <tr class="tableHead">
+            <th class="tableLeft foodNameCell">Aliment</th>
+            <th class="tableMidle qteRefCell">Qté. Réf</th>
+            <th class="tableMidle qteTypeCell">Qté. Type</th>
+            <th class="tableRight calRefCell">Cals. Réf.</th>
+        </tr>
+        </thead>
+        <tbody class="tbodyScroll">
+            <tr  *ngFor="let foodRef of foodRefList" (click)="onRowClick(foodRef)">
+                <td class="tableLeft foodNameCell">{{ foodRef.name }}</td>
+                <td class="tableCell qteRefCell"> {{ foodRef.original_quantity }}</td>
+                <td class="tableCell qteTypeCell">{{ foodRef.quantity_type }}</td>
+                <td class="tableRight calRefCell">{{ foodRef.original_calory }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

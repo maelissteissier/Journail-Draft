@@ -1,0 +1,73 @@
+@import "../../variables.scss";
+
+.searchFoodRefEntry{
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.chooseFoodRefModalHeader{
+    border: none;
+    color: lightgrey;
+}
+
+.modal{
+    display: flex;
+    padding-left:10px;
+    padding-right:10px;
+}
+.modal-body.chooseFoodRefModalBody{}
+.foodRefListModalHeader{
+    border: none;
+    color: lightgrey;
+}
+
+.foodRefListModalFooter{
+    border: none;
+}
+
+.foodRefListModal > .modal-dialog > .modal-content > .modal-header{
+    justify-content: center;
+}
+
+.foodRefListModal > .modal-dialog > .modal-content > .modal-footer{
+    justify-content: center;
+    gap: 25px;
+}
+
+.modal-header.chooseFoodRefModalHeader > button.close{
+    display:none;
+}
+
+.foodRefListModal > .modal-dialog > .modal-content{
+    border-radius: 50px;
+    border: none;
+    background-color: $bgDarkColor;
+
+}
+
+textarea#thoughtsTextArea{
+    background-color: $bgDarkColor;
+    color: lightgrey;
+}
+
+.foodRefListModalButtons{
+    aspect-ratio: 1/1;
+    font-size: 50px;
+    font-weight: bold;
+    border-radius: 50px;
+    width:90px;
+}
+
+.cancelThoughtModal{
+    color: $bgDarkColor;
+    background-color: $rosee;
+    border-color: $rosee;
+
+}
+
+.validateThoughtModal{
+    background-color: $lightBlue;
+    border-color: $lightBlue;
+    color: $bgDarkColor;
+}
+

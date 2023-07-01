@@ -1,0 +1,68 @@
+@import "../../variables.scss";
+.listFoodRefContainer {
+    max-width: 800px;
+    width: 95%;
+    margin: auto;
+}
+
+.tableFood {
+    color: lightgray;
+    margin: auto;
+}
+
+tr:hover{
+    cursor: pointer;
+}
+
+tr:hover > td{
+    background-color: $bgLighterColor !important;
+}
+.tableHead:hover {
+    background-color: $bgDarkColor;
+    cursor: default;
+}
+
+
+.tableLeft {
+    text-align: left;
+    padding-left: 5px;
+    background-color: $bgDarkLighterColor;
+}
+
+.tableRight {
+    text-align: right;
+    color: lightgrey !important;
+    padding-right: 5px;
+    background-color: $bgDarkLighterColor;
+}
+
+.tableMidle {
+    color: lightgrey !important;
+    text-align: center;
+    background-color: $bgDarkLighterColor;
+}
+
+.tableCell {
+    color: lightgrey !important;
+    text-align: center;
+    background-color: $bgDarkLighterColor;
+}
+
+table tbody.tbodyScroll { height:300px; overflow-y:scroll; display:block; border-top: solid 1px lightgray;}
+table thead.theadScroll { display:block; background-color: $bgDarkLighterColor !important;}
+
+.foodNameCell {
+    width: 50%;
+}
+
+.qteRefCell{
+    width: 15%;
+}
+
+.qteTypeCell{
+    width:20%;
+}
+
+.calRefCell{
+    width: 15px;
+}

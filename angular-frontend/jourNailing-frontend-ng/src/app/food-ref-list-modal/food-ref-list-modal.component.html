@@ -1,6 +1,6 @@
 <div class="modal fade show foodRefListModal" *ngIf="show" (click)="handleBackdropClick()">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" (click)="handleContentClick($event)">
+        <div class="modal-content">
             <div class="modal-header chooseFoodRefModalHeader">
                 <h5 class="modal-title">Choisir un aliment reférence</h5>
                 <button type="button" class="close" aria-label="Close" (click)="onHide.emit()">
@@ -8,11 +8,6 @@
                 </button>
             </div>
             <div class="modal-body chooseFoodRefModalBody">
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control searchFoodRefEntry" placeholder="Tapez votre recherche">
-                    </div>
-                </form>
                 <div class="food-ref-list">
                     <app-food-ref-list (rowClicked)="handleRowClicked($event)"></app-food-ref-list>
                 </div>
@@ -22,9 +17,9 @@
                         (click)="onHide.emit()">
                     <span class="fa fa-times"><fa-icon [icon]="faXmark"></fa-icon></span>
                 </button>
-                <button type="button" class="btn btn-primary validateThoughtModal foodRefListModalButtons">
-                    <span class="fa fa-check"><fa-icon [icon]="faCheck"></fa-icon></span>
-                </button>
+<!--                <button type="button" class="btn btn-primary validateThoughtModal foodRefListModalButtons">-->
+<!--                    <span class="fa fa-check"><fa-icon [icon]="faCheck"></fa-icon></span>-->
+<!--                </button>-->
             </div>
         </div>
     </div>

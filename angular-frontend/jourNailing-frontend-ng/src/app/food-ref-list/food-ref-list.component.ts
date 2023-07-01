@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FoodRefService} from "./food-ref.service";
 import {FoodRef} from "../shared/models/food-ref";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
     selector: 'app-food-ref-list',
@@ -8,14 +9,24 @@ import {FoodRef} from "../shared/models/food-ref";
     styleUrls: ['./food-ref-list.component.scss']
 })
 export class FoodRefListComponent {
-    constructor(private foodRefService: FoodRefService) {
-        this.foodRefService.getFoodRef().subscribe((foodRefList) => {
-            this.foodRefList = foodRefList
+    constructor(private foodRefService: FoodRefService, private formBuilder: FormBuilder) {
+        this.searchFoodForm = this.formBuilder.group({
+            searchFoodInput: ""
         });
+        this.foodRefService.getFoodRef().subscribe((foodRefList) => {
+            this.foodRefListRetrieved = foodRefList;
+            this.foodRefList = foodRefList;
+        });
+        const searchFoodControl = this.searchFoodForm.get("searchFoodInput");
+        searchFoodControl?.valueChanges?.subscribe((search) => {
+            this.foodRefList = this.foodRefListRetrieved.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
+        })
     }
+    searchFoodForm: FormGroup;
 
     @Output() rowClicked: EventEmitter<any> = new EventEmitter<any>();
 
+    foodRefListRetrieved: FoodRef[] = [];
     foodRefList: FoodRef[] = [];
 
     onRowClick(data: FoodRef) {

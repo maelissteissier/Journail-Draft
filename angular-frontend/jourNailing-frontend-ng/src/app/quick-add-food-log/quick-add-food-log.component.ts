@@ -2,7 +2,8 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {faFloppyDisk} from "@fortawesome/free-solid-svg-icons";
 import DateUtils from "../shared/DateUtils";
-import {FoodJournalEntry, JournalCategory} from "../add-food-journal-entry/food-journal-entry";
+import {FoodJournalEntry} from "../shared/models/food-journal-entry";
+import {JournalCategory} from "../shared/models/journal-category";
 
 
 @Component({

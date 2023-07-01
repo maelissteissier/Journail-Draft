@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {FoodJournalEntry} from "./food-journal-entry";
+import {FoodJournalEntry} from "../shared/models/food-journal-entry";
 import {FoodJournalEntryService} from "./food-journal-entry.service";
 
 

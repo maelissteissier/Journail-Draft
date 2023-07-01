@@ -1,8 +1,9 @@
-<form [formGroup]="addFoodForm" (ngSubmit)="onSubmit()">
-    <button class="foodRefModalBtn btn btn-primary">
+    <button class="foodRefModalBtn btn btn-primary" (click)="openFoodRefListModal()">
         Choisir un aliment (optionnel)
     </button>
+    <app-food-ref-list-modal [show]="isFoodRefListModalOpen" (onHide)="closeFoodRefListModal()" (rowClicked)="handleFoodChoosenInModal($event)"></app-food-ref-list-modal>
 
+<form [formGroup]="addFoodForm" (ngSubmit)="onSubmit()">
     <div *ngIf="errMessage.length > 0" class="alert alert-danger" role="alert">
         <h4 class="alert-heading leftAlignText">Error!</h4>
         <hr>
@@ -42,8 +43,7 @@
         <button class="thoughtsModalBtn btn btn-primary">
             Ajouter/Editer vos pensées ou émotions
         </button>
-        <app-calories-calculator
-            (getCaloriesCalculator)="handleCaloriesCalculatorFormChange($event)"></app-calories-calculator>
+        <app-calories-calculator [formData]="caloriesCalculatorForm"></app-calories-calculator>
     </div>
     <div class="saveBtnContainer">
         <button class="saveFoodBtn btn btn-primary">

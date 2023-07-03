@@ -1,7 +1,8 @@
-    <button class="foodRefModalBtn btn btn-primary" (click)="openFoodRefListModal()">
-        Choisir un aliment (optionnel)
-    </button>
-    <app-food-ref-list-modal [show]="isFoodRefListModalOpen" (onHide)="closeFoodRefListModal()" (rowClicked)="handleFoodChoosenInModal($event)"></app-food-ref-list-modal>
+<button class="foodRefModalBtn btn btn-primary" (click)="openFoodRefListModal()">
+    Choisir un aliment (optionnel)
+</button>
+<app-food-ref-list-modal [show]="isFoodRefListModalOpen" (onHide)="closeFoodRefListModal()"
+                         (rowClicked)="handleFoodChoosenInModal($event)"></app-food-ref-list-modal>
 
 <form [formGroup]="addFoodForm" (ngSubmit)="onSubmit()">
     <div *ngIf="errMessage.length > 0" class="alert alert-danger" role="alert">
@@ -15,7 +16,7 @@
     </div>
     <div class="entryColumns">
         <div class="entryColItem form-group">
-            <label for="foodName">Nom de l'aliment</label>
+            <label for="foodName">Nom de l'aliment <span class="asteriskRequired">*</span>  </label>
             <input class="calcEntry form-control"
                    type="text"
                    placeholder="Nom de l'aliment"
@@ -26,24 +27,32 @@
         </div>
         <div class="dateTimeInputContainer">
             <div class="entryColItem formEntries form-group">
-                <label for="dayDate">Jour</label>
+                <label for="dayDate">Jour<span class="asteriskRequired">*</span></label>
                 <input class="calcEntry form-control"
                        type="date"
                        id="dayDate"
                        formControlName="dayDate">
             </div>
             <div class="entryColItem formEntries form-group">
-                <label for="time">Heure</label>
+                <label for="time">Heure<span class="asteriskRequired">*</span></label>
                 <input class="calcEntry form-control"
                        type="time"
                        id="time"
                        formControlName="time">
             </div>
         </div>
-        <button class="thoughtsModalBtn btn btn-primary">
+
+        <app-calories-calculator [formData]="caloriesCalculatorForm"></app-calories-calculator>
+
+        <button class="thoughtsModalBtn btn btn-primary" disabled>
             Ajouter/Editer vos pensées ou émotions
         </button>
-        <app-calories-calculator [formData]="caloriesCalculatorForm"></app-calories-calculator>
+
+        <div class="entryColItem form-group">
+            <label class="textarea-label">
+                <textarea class="calcEntry form-control" formControlName="thoughtsTextArea" rows="5"></textarea>
+            </label>
+        </div>
     </div>
     <div class="saveBtnContainer">
         <button class="saveFoodBtn btn btn-primary">
@@ -55,6 +64,8 @@
             Sauvegarder entrée journal
         </button>
     </div>
+
+
 </form>
 
 

@@ -1,7 +1,16 @@
 <form [formGroup]="quickFoodAddForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="errMessage.length > 0" class="alert alert-danger" role="alert">
+        <h4 class="alert-heading leftAlignText">Error!</h4>
+        <hr>
+        <ul>
+            <li class="mb-0 leftAlignText" *ngFor="let err of errMessage">
+                {{ err }}
+            </li>
+        </ul>
+    </div>
     <div class="entryColumns">
         <div class="entryColItem form-group">
-            <label for="foodName">Nom de l'aliment</label>
+            <label for="foodName">Nom de l'aliment <span class="asteriskRequired">*</span></label>
             <input class="calcEntry form-control"
                    type="text"
                    placeholder="Nom de l'aliment"
@@ -9,7 +18,7 @@
                    formControlName="foodName">
         </div>
         <div class="entryColItem form-group">
-            <label for="quickCalories">Calories</label>
+            <label for="quickCalories">Calories <span class="asteriskRequired">*</span></label>
             <input class="calcEntry form-control"
                    type="text"
                    placeholder="Nombre de calories"
@@ -19,23 +28,29 @@
         </div>
         <div class="dateTimeInputContainer">
             <div class="entryColItem formEntries form-group">
-                <label for="dayDate">Jour</label>
+                <label for="dayDate">Jour<span class="asteriskRequired">*</span></label>
                 <input class="calcEntry form-control"
                        type="date"
                        id="dayDate"
                        formControlName="dayDate">
             </div>
             <div class="entryColItem formEntries form-group">
-                <label for="time">Heure</label>
+                <label for="time">Heure<span class="asteriskRequired">*</span></label>
                 <input class="calcEntry form-control"
                        type="time"
                        id="time"
                        formControlName="time">
             </div>
         </div>
-        <button class="thoughtsModalBtn btn btn-primary">
+        <button class="thoughtsModalBtn btn btn-primary" disabled>
             Ajouter/Editer vos pensées ou émotions
         </button>
+
+        <div class="entryColItem form-group">
+            <label class="textarea-label">
+                <textarea class="calcEntry form-control" formControlName="thoughtsTextArea" rows="5"></textarea>
+            </label>
+        </div>
     </div>
     <div class="calcEntryContainer">
         <button class="saveFoodBtn btn btn-primary" type="submit">

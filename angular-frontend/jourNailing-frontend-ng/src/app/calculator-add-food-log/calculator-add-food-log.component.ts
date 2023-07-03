@@ -15,13 +15,6 @@ import {CaloriesCalculatorComponent} from "../calories-calculator/calories-calcu
 })
 export class CalculatorAddFoodLogComponent {
     constructor(private formBuilder: FormBuilder) {
-        // this.caloriesCalculatorForm = this.formBuilder.group({
-        //     quantityTypeEntry: "",
-        //     originalQuantity: 0,
-        //     originalCalories: 0,
-        //     wantedQuantity: 0,
-        //     wantedCalories: 0
-        // });
     }
 
     @Output() saveFoodEntry: EventEmitter<any> = new EventEmitter<any>();
@@ -33,11 +26,11 @@ export class CalculatorAddFoodLogComponent {
     now = new Date();
     day = DateUtils.getDateStringFromDatetime(this.now);
     time = DateUtils.getTimeStringFromDatetime(this.now);
-    // caloriesCalculatorForm: FormGroup;
     addFoodForm = this.formBuilder.group({
         foodName: "",
         dayDate: this.day,
-        time: this.time
+        time: this.time,
+        thoughtsTextArea: ""
     });
     errMessage: string[] = [];
     alertDisplay = false;
@@ -51,10 +44,6 @@ export class CalculatorAddFoodLogComponent {
     closeFoodRefListModal() {
         this.isFoodRefListModalOpen = false
     }
-
-    // handleCaloriesCalculatorFormChange(formContent: FormGroup) {
-    //     this.caloriesCalculatorForm = formContent;
-    // }
 
     handleFoodChoosenInModal(data: FoodRef) {
         this.caloriesCalculatorForm = this.formBuilder.group({
@@ -70,7 +59,8 @@ export class CalculatorAddFoodLogComponent {
         this.addFoodForm = this.formBuilder.group({
             foodName: data.name,
             dayDate: this.day,
-            time: this.time
+            time: this.time,
+            thoughtsTextArea: this.addFoodForm.value.foodName ? this.addFoodForm.value.foodName : ""
         });
     }
 
@@ -83,13 +73,14 @@ export class CalculatorAddFoodLogComponent {
         } else {
             console.warn('food saved : ', this.addFoodForm.value);
             const date = DateUtils.getUTCDateStringFromDateAndTime(this.addFoodForm.value.dayDate, this.addFoodForm.value.time);
+
             const entryData: FoodJournalEntry =
                 new FoodJournalEntry(null,
                     date,
                     Number(caloriesForm.controls['wantedQuantity'].value),
                     caloriesForm.value.quantityTypeEntry,
                     Number(caloriesForm.controls['wantedCalories'].value),
-                    "",
+                    this.addFoodForm.value.thoughtsTextArea? this.addFoodForm.value.thoughtsTextArea : "",
                     this.addFoodForm.value.foodName ? this.addFoodForm.value.foodName : "",
                     null,
                     new JournalCategory(1, "food"));
@@ -103,7 +94,8 @@ export class CalculatorAddFoodLogComponent {
                 this.addFoodForm = this.formBuilder.group({
                     foodName: "",
                     dayDate: this.day,
-                    time: this.time
+                    time: this.time,
+                    thoughtsTextArea: ""
                 });
             }
             this.caloriesCalculatorComponent.resetForm();
@@ -121,8 +113,7 @@ export class CalculatorAddFoodLogComponent {
         if (addFoodForm.value.time == "") {
             errMessage.push("The time is required");
         }
-        addFoodForm.value.time
-        if (caloriesCalculatorForm.value.wantedCalories == "") {
+        if (caloriesCalculatorForm.controls["wantedCalories"].value == "") {
             errMessage.push("The calorie count is required");
         }
         return errMessage;

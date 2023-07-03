@@ -48,16 +48,15 @@
     border-bottom-right-radius: 0px;
 }
 
-.thoughtsModalBtn:hover, .thoughtsModalBtn:hover {
-    background-color: $lemonChiffon;
-    border-color: $lemonChiffon;
-    color: $bgLighterColor;
+.textarea-label {
+    display: block;
 }
 
-.thoughtsModalBtn:not(:disabled):not(:disabled):active {
-    background-color: $lemonChiffon;
-    border-color: $lemonChiffon;
-    color: $bgLighterColor;
+.textarea-label textArea {
+    width: 100%;
+    border-color: $bgLighterColor;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 

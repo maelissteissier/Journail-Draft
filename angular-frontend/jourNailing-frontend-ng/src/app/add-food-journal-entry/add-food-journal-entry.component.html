@@ -9,7 +9,7 @@
                 {{ 'addfoodLog.QUICK_ADD' | translate }}
             </button>
         </div>
-        <div *ngIf="quickAdd">
+     <div *ngIf="quickAdd">
             <app-quick-add-food-log (saveFoodEntry)="saveFoodEntry($event)"></app-quick-add-food-log>
         </div>
 

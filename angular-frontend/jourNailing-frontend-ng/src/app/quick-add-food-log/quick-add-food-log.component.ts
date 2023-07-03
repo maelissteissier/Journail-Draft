@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {faFloppyDisk} from "@fortawesome/free-solid-svg-icons";
 import DateUtils from "../shared/DateUtils";
 import {FoodJournalEntry} from "../shared/models/food-journal-entry";
@@ -20,38 +20,65 @@ export class QuickAddFoodLogComponent {
     now = new Date();
     day = DateUtils.getDateStringFromDatetime(this.now);
     time = DateUtils.getTimeStringFromDatetime(this.now);
-
+    errMessage: string[] = [];
+    alertDisplay = false;
     quickFoodAddForm = this.formBuilder.group({
         foodName: "",
         quickCalories: '',
         dayDate: this.day,
-        time: this.time
+        time: this.time,
+        thoughtsTextArea: ""
     });
 
-    onSubmit(){
-        console.warn('food saved : ', this.quickFoodAddForm.value);
-        const date = DateUtils.getUTCDateStringFromDateAndTime(this.quickFoodAddForm.value.dayDate, this.quickFoodAddForm.value.time);
-        const entryData: FoodJournalEntry =
-            new FoodJournalEntry(null,
-                date,
-                null,
-                null,
-                Number(this.quickFoodAddForm.value.quickCalories),
-                "",
-                this.quickFoodAddForm.value.foodName ? this.quickFoodAddForm.value.foodName : "",
-                null,
-                new JournalCategory(1, "food"));
+    onSubmit() {
+        this.errMessage = this.validateQuickFoodJournalEntryCalculatorForms(this.quickFoodAddForm);
+        console.log(this.quickFoodAddForm);
+        if (this.errMessage.length > 0) {
+            this.alertDisplay = true;
+        } else {
 
-        this.saveFoodEntry.emit(entryData);
+            console.warn('food saved : ', this.quickFoodAddForm.value);
+            const date = DateUtils.getUTCDateStringFromDateAndTime(this.quickFoodAddForm.value.dayDate, this.quickFoodAddForm.value.time);
+            const entryData: FoodJournalEntry =
+                new FoodJournalEntry(null,
+                    date,
+                    null,
+                    null,
+                    Number(this.quickFoodAddForm.value.quickCalories),
+                    this.quickFoodAddForm.value.thoughtsTextArea ? this.quickFoodAddForm.value.thoughtsTextArea : "",
+                    this.quickFoodAddForm.value.foodName ? this.quickFoodAddForm.value.foodName : "",
+                    null,
+                    new JournalCategory(1, "food"));
 
-        this.now = new Date();
-        this.day = DateUtils.getDateStringFromDatetime(this.now);
-        this.time = DateUtils.getTimeStringFromDatetime(this.now);
-        this.quickFoodAddForm = this.formBuilder.group({
-            foodName: "",
-            quickCalories: '',
-            dayDate: this.day,
-            time: this.time
-        });
+            this.saveFoodEntry.emit(entryData);
+
+            this.now = new Date();
+            this.day = DateUtils.getDateStringFromDatetime(this.now);
+            this.time = DateUtils.getTimeStringFromDatetime(this.now);
+            this.quickFoodAddForm = this.formBuilder.group({
+                foodName: "",
+                quickCalories: '',
+                dayDate: this.day,
+                time: this.time,
+                thoughtsTextArea: ""
+            });
+        }
+    }
+
+    validateQuickFoodJournalEntryCalculatorForms(quickFoodAddForm: FormGroup): string[] {
+        var errMessage: string[] = []
+        if (quickFoodAddForm.value.foodName == "") {
+            errMessage.push("The food name is required");
+        }
+        if (quickFoodAddForm.value.dayDate == "") {
+            errMessage.push("The date is required");
+        }
+        if (quickFoodAddForm.value.time == "") {
+            errMessage.push("The time is required");
+        }
+        if (quickFoodAddForm.value.quickCalories == "") {
+            errMessage.push("The calorie count is required");
+        }
+        return errMessage;
     }
 }

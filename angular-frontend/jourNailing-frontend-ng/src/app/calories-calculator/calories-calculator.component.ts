@@ -109,10 +109,6 @@ export class CaloriesCalculatorComponent implements OnChanges {
         this.placeholderWantedCalories = "Exemple : 234";
     }
 
-    // emitFormContent() {
-    //     this.getCaloriesCalculator.emit(this.caloriesCalculatorForm);
-    // }
-
     ngOnChanges(changes: SimpleChanges) {
         console.log(changes['formData']);
         if (changes['formData'] && this.formData) {

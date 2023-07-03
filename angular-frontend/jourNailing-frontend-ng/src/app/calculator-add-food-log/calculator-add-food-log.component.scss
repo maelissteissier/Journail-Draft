@@ -30,40 +30,38 @@
     margin-bottom: 25px;
 }
 
-//.calcEntry {
-//    font-size: 25px;
-//}
+.textarea-label {
+    display: block;
+}
+
+.textarea-label textArea {
+    width: 100%;
+    border-color: $bgLighterColor;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
 
 .dateTimeInputContainer {
     display: flex;
     justify-content: center;
-    gap:10px;
+    gap: 10px;
 }
+
 .formEntries {
     font-size: 15px;
     width: 50%;
 }
 
 .thoughtsModalBtn {
-    background-color: $periwinkle;
-    border-color: $periwinkle;
+    background-color: $peach;
+    border-color: $lightBlue;
     color: $bgDarkColor;
     font-size: 20px;
+    border-top-color: white;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
 
-.thoughtsModalBtn:hover, .thoughtsModalBtn:hover {
-    background-color: $lemonChiffon;
-    border-color: $lemonChiffon;
-    color: $bgLighterColor;
-}
-
-.thoughtsModalBtn:not(:disabled):not(:disabled):active {
-    background-color: $lemonChiffon;
-    border-color: $lemonChiffon;
-    color: $bgLighterColor;
-}
 
 .saveFoodBtn {
     background-color: $darkerBlue;

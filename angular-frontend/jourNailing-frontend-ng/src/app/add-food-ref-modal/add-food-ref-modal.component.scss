@@ -5,42 +5,48 @@
     margin-bottom: 25px;
 }
 
-.chooseFoodRefModalHeader{
-    border: none;
-    color: lightgrey;
-}
-
 .modal{
     display: flex;
     padding-left:10px;
     padding-right:10px;
 }
 
-.foodRefListModalFooter{
+.foodRefDisplay{
+    width: 80%;
+    margin: auto;
+}
+.addFoodRefModalHeader{
+    border: none;
+    color: lightgrey;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.addFoodRefModalFooter{
     border: none;
 }
 
-.foodRefListModal > .modal-dialog > .modal-content > .modal-header{
+.addFoodRefModal > .modal-dialog > .modal-content > .modal-header{
     justify-content: center;
 }
 
-.foodRefListModal > .modal-dialog > .modal-content > .modal-footer{
+.addFoodRefModal > .modal-dialog > .modal-content > .modal-footer{
     justify-content: center;
     gap: 25px;
 }
 
-.modal-header.chooseFoodRefModalHeader > button.close{
+.modal-header.addFoodRefModalHeader > button.close{
     display:none;
 }
 
-.foodRefListModal > .modal-dialog > .modal-content{
+.addFoodRefModal > .modal-dialog > .modal-content{
     border-radius: 50px;
     border: none;
     background-color: $bgDarkColor;
 
 }
 
-.foodRefListModalButtons{
+.addFoodRefModalButtons{
     aspect-ratio: 1/1;
     font-size: 50px;
     font-weight: bold;
@@ -48,14 +54,14 @@
     width:90px;
 }
 
-.cancelThoughtModal{
+.cancelFoodRefModal{
     color: $bgDarkColor;
     background-color: $rosee;
     border-color: $rosee;
 
 }
 
-.validateThoughtModal{
+.validateFoodRefModal{
     background-color: $lightBlue;
     border-color: $lightBlue;
     color: $bgDarkColor;

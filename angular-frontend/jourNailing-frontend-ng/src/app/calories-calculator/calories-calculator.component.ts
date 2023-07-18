@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Subscription} from "rxjs";
 
@@ -10,7 +10,6 @@ import {Subscription} from "rxjs";
 export class CaloriesCalculatorComponent implements OnChanges {
 
     @Input() formData: any;
-    // @Output() getCaloriesCalculator: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
     caloriesCalculatorForm: FormGroup;
     calculateCaloriesFromWantedQuantity: boolean = true;
     placeholderWantedQuantity = "Exemple : 234";

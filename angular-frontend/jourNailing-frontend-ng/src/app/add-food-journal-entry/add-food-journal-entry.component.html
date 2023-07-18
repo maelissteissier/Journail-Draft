@@ -2,6 +2,8 @@
 
     <div class="calculatorContainer">
         <div class="addMethodChoiceContainer">
+            <app-toast-message [show]="isFoodEntrySentFailToastShow" textMuted="" [toastMessage]="failMessage" [success]="isFoodEntrySentSuccessToastShow"></app-toast-message>
+            <app-toast-message [show]="isFoodEntrySentSuccessToastShow" textMuted="" toastMessage="Food successfully saved" [success]="isFoodEntrySentSuccessToastShow"></app-toast-message>
             <button class="calculationAddButton btn btn-primary" (click)="disableQuickAdd()">
                 {{  'addfoodLog.CALCULATOR' | translate }}
             </button>
@@ -9,7 +11,7 @@
                 {{ 'addfoodLog.QUICK_ADD' | translate }}
             </button>
         </div>
-     <div *ngIf="quickAdd">
+        <div *ngIf="quickAdd">
             <app-quick-add-food-log (saveFoodEntry)="saveFoodEntry($event)"></app-quick-add-food-log>
         </div>
 

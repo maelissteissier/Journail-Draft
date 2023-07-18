@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import DateUtils from "../shared/DateUtils";
 import {FoodJournalEntry} from "../shared/models/food-journal-entry";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {faFloppyDisk} from "@fortawesome/free-solid-svg-icons";
 import {faFloppyDisk as farFloppyDisk} from "@fortawesome/free-regular-svg-icons";
 import {JournalCategory} from "../shared/models/journal-category";
@@ -15,6 +15,7 @@ import {CaloriesCalculatorComponent} from "../calories-calculator/calories-calcu
 })
 export class CalculatorAddFoodLogComponent {
     constructor(private formBuilder: FormBuilder) {
+        this.newFoodRef = new FoodRef(null, 0, 0, "", "")
     }
 
     @Output() saveFoodEntry: EventEmitter<any> = new EventEmitter<any>();
@@ -35,14 +36,32 @@ export class CalculatorAddFoodLogComponent {
     errMessage: string[] = [];
     alertDisplay = false;
     isFoodRefListModalOpen: boolean = false;
-    caloriesCalculatorForm!: FormGroup
+    isAddFoodRefModalOpen: boolean = false;
+    caloriesCalculatorForm!: FormGroup;
+    newFoodRef: FoodRef;
 
     openFoodRefListModal() {
         this.isFoodRefListModalOpen = true;
     }
 
+    openAddFoodRefModal() {
+        const caloriesForm = this.caloriesCalculatorComponent.caloriesCalculatorForm
+        this.newFoodRef = new FoodRef(null,
+            caloriesForm.value.originalCalories,
+            caloriesForm.value.originalQuantity,
+            this.addFoodForm.value.foodName ? this.addFoodForm.value.foodName : "",
+
+            caloriesForm.value.quantityTypeEntry)
+        console.log(this.newFoodRef);
+        this.isAddFoodRefModalOpen = true;
+    }
+
     closeFoodRefListModal() {
         this.isFoodRefListModalOpen = false
+    }
+
+    closeAddFoodRefModal() {
+        this.isAddFoodRefModalOpen = false;
     }
 
     handleFoodChoosenInModal(data: FoodRef) {
@@ -60,7 +79,7 @@ export class CalculatorAddFoodLogComponent {
             foodName: data.name,
             dayDate: this.day,
             time: this.time,
-            thoughtsTextArea: this.addFoodForm.value.foodName ? this.addFoodForm.value.foodName : ""
+            thoughtsTextArea: this.addFoodForm.value.thoughtsTextArea ? this.addFoodForm.value.thoughtsTextArea : ""
         });
     }
 
@@ -73,16 +92,22 @@ export class CalculatorAddFoodLogComponent {
         } else {
             console.warn('food saved : ', this.addFoodForm.value);
             const date = DateUtils.getUTCDateStringFromDateAndTime(this.addFoodForm.value.dayDate, this.addFoodForm.value.time);
-
+            const foodRef = new FoodRef(
+                null,
+                Number(caloriesForm.controls["originalCalories"].value),
+                Number(caloriesForm.controls["originalQuantity"].value),
+                this.addFoodForm.value.foodName ? this.addFoodForm.value.foodName : "",
+                caloriesForm.controls["quantityTypeEntry"].value
+                )
             const entryData: FoodJournalEntry =
                 new FoodJournalEntry(null,
                     date,
                     Number(caloriesForm.controls['wantedQuantity'].value),
                     caloriesForm.value.quantityTypeEntry,
                     Number(caloriesForm.controls['wantedCalories'].value),
-                    this.addFoodForm.value.thoughtsTextArea? this.addFoodForm.value.thoughtsTextArea : "",
+                    this.addFoodForm.value.thoughtsTextArea ? this.addFoodForm.value.thoughtsTextArea : "",
                     this.addFoodForm.value.foodName ? this.addFoodForm.value.foodName : "",
-                    null,
+                    foodRef,
                     new JournalCategory(1, "food"));
 
             this.saveFoodEntry.emit(entryData);
@@ -103,7 +128,7 @@ export class CalculatorAddFoodLogComponent {
     }
 
     validateFoodJournalEntryCalculatorForms(addFoodForm: FormGroup, caloriesCalculatorForm: FormGroup): string[] {
-        var errMessage:string[] = []
+        var errMessage: string[] = [];
         if (addFoodForm.value.foodName == "") {
             errMessage.push("The food name is required");
         }
@@ -115,6 +140,15 @@ export class CalculatorAddFoodLogComponent {
         }
         if (caloriesCalculatorForm.controls["wantedCalories"].value == "") {
             errMessage.push("The calorie count is required");
+        }
+        if (caloriesCalculatorForm.controls["originalCalories"].value == "") {
+            errMessage.push("The calorie count reference is required");
+        }
+        if (caloriesCalculatorForm.controls["originalQuantity"].value == "") {
+            errMessage.push("The quantity count reference is required");
+        }
+                if (caloriesCalculatorForm.controls["quantityTypeEntry"].value == "") {
+            errMessage.push("The quantity type is required");
         }
         return errMessage;
     }

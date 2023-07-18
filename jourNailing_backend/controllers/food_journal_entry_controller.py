@@ -36,25 +36,16 @@ def food_journal_entry_validation(food_journal_entry_json):
     if journal_category is None:
         errors.append('JournalCategory not found')
     else:
-        # FoodRef isn't required, if present but new, we save it
-        food_ref = food_journal_entry_json.get('food_ref', None)
-
+        # FoodRef isn't required. If new, we save it
+        food_ref_dict = food_journal_entry_json.get('food_ref', None)
+        food_ref_sql = None
         # Food_ref received
-        if food_ref is not None:
-            food_ref_id = food_journal_entry_json['food_ref'].get('id', None)
-            # Food ref exists in DB (because it has an ID) :
-            if food_ref_id is not None:
-                food_ref = FoodRef.query.get(food_ref_id)
-                # Error retreiving food_ref in DB :
-                if food_ref is None:
-                    return errors.append('FoodRef not found')
-            # FoodRef doesn't exist in DB :
+        if food_ref_dict is not None:
+            food_ref_saved, errs = save_food_ref_from_json(food_ref_dict, db)
+            if errs is not None:
+                errors.extend(errs['errors'])
             else:
-                food_ref_saved, err = save_food_ref_from_json(food_ref, db)
-                food_ref = FoodRef.query.get(food_ref_saved.id)
-                if err is not None:
-                    errors.append('food reference saving error')
-
+                food_ref_sql = food_ref_saved
         try:
             entry_date_utc = datetime.strptime(food_journal_entry_json['date'], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=pytz.UTC)
             new_entry = FoodJournalEntry(
@@ -64,7 +55,7 @@ def food_journal_entry_validation(food_journal_entry_json):
                 calories=food_journal_entry_json.get('calories', ""),
                 thoughts=food_journal_entry_json.get('thoughts', ""),
                 name=food_journal_entry_json.get('name', ""),
-                foodRef=food_ref,
+                foodRef=food_ref_sql,
                 journalCategory=journal_category
             )
 

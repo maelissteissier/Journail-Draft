@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FoodRefService} from "./food-ref.service";
+import {FoodRefService} from "../shared/services/food-ref.service";
 import {FoodRef} from "../shared/models/food-ref";
 import {FormBuilder, FormGroup} from "@angular/forms";
 

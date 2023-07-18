@@ -1,0 +1,73 @@
+<div class="modal fade show addFoodRefModal" *ngIf="show">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header addFoodRefModalHeader">
+                <h5 class="modal-title">Enregistrer l'aliment de référence ?</h5>
+                <button type="button" class="close" aria-label="Close" (click)="onHide.emit()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    <div *ngIf="errMessage.length > 0" class="alert alert-danger" role="alert">
+        <h4 class="alert-heading leftAlignText">Error!</h4>
+        <hr>
+        <ul>
+            <li class="mb-0 leftAlignText" *ngFor="let err of errMessage">
+                {{ err }}
+            </li>
+        </ul>
+    </div>
+            <form [formGroup]="addFoodRefForm" class="foodRefDisplay">
+                <div class="mb-3 formEntries form-group">
+                    <label for="foodName">Nom de l'aliment <span class="asteriskRequired">*</span></label>
+                    <input class="calcEntry form-control"
+                           type="text"
+                           placeholder="Nom de l'aliment"
+                           id="foodName"
+                           formControlName="foodName"
+                    >
+                </div>
+                <div class="calcEntryContainer">
+                    <div class="entryColItem form-group">
+                        <label for="originalQuantity">Qté. référence<span class="asteriskRequired">*</span></label>
+                        <input class="calcEntry form-control"
+                               type="text"
+                               placeholder="Exemple : 234"
+                               id="originalQuantity"
+                               formControlName="originalQuantity"
+                        >
+                    </div>
+                    <div class="entryColItem form-group">
+                        <label for="quantityTypeEntry">Type Quantité<span class="asteriskRequired">*</span></label>
+                        <input class="calcEntry form-control"
+                               type="text"
+                               placeholder="(grammes, ml, tasse ... )"
+                               id="quantityTypeEntry"
+                               formControlName="quantityTypeEntry"
+                        >
+                    </div>
+
+                    <div class="mb-3 formEntries form-group">
+                        <label for="originalCalories">Calories référence<span class="asteriskRequired">*</span></label>
+                        <input class="calcEntry form-control"
+                               type="text"
+                               placeholder="Exemple : 234"
+                               id="originalCalories"
+                               formControlName="originalCalories"
+                        >
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer addFoodRefModalFooter">
+                <button type="button" class="btn btn-danger cancelFoodRefModal addFoodRefModalButtons"
+                        (click)="onHide.emit()">
+                    <span class="fa fa-times"><fa-icon [icon]="faXmark"></fa-icon></span>
+                </button>
+
+                <button type="button" class="btn btn-primary validateFoodRefModal addFoodRefModalButtons"
+                        (click)="onSaveFoodRef()">
+                    <span class="fa fa-times"><fa-icon [icon]="faCheck"></fa-icon></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

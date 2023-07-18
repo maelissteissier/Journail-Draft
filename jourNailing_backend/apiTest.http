@@ -90,9 +90,10 @@ Content-Type: application/json
         "name":"food"
     },
     "food_ref": {
-        "name": "etoile",
+        "name": "bois",
         "original_calory": 80,
-        "original_quantity": 55
+        "original_quantity": 55,
+        "quantity_type": "morceau"
         },
     "name": "riz blanc"
 }

@@ -1,0 +1,17 @@
+<div class="toast_container" *ngIf="show">
+    <div class='toast' [class]="success? 'toast_success' : 'toast_fail'"
+         role="alert"
+         aria-live="assertive"
+         aria-atomic="true" >
+        <div class="toast-header">
+            <strong class="mr-auto">
+                <span *ngIf="!success" class="fa fa-times"><fa-icon [icon]="faXmark"></fa-icon></span>
+                <span *ngIf="success" class="fa fa-times"><fa-icon [icon]="faCheck"></fa-icon></span>
+                JourNailing</strong>
+            <small class="text-muted">{{ textMuted }}</small>
+        </div>
+        <div class="toast-body">
+            {{ toastMessage }}
+        </div>
+    </div>
+</div>

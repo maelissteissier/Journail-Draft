@@ -16,6 +16,8 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { FoodRefListModalComponent } from './food-ref-list-modal/food-ref-list-modal.component';
 import { FoodRefListComponent } from './food-ref-list/food-ref-list.component';
+import { AddFoodRefModalComponent } from './add-food-ref-modal/add-food-ref-modal.component';
+import { ToastMessageComponent } from './toast-message/toast-message.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { FoodRefListComponent } from './food-ref-list/food-ref-list.component';
         CaloriesCalculatorComponent,
         AppLayoutComponent,
         FoodRefListModalComponent,
-        FoodRefListComponent
+        FoodRefListComponent,
+        AddFoodRefModalComponent,
+        ToastMessageComponent
     ],
     imports: [
         CommonModule,

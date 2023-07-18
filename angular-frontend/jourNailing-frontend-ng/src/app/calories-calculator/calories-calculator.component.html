@@ -1,6 +1,6 @@
 <form [formGroup]="caloriesCalculatorForm">
     <div class="entryColItem form-group">
-        <label for="quantityTypeEntry">Type Quantité</label>
+        <label for="quantityTypeEntry">Type Quantité<span class="asteriskRequired">*</span></label>
         <input class="calcEntry form-control"
                type="text"
                placeholder="(grammes, ml, tasse ... )"
@@ -19,7 +19,7 @@
     </div>
     <div class="calcEntryContainer">
         <div class="mb-3 formEntries form-group">
-            <label for="originalQuantity">Qté. d'origine</label>
+            <label for="originalQuantity">Qté. d'origine<span class="asteriskRequired">*</span></label>
             <input class="calcEntry form-control"
                    type="text"
                    placeholder="Exemple : 234"
@@ -29,7 +29,7 @@
         </div>
 
         <div class="mb-3 formEntries form-group">
-            <label for="originalCalories">Calories d'origine</label>
+            <label for="originalCalories">Calories d'origine<span class="asteriskRequired">*</span></label>
             <input class="calcEntry form-control"
                    type="text"
                    placeholder="Exemple : 234"

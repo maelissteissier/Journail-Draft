@@ -3,8 +3,8 @@
 </button>
 <app-food-ref-list-modal [show]="isFoodRefListModalOpen" (onHide)="closeFoodRefListModal()"
                          (rowClicked)="handleFoodChoosenInModal($event)"></app-food-ref-list-modal>
-
-<form [formGroup]="addFoodForm" (ngSubmit)="onSubmit()">
+<app-add-food-ref-modal [show]="isAddFoodRefModalOpen" [foodRef]="newFoodRef" (onHide)="closeAddFoodRefModal()"></app-add-food-ref-modal>
+<form [formGroup]="addFoodForm">
     <div *ngIf="errMessage.length > 0" class="alert alert-danger" role="alert">
         <h4 class="alert-heading leftAlignText">Error!</h4>
         <hr>
@@ -55,11 +55,11 @@
         </div>
     </div>
     <div class="saveBtnContainer">
-        <button class="saveFoodBtn btn btn-primary">
+        <button class="saveFoodBtn btn btn-primary" (click)="openAddFoodRefModal()">
             <span class="iconSpan"><fa-icon [icon]="farFloppyDisk"></fa-icon></span>
             Sauvegarder nouvel Aliment
         </button>
-        <button class="saveFoodBtn btn btn-primary" type="submit">
+        <button class="saveFoodBtn btn btn-primary" (click)="onSubmit()">
             <span class="iconSpan"><fa-icon [icon]="faFloppyDisk"></fa-icon></span>
             Sauvegarder entrée journal
         </button>

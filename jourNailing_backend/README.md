@@ -7,6 +7,8 @@ npm i --save @fortawesome/free-solid-svg-icons
 npm i --save @fortawesome/free-regular-svg-icons
 npm i --save @fortawesome/free-brands-svg-icons
 npm i --save @fortawesome/react-fontawesome@latest
+npm install ngx-toastr --save
+npm install @angular/animations --save
 
 (For env variables)
 npm install webpack webpack-cli --save-dev

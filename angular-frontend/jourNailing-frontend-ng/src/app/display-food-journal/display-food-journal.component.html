@@ -1,0 +1,52 @@
+<div class="journalLogContainer">
+  <div class="caloriesStats">
+    <div>
+      <div class="calorieStatsLabel">objectif</div>
+      <div class="caloriesTotal">2100</div>
+    </div>
+    <div>
+      <div class="calorieStatsLabel">mangées</div>
+      <div class="caloriesTotal">{{ totalCalories }}</div>
+    </div>
+    <div>
+      <div class="calorieStatsLabel">restantes</div>
+      <div class="caloriesTotal">{{ 2100 - totalCalories }}</div>
+    </div>
+  </div>
+
+  <div class="dateLogNavigating">
+    <span class="dayBeforeIcon" (click)="subOneDaytoDay()">
+      <fa-icon [icon]="faChevronLeft"></fa-icon>
+    </span>
+    <span class="dateLog">{{ displayDay }}</span>
+    <span class="dayAfterIcon" (click)="addOneDaytoDay()">
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+    </span>
+  </div>
+
+  <table class="journalLogTable table table-striped-columns" striped>
+    <thead>
+      <tr class="journalTableHeader">
+        <th class="journalTableHeaderElem">Heure</th>
+        <th class="journalTableHeaderElem">Nom Aliment</th>
+        <th class="journalTableHeaderElem">Qté.</th>
+        <th class="journalTableHeaderElem">Type Qté.</th>
+        <th class="journalTableHeaderElem">Cals.</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let lunchInfo of lunchInfos">
+      <tr>
+        <td class="journalTableElem lunchTypeRow" colspan="5">{{ lunchInfo["lunchType"].tag.toUpperCase() }} : {{ lunchInfo["totalLunchCals"] }} cals</td>
+      </tr>
+      <tr *ngFor="let entry of lunchInfo['entries']">
+        <td class="journalTableElem">{{ entry["time"] }}</td>
+        <td class="journalTableElem">{{ entry.name }}</td>
+        <td class="journalTableElem">{{ entry["quantity"] }}</td>
+        <td class="journalTableElem">{{ entry["quantityType"] }}</td>
+        <td class="journalTableElem">{{ entry["calories"] }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <button class="addFoodEntryButton btn" type="button"><fa-icon [icon]="faCirclePlus"></fa-icon></button>
+</div>

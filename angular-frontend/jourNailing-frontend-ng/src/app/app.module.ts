@@ -18,6 +18,7 @@ import { FoodRefListModalComponent } from './food-ref-list-modal/food-ref-list-m
 import { FoodRefListComponent } from './food-ref-list/food-ref-list.component';
 import { AddFoodRefModalComponent } from './add-food-ref-modal/add-food-ref-modal.component';
 import { ToastMessageComponent } from './toast-message/toast-message.component';
+import { DisplayFoodJournalComponent } from './display-food-journal/display-food-journal.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { ToastMessageComponent } from './toast-message/toast-message.component';
         FoodRefListModalComponent,
         FoodRefListComponent,
         AddFoodRefModalComponent,
-        ToastMessageComponent
+        ToastMessageComponent,
+        DisplayFoodJournalComponent
     ],
     imports: [
         CommonModule,

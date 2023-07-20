@@ -25,4 +25,8 @@ export class HomeComponent {
     goToAddFoodJournalEntry() {
         this.router.navigate(["add-food-journal-entry"])
     }
+
+    goToFoodJournal(){
+        this.router.navigate(["food-journal"])
+    }
 }

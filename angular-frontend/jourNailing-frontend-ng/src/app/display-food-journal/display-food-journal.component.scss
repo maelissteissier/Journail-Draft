@@ -1,0 +1,98 @@
+@import "../../variables.scss";
+.journalLogContainer {
+    max-width: 800px;
+    width: 95%;
+    margin: auto;
+}
+
+th.journalTableHeaderElem {
+    color: white !important;
+    background-color: $roseQuartzDarker;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.journalLogTable {
+    color: lightgray;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+.journalTableElem {
+    color: lightgray !important;
+    font-weight: bold;
+    background-color: $bgDarkColor;
+}
+
+.lunchTypeRow {
+    background-color: $hookersGreen !important;
+}
+
+
+.caloriesStats {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.caloriesTotal {
+    background-color: $rosee;
+    margin: auto;
+    font-size: 45px;
+    font-weight: bold;
+    color: $bgDarkColor;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.calorieStatsLabel {
+    background-color: $celadon;
+    margin: auto;
+    font-weight: bold;
+    color: $bgDarkColor;
+    border-radius: 30px;
+    margin-bottom: 5px;
+
+}
+
+.addFoodEntryButton {
+    aspect-ratio: 1 / 1;
+    border-radius: 30px;
+    font-size: 60px;
+    align-self: flex-end;
+    margin-left: auto;
+    color: $bgDarkColor;
+    background-color: $pistachio;
+    border-color: $pistachio;
+
+}
+
+.dateLogNavigating {
+    margin-bottom: 25px;
+    font-size: 30px;
+    color: $rosee;
+}
+
+.dateLog {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.dayBeforeIcon, .dayAfterIcon {
+    background-color: $bgDarkLightColor;
+    border-radius: 25px;
+}
+
+.dayBeforeIcon:hover, .dayAfterIcon:hover {
+    background-color: $bgLighterColor;
+    cursor: pointer;
+}
+
+/*Phones*/
+@media only screen and (max-width: 800px) {
+    .caloriesTotal{
+        font-size: 30px;
+    }
+}

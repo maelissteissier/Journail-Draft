@@ -154,7 +154,7 @@ Content-Type: application/json
 GET http://localhost:5000/food-journal-entries/
 
 ###
-GET http://localhost:5000/food-journal-entries/date?date=2023-05-28
+GET http://localhost:5000/food-journal-entries/date?date=2023-07-18
 
 ###
 

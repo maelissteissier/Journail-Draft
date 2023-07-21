@@ -27,7 +27,7 @@ export class AddFoodRefModalComponent implements OnChanges {
     addFoodRefForm!: FormGroup;
     errMessage: string[] = [];
     alertDisplay = false;
-
+    isFoodRefSentSuccessToastShow: boolean = false;
 
     ngOnChanges(changes: SimpleChanges) {
         console.log(changes['foodRef']);
@@ -54,12 +54,20 @@ export class AddFoodRefModalComponent implements OnChanges {
             this.foodRefService.saveFoodRef(foodRefToSave).subscribe({
                 next: (response) => {
                     console.log('Food reference added:', response);
-                    this.onHide.emit();
+                    this.isFoodRefSentSuccessToastShow = true;
+                    setTimeout(() => {
+                        this.isFoodRefSentSuccessToastShow = false;
+                        this.onHide.emit();
+                    }, 2000);
                 },
                 error: (error) => {
                     console.error('Error adding food reference:', error);
-                    this.errMessage.push(error["error"]["error"]);
+                    console.error('test', error.error.errors.errors);
+                    for(let err of error.error.errors.errors){
+                        this.errMessage.push(err);
+                    }
                     this.alertDisplay = true;
+
                 }
             });
         }

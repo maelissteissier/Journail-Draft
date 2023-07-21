@@ -3,21 +3,20 @@ import {faBook, faCirclePlus, faMagnifyingGlass, faHouseChimney} from '@fortawes
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    selector: 'app-app-menu-bar',
+    templateUrl: './app-menu-bar.component.html',
+    styleUrls: ['./app-menu-bar.component.scss']
 })
-export class HomeComponent {
+export class AppMenuBarComponent {
     constructor(private router: Router) {
     }
 
-    title = 'jourNailing-frontend-ng';
     faBook = faBook;
     faCirclePlus = faCirclePlus;
     faMagnifyingGlass = faMagnifyingGlass;
     faHouseChimney = faHouseChimney;
 
-    handleButtonClick(): void {
+        handleButtonClick(): void {
         alert('Button clicked!');
         // Perform additional actions or logic here
     }

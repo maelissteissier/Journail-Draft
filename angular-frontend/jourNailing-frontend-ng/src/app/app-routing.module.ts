@@ -4,6 +4,7 @@ import {AddFoodJournalEntryComponent} from "./add-food-journal-entry/add-food-jo
 import {HomeComponent} from "./home/home.component";
 import {AppComponent} from "./app.component";
 import {DisplayFoodJournalComponent} from "./display-food-journal/display-food-journal.component";
+import {FoodRefListComponent} from "./food-ref-list/food-ref-list.component";
 
 const routes: Routes = [
     {
@@ -12,7 +13,8 @@ const routes: Routes = [
         children: [
             // {path: "", component: HomeComponent},
             {path: "add-food-journal-entry", component: AddFoodJournalEntryComponent},
-            {path: "food-journal", component: DisplayFoodJournalComponent}
+            {path: "food-journal", component: DisplayFoodJournalComponent},
+            {path: "food-ref-list", component: FoodRefListComponent}
         ]
 
     },

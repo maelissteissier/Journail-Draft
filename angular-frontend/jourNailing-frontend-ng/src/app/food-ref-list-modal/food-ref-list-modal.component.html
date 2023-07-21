@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body chooseFoodRefModalBody">
                 <div class="food-ref-list">
-                    <app-food-ref-list (rowClicked)="handleRowClicked($event)"></app-food-ref-list>
+                    <app-food-ref-list (rowClicked)="handleRowClicked($event)" [isModal]="isModal"></app-food-ref-list>
                 </div>
             </div>
             <div class="modal-footer foodRefListModalFooter">

@@ -7,7 +7,7 @@
 
 .tableFood {
     color: lightgray;
-    margin: auto;
+    width:100%;
 }
 
 tr:hover{
@@ -22,11 +22,17 @@ tr:hover > td{
     cursor: default;
 }
 
+.tableHead{
+    width: 100%;
+}
+
+
 
 .tableLeft {
     text-align: left;
     padding-left: 5px;
     background-color: $bgDarkLighterColor;
+
 }
 
 .tableRight {
@@ -48,11 +54,28 @@ tr:hover > td{
     background-color: $bgDarkLighterColor;
 }
 
-table tbody.tbodyScroll { height:300px; overflow-y:scroll; display:block; border-top: solid 1px lightgray;}
-table thead.theadScroll { display:block; background-color: $bgDarkLighterColor !important;}
+table tbody.tbodyScrollModal {
+    height:300px;
+    overflow-y:scroll;
+    display:block;
+    border-top: solid 1px lightgray;}
+
+table tbody.tbodyScrollFullSize {
+    max-height: 500px;
+    overflow-y:scroll;
+    display:block;
+    border-top: solid 1px lightgray;}
+
+
+
+table thead.theadScroll {
+    display:block;
+    background-color: $bgDarkLighterColor !important;
+    width:100%;
+}
 
 .foodNameCell {
-    width: 50%;
+    width: 50vh;
 }
 
 .qteRefCell{

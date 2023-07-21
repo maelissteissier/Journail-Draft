@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FoodRefService} from "../shared/services/food-ref.service";
 import {FoodRef} from "../shared/models/food-ref";
 import {FormBuilder, FormGroup} from "@angular/forms";
@@ -23,6 +23,7 @@ export class FoodRefListComponent {
         })
     }
     searchFoodForm: FormGroup;
+    @Input() isModal!: boolean;
 
     @Output() rowClicked: EventEmitter<any> = new EventEmitter<any>();
 

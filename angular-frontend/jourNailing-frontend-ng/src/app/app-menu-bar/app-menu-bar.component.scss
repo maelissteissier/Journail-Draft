@@ -1,0 +1,87 @@
+@import "../../variables.scss";
+
+.menuBar{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: $bgDarkerColor;
+    margin-bottom: 25px;
+
+}
+.homeButton {
+    aspect-ratio: 1 / 1;
+    width: 100px;
+    font-size: 50px;
+    border-radius: 25px;
+    border: none;
+}
+
+.calcButton {
+    color: $bgDarkColor;
+    background-color: $lightBlue;
+}
+
+.calcButton:hover, .calcButton:active {
+    background-color: $darkerBlue;
+    color: $bgDarkColor;
+}
+
+.calcButton:not(:disabled):not(:disabled):active {
+    background-color: $darkerBlue;
+    color: $bgLighterColor;
+}
+
+.listButton {
+    color: $bgDarkColor;
+    background-color: $roseQuartz;
+}
+
+.listButton:hover, .listButton:active {
+    background-color: $roseQuartzDarker;
+    color: $bgDarkColor;
+}
+
+.listButton:not(:disabled):not(:disabled):active {
+    background-color: $roseQuartzDarker;
+    color: $bgLighterColor;
+}
+
+.journalLogButton {
+    color: $bgDarkColor;
+    background-color: $rosee;
+}
+
+.journalLogButton:hover, .journalLogButton:active {
+    background-color: $roseeDarker;
+    color: $bgDarkColor;
+}
+
+.journalLogButton:not(:disabled):not(:disabled):active {
+    background-color: $roseeDarker;
+    color: $bgLighterColor;
+}
+
+.addJournalEntryButton {
+    color: $bgDarkColor;
+    background-color: $flax;
+}
+
+.addJournalEntryButton:hover, .addJournalEntryButton:active {
+    background-color: $darkerFlax;
+    color: $bgDarkColor;
+}
+
+.addJournalEntryButton:not(:disabled):not(:disabled):active {
+    background-color: $darkerFlax;
+    color: $bgLighterColor;
+}
+
+/*Phones*/
+@media only screen and (max-width: 800px) {
+    .homeButton{
+        width: 20%;
+        font-size: 6vh;
+    }
+}

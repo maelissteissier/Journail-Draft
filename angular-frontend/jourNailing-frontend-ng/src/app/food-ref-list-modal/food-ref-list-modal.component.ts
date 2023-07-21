@@ -13,6 +13,7 @@ export class FoodRefListModalComponent {
     @Input() show!: boolean;
     faCheck = faCheck;
     faXmark = faXmark;
+    isModal: boolean = true;
 
 
     handleBackdropClick() {

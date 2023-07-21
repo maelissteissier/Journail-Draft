@@ -1,3 +1,4 @@
+<app-app-menu-bar *ngIf="!isModal"></app-app-menu-bar>
 <div class="listFoodRefContainer">
     <form [formGroup]="searchFoodForm">
         <div class="form-group searchFoodRefEntry">
@@ -17,7 +18,7 @@
             <th class="tableRight calRefCell">Cals. Réf.</th>
         </tr>
         </thead>
-        <tbody class="tbodyScroll">
+        <tbody [ngClass]="{ 'tbodyScrollModal': isModal, 'tbodyScrollFullSize': !isModal }">
         <tr *ngFor="let foodRef of foodRefList" (click)="onRowClick(foodRef)">
             <td class="tableLeft foodNameCell">{{ foodRef.name }}</td>
             <td class="tableCell qteRefCell"> {{ foodRef.original_quantity }}</td>

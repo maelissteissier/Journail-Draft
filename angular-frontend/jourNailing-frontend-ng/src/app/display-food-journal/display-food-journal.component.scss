@@ -54,18 +54,7 @@ th.journalTableHeaderElem {
     color: $bgDarkColor;
     border-radius: 30px;
     margin-bottom: 5px;
-
-}
-
-.addFoodEntryButton {
-    aspect-ratio: 1 / 1;
-    border-radius: 30px;
-    font-size: 60px;
-    align-self: flex-end;
-    margin-left: auto;
-    color: $bgDarkColor;
-    background-color: $pistachio;
-    border-color: $pistachio;
+    min-width: 100px;
 
 }
 
@@ -95,4 +84,9 @@ th.journalTableHeaderElem {
     .caloriesTotal{
         font-size: 30px;
     }
+    .journalLogTable {
+    max-width: 95%;
+    margin: auto;
+        font-size: 15px;
+}
 }

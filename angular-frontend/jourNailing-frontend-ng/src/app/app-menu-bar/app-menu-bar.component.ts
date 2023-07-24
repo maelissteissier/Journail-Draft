@@ -34,6 +34,6 @@ export class AppMenuBarComponent {
     }
 
     goToFoodRefList(){
-            this.router.navigate(["food-ref-list"])
+            this.router.navigate(["food-ref-management"])
     }
 }

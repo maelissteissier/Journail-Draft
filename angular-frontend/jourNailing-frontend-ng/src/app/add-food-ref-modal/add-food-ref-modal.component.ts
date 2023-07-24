@@ -22,6 +22,7 @@ export class AddFoodRefModalComponent implements OnChanges {
     @Output() onHide = new EventEmitter<void>();
     @Input() show!: boolean;
     @Input() foodRef!: FoodRef;
+    @Input() editFood: boolean = false;
     faCheck = faCheck;
     faXmark = faXmark;
     addFoodRefForm!: FormGroup;
@@ -71,7 +72,40 @@ export class AddFoodRefModalComponent implements OnChanges {
                 }
             });
         }
+    }
 
+        editFoodRef() {
+        this.errMessage = this.validateFoodRefForm(this.addFoodRefForm);
+        if (this.errMessage.length > 0) {
+            this.alertDisplay = true;
+        } else {
+            const foodRefToSave = new FoodRef(
+                this.foodRef.id,
+                Number(this.addFoodRefForm.value.originalCalories),
+                Number(this.addFoodRefForm.value.originalQuantity),
+                this.addFoodRefForm.value.foodName,
+                this.addFoodRefForm.value.quantityTypeEntry
+            );
+            this.foodRefService.editFoodRef(foodRefToSave, foodRefToSave.id).subscribe({
+                next: (response) => {
+                    console.log('Food reference added:', response);
+                    this.isFoodRefSentSuccessToastShow = true;
+                    setTimeout(() => {
+                        this.isFoodRefSentSuccessToastShow = false;
+                        this.onHide.emit();
+                    }, 2000);
+                },
+                error: (error) => {
+                    console.error('Error adding food reference:', error);
+                    console.error('test', error.error.errors.errors);
+                    for(let err of error.error.errors.errors){
+                        this.errMessage.push(err);
+                    }
+                    this.alertDisplay = true;
+
+                }
+            });
+        }
     }
 
     private validateFoodRefForm(foodRefForm: FormGroup): string[] {

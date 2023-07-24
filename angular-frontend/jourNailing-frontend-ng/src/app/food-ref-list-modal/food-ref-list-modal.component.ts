@@ -17,7 +17,7 @@ export class FoodRefListModalComponent {
 
 
     handleBackdropClick() {
-
+        this.onHide.emit();
     }
 
     handleRowClicked(data: FoodRef) {

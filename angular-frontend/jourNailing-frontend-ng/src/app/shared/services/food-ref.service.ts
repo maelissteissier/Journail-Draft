@@ -18,6 +18,11 @@ export class FoodRefService {
     return this.http.get<FoodRef[]>(url);
   }
 
+  editFoodRef(foodRefData: FoodRef, id: any): Observable<FoodRef[]> {
+    const url = `${this.baseURL}/foodref/${id}`;
+    return this.http.put<FoodRef[]>(url, foodRefData);
+  }
+
   saveFoodRef(foodRefData: FoodRef) : Observable<any> {
     return this.http.post(`${this.baseURL}/foodref`, foodRefData);
   }

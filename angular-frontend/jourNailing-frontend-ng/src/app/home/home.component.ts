@@ -35,6 +35,6 @@ export class HomeComponent {
     }
 
     goToFoodRefList(){
-            this.router.navigate(["food-ref-list"])
+            this.router.navigate(["food-ref-management"])
     }
 }

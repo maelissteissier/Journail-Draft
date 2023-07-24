@@ -49,7 +49,7 @@
       <tr *ngFor="let entry of lunchInfo['entries']" (click)="onRowClick(entry)" class="entryRow">
         <td class="journalTableElem journalTimeElem">
             <span class="trashIcon">
-                <fa-icon [icon]="faTrashCan"></fa-icon>
+                <fa-icon [icon]="faEye"></fa-icon>
             </span>
             {{ getEntryTime(entry["date"]) }}</td>
         <td class="journalTableElem">{{ entry.name }}</td>

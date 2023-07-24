@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FoodJournalEntryService} from "../shared/services/food-journal-entry.service";
 import DateUtils from "../shared/DateUtils";
 import {FoodJournalEntry} from "../shared/models/food-journal-entry";
-import {faChevronLeft, faChevronRight, faCirclePlus, faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight, faCirclePlus, faEye} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 
 interface LunchType {
@@ -35,7 +35,7 @@ export class DisplayFoodJournalComponent implements OnInit {
     faChevronLeft = faChevronLeft;
     faChevronRight = faChevronRight;
     faCirclePlus = faCirclePlus;
-    faTrashCan = faTrashCan;
+    faEye = faEye;
     deleteModalShow: boolean = false;
     deletingFoodEntry!: FoodJournalEntry;
     isEditingFoodEntryQuick: boolean = false;

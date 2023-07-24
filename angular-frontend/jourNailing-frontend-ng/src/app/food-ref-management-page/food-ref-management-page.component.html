@@ -1,0 +1,3 @@
+<app-app-menu-bar></app-app-menu-bar>
+<app-food-ref-list (rowClicked)="handleRowClicked($event)"></app-food-ref-list>
+<app-add-food-ref-modal [show]="isAddFoodRefModalOpen" [foodRef]="newFoodRef" (onHide)="closeAddFoodRefModal()" [editFood]="editFood"></app-add-food-ref-modal>

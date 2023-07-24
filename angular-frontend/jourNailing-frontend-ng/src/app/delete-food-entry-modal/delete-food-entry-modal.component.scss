@@ -36,11 +36,11 @@
 }
 
 .deleteFoodEntryModalButtons {
-    //aspect-ratio: 1/1;
-    font-size: 20px;
+    aspect-ratio: 1/1;
+    font-size: 50px;
     font-weight: bold;
-    border-radius: 10px;
-    width: 140px;
+    border-radius: 50px;
+    width:90px;
 }
 
 .cancelDeleteFoodEntryModal {
@@ -73,6 +73,13 @@ th.journalTableHeaderElem {
     color: lightgray !important;
     font-weight: bold;
     background-color: $bgDarkColor;
+}
+
+.thoughtsDisplay{
+    background-color: $bgDarkLighterColor;
+    border-radius: 20px;
+    padding: 10px;
+    color: lightgray;
 }
 
 /*Phones*/

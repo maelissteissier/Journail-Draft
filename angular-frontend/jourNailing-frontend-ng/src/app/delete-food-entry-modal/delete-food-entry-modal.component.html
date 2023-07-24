@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header deleteFoodEntryModalHeader">
-                <h5 class="modal-title">Supprimer l'entrée du journal ?</h5>
+                <h5 class="modal-title">Informations</h5>
                 <button type="button" class="close" aria-label="Close" (click)="onHide.emit()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -30,15 +30,18 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="thoughtsDisplay" *ngIf="foodEntry.thoughts != '' ">
+                    {{ foodEntry.thoughts }}
+                </div>
             </div>
             <div class="modal-footer deleteFoodEntryModalFooter">
                 <button type="button" class="btn btn-danger cancelDeleteFoodEntryModal deleteFoodEntryModalButtons"
-                        (click)="onHide.emit()">
-                    Cancel
+                        (click)="deleteFoodEntry(foodEntry)">
+                    <fa-icon [icon]="faTrashCan"></fa-icon>
                 </button>
                 <button type="button" class="btn btn-primary validateDeleteFoodEntryModal deleteFoodEntryModalButtons"
-                        (click)="deleteFoodEntry(foodEntry)">
-                    Delete Food
+                        (click)="onHide.emit()">
+                    <fa-icon [icon]="faCheck"></fa-icon>
                 </button>
             </div>
             <app-toast-message [show]="isFoodEntryDeleteFailToastShow" textMuted="" [toastMessage]="failMessage"

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FoodJournalEntryService} from "../shared/services/food-journal-entry.service";
 import {FoodJournalEntry} from "../shared/models/food-journal-entry";
-import {faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faXmark, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import DateUtils from "../shared/DateUtils";
 import {TOAST_LONG_TIMEOUT, TOAST_SHORT_TIMEOUT} from "../shared/timeouts-config";
 
@@ -21,6 +21,7 @@ export class DeleteFoodEntryModalComponent {
     @Input() isFoodEntryQuickAdd!: boolean;
     faCheck = faCheck;
     faXmark = faXmark;
+    faTrashCan = faTrashCan;
     isFoodEntryDeleteSuccessToastShow: boolean = false;
     isFoodEntryDeleteFailToastShow: boolean = false;
     failMessage: string = "";

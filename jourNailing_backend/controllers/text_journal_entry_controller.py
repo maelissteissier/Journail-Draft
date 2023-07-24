@@ -6,7 +6,7 @@ textJournalEntry_bp = Blueprint('textJournalEntry', __name__)
 
 
 # GET all TextJournalEntries
-@textJournalEntry_bp.route('/text-journal-entries', methods=['GET'])
+@textJournalEntry_bp.route('/api/text-journal-entries', methods=['GET'])
 def get_all_text_journal_entries():
     entries = TextJournalEntry.query.all()
     entries_json = [entry.to_json() for entry in entries]
@@ -14,7 +14,7 @@ def get_all_text_journal_entries():
 
 
 # GET all text journal entries by day
-@textJournalEntry_bp.route('/text-journal/entries', methods=['GET'])
+@textJournalEntry_bp.route('/api/text-journal/entries', methods=['GET'])
 def get_entries_by_date():
     # Get the date from the request parameters or use today's date as default
     date_str = request.args.get('date')
@@ -37,7 +37,7 @@ def get_entries_by_date():
 
 
 # GET a specific TextJournalEntry
-@textJournalEntry_bp.route('/text-journal-entries/<entry_id>', methods=['GET'])
+@textJournalEntry_bp.route('/api/text-journal-entries/<entry_id>', methods=['GET'])
 def get_text_journal_entry(entry_id):
     entry = TextJournalEntry.query.get(entry_id)
     if entry is None:
@@ -46,7 +46,7 @@ def get_text_journal_entry(entry_id):
 
 
 # POST a new TextJournalEntry
-@textJournalEntry_bp.route('/text-journal-entries', methods=['POST'])
+@textJournalEntry_bp.route('/api/text-journal-entries', methods=['POST'])
 def create_text_journal_entry():
     data = request.json
     new_entry = TextJournalEntry(
@@ -60,7 +60,7 @@ def create_text_journal_entry():
 
 
 # PUT/EDIT a specific TextJournalEntry
-@textJournalEntry_bp.route('/text-journal-entries/<entry_id>', methods=['PUT'])
+@textJournalEntry_bp.route('/api/text-journal-entries/<entry_id>', methods=['PUT'])
 def edit_text_journal_entry(entry_id):
     entry = TextJournalEntry.query.get(entry_id)
     if entry is None:
@@ -74,7 +74,7 @@ def edit_text_journal_entry(entry_id):
 
 
 # DELETE a specific TextJournalEntry
-@textJournalEntry_bp.route('/text-journal-entries/<entry_id>', methods=['DELETE'])
+@textJournalEntry_bp.route('/api/text-journal-entries/<entry_id>', methods=['DELETE'])
 def delete_text_journal_entry(entry_id):
     entry = TextJournalEntry.query.get(entry_id)
     if entry is None:

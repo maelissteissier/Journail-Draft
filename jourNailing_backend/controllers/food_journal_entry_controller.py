@@ -10,7 +10,7 @@ DEFAULT_TIMEZONE = -4
 
 
 # POST new entry
-@foodJournalEntry_bp.route('/food-journal-entry', methods=['POST'])
+@foodJournalEntry_bp.route('/api/food-journal-entry', methods=['POST'])
 def create_food_journal_entry():
     if not request.json:
         abort(400)
@@ -75,7 +75,7 @@ def food_journal_entry_validation(food_journal_entry_json):
 
 
 # Get one entry
-@foodJournalEntry_bp.route('/food-journal-entry/<entry_id>', methods=['GET'])
+@foodJournalEntry_bp.route('/api/food-journal-entry/<entry_id>', methods=['GET'])
 def get_food_journal_entry(entry_id):
     entry = FoodJournalEntry.query.get(entry_id)
     if entry is None:
@@ -84,7 +84,7 @@ def get_food_journal_entry(entry_id):
 
 
 # GET all entries
-@foodJournalEntry_bp.route('/food-journal-entries', methods=['GET'])
+@foodJournalEntry_bp.route('/api/food-journal-entries', methods=['GET'])
 def get_all_food_journal_entries():
     entries = FoodJournalEntry.query.all()
     entries_json = [entry.to_json() for entry in entries]
@@ -92,7 +92,7 @@ def get_all_food_journal_entries():
 
 
 # Get all entries by date (one day)
-@foodJournalEntry_bp.route('/food-journal-entries/date', methods=['GET'])
+@foodJournalEntry_bp.route('/api/food-journal-entries/date', methods=['GET'])
 def get_entries_by_date():
     # Get the date from the request parameters or use today's date as default
     date_str = request.args.get('date')
@@ -129,7 +129,7 @@ def get_entries_by_date():
     return jsonify(entries_json), 200
 
 
-@foodJournalEntry_bp.route('/food-journal-entry/<entry_id>', methods=['DELETE'])
+@foodJournalEntry_bp.route('/api/food-journal-entry/<entry_id>', methods=['DELETE'])
 def delete_food_journal_entry(entry_id):
     entry = FoodJournalEntry.query.get(entry_id)
     if entry is None:
@@ -139,7 +139,7 @@ def delete_food_journal_entry(entry_id):
     return jsonify({'message': 'Entry deleted successfully'}), 200
 
 
-@foodJournalEntry_bp.route('/food-journal-entry/<entry_id>', methods=['PUT'])
+@foodJournalEntry_bp.route('/api/food-journal-entry/<entry_id>', methods=['PUT'])
 def edit_food_journal_entry(entry_id):
     entry = FoodJournalEntry.query.get(entry_id)
     if entry is None:

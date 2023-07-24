@@ -18,22 +18,21 @@ export class FoodJournalEntryService {
     }
 
     saveFoodEntry(foodEntryData: FoodJournalEntry) {
-        return this.http.post(`${this.baseURL}/food-journal-entry`, foodEntryData);
+        return this.http.post(`${this.baseURL}/api/food-journal-entry`, foodEntryData);
     }
 
     fetchFoodJournalEntries(date: Date){
         const formattedDate = DateUtils.getDateStringFromDatetime(date);
-        console.log(`${this.baseURL}/food-journal-entries/date?date=${formattedDate}`)
-        return this.http.get(`${this.baseURL}/food-journal-entries/date?date=${formattedDate}`)
+        return this.http.get(`${this.baseURL}/api/food-journal-entries/date?date=${formattedDate}`)
 
     }
 
     editFoodJournalEntry(foodEntryData: FoodJournalEntry){
-        return this.http.put(`${this.baseURL}/food-journal-entry/${foodEntryData.id}`, foodEntryData);
+        return this.http.put(`${this.baseURL}/api/food-journal-entry/${foodEntryData.id}`, foodEntryData);
     }
 
     deleteFoodJournalEntry(id: number | null){
-        return this.http.delete(`${this.baseURL}/food-journal-entry/${id}`)
+        return this.http.delete(`${this.baseURL}/api/food-journal-entry/${id}`)
     }
 }
 

@@ -5,7 +5,7 @@ from jourNailing_backend.database.food_ref_service import save_food_ref_from_jso
 foodref_bp = Blueprint('foodref', __name__)
 
 
-@foodref_bp.route('/foodref', methods=['POST'])
+@foodref_bp.route('/api/foodref', methods=['POST'])
 def create_food_ref():
     if not request.json:
         abort(400)
@@ -19,7 +19,7 @@ def create_food_ref():
         return jsonify({'errors': errs}), 400
 
 
-@foodref_bp.route('/foodrefs', methods=['GET'])
+@foodref_bp.route('/api/foodrefs', methods=['GET'])
 def get_all_food_refs():
     try:
         # Query all FoodRef objects from the database
@@ -34,7 +34,7 @@ def get_all_food_refs():
         return jsonify({'error': str(e)}), 500
 
 
-@foodref_bp.route('/foodref/<food_ref_id>', methods=['GET'])
+@foodref_bp.route('/api/foodref/<food_ref_id>', methods=['GET'])
 def get_food_ref(food_ref_id):
     try:
         # Query the FoodRef object from the database by its ID
@@ -53,7 +53,7 @@ def get_food_ref(food_ref_id):
         return jsonify({'error': str(e)}), 500
 
 
-@foodref_bp.route('/foodref/<int:food_ref_id>', methods=['PUT'])
+@foodref_bp.route('/api/foodref/<int:food_ref_id>', methods=['PUT'])
 def edit_food_ref(food_ref_id):
     data = request.get_json()
 

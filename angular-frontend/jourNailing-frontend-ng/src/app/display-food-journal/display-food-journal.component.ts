@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FoodJournalEntryService} from "../shared/services/food-journal-entry.service";
 import DateUtils from "../shared/DateUtils";
 import {FoodJournalEntry} from "../shared/models/food-journal-entry";
-import {faChevronLeft, faChevronRight, faCirclePlus, faEye} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight, faCirclePlus} from "@fortawesome/free-solid-svg-icons";
+import {faEye} from "@fortawesome/free-regular-svg-icons"
 import {Router} from "@angular/router";
 
 interface LunchType {

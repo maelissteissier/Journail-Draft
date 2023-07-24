@@ -12,8 +12,7 @@
                     <table class="journalLogTable table table-striped-columns" striped>
                         <thead>
                         <tr class="journalTableHeader">
-                            <th class="journalTableHeaderElem">Jour</th>
-                            <th class="journalTableHeaderElem">Heure</th>
+                            <th class="journalTableHeaderElem">Jour Heure</th>
                             <th class="journalTableHeaderElem">Nom Aliment</th>
                             <th class="journalTableHeaderElem">Qté.</th>
                             <th class="journalTableHeaderElem">Type Qté.</th>
@@ -22,8 +21,7 @@
                         </thead>
                         <tbody>
                         <tr class="entryRow">
-                            <td class="journalTableElem">{{ getEntryDay(foodEntry["date"]) }}</td>
-                            <td class="journalTableElem">{{ getEntryTime(foodEntry["date"]) }}</td>
+                            <td class="journalTableElem">{{ getEntryDay(foodEntry["date"]) }} {{ getEntryTime(foodEntry["date"]) }}</td>
                             <td class="journalTableElem">{{ foodEntry.name }}</td>
                             <td class="journalTableElem">{{ foodEntry["quantity"] }}</td>
                             <td class="journalTableElem">{{ foodEntry["quantity_type"] }}</td>

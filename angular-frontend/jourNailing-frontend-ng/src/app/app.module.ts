@@ -21,7 +21,7 @@ import { ToastMessageComponent } from './toast-message/toast-message.component';
 import { DisplayFoodJournalComponent } from './display-food-journal/display-food-journal.component';
 import { AppMenuBarComponent } from './app-menu-bar/app-menu-bar.component';
 import { FoodRefManagementPageComponent } from './food-ref-management-page/food-ref-management-page.component';
-import { EditFoodEntryModalComponent } from './edit-food-entry-modal/edit-food-entry-modal.component';
+import { DeleteFoodEntryModalComponent } from './delete-food-entry-modal/delete-food-entry-modal.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +39,7 @@ import { EditFoodEntryModalComponent } from './edit-food-entry-modal/edit-food-e
         DisplayFoodJournalComponent,
         AppMenuBarComponent,
         FoodRefManagementPageComponent,
-        EditFoodEntryModalComponent
+        DeleteFoodEntryModalComponent
     ],
     imports: [
         CommonModule,

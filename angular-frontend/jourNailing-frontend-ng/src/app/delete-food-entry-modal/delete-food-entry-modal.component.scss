@@ -1,0 +1,85 @@
+@import "../../variables.scss";
+
+.modal {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.deleteFoodEntryModalHeader {
+    border: none;
+    color: lightgrey;
+}
+
+.deleteFoodEntryModalFooter {
+    border: none;
+}
+
+.deleteFoodEntryModal > .modal-dialog > .modal-content > .modal-header {
+    justify-content: center;
+}
+
+.deleteFoodEntryModal > .modal-dialog > .modal-content > .modal-footer {
+    justify-content: center;
+    gap: 25px;
+}
+
+.modal-header.deleteFoodEntryModalHeader > button.close {
+    display: none;
+}
+
+.deleteFoodEntryModal > .modal-dialog > .modal-content {
+    border-radius: 50px;
+    border: none;
+    background-color: $bgDarkLightColor;
+
+}
+
+.deleteFoodEntryModalButtons {
+    //aspect-ratio: 1/1;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 140px;
+}
+
+.cancelDeleteFoodEntryModal {
+    color: $bgDarkColor;
+    background-color: $rosee;
+    border-color: $rosee;
+
+}
+
+.validateDeleteFoodEntryModal {
+    background-color: $lightBlue;
+    border-color: $lightBlue;
+    color: $bgDarkColor;
+}
+
+.journalLogTable {
+    color: lightgray;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+th.journalTableHeaderElem {
+    color: white !important;
+    background-color: $roseQuartzDarker;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.journalTableElem {
+    color: lightgray !important;
+    font-weight: bold;
+    background-color: $bgDarkColor;
+}
+
+/*Phones*/
+@media only screen and (max-width: 800px) {
+    .journalLogTable {
+        max-width: 95%;
+        margin: auto;
+        font-size: 15px;
+    }
+}

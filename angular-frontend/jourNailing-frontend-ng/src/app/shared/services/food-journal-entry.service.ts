@@ -27,5 +27,13 @@ export class FoodJournalEntryService {
         return this.http.get(`${this.baseURL}/food-journal-entries/date?date=${formattedDate}`)
 
     }
+
+    editFoodJournalEntry(foodEntryData: FoodJournalEntry){
+        return this.http.put(`${this.baseURL}/food-journal-entry/${foodEntryData.id}`, foodEntryData);
+    }
+
+    deleteFoodJournalEntry(id: number | null){
+        return this.http.delete(`${this.baseURL}/food-journal-entry/${id}`)
+    }
 }
 

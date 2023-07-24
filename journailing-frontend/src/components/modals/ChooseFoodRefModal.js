@@ -76,7 +76,7 @@ class ChooseFoodRef extends Component {
                                 onClick={this.props.onHide}>
                             <FontAwesomeIcon icon={faXmark}/>
                         </Button>
-                        <Button className={"validateThoughtModal thoughtsModalButtons"} variant="primary">
+                        <Button className={"validateDeleteFoodEntryModal thoughtsModalButtons"} variant="primary">
                             <FontAwesomeIcon icon={faCheck}/>
                         </Button>
                     </Modal.Footer>

@@ -1,5 +1,12 @@
 <app-app-menu-bar></app-app-menu-bar>
 <div class="journalLogContainer">
+    <app-delete-food-entry-modal
+        [show]="deleteModalShow"
+        (onHide)="closeEditModal()"
+        [isFoodEntryQuickAdd]="isEditingFoodEntryQuick"
+        [foodEntry]="deletingFoodEntry"
+        (reloadParent)="reloadCurrentComponent()">
+    </app-delete-food-entry-modal>
   <div class="caloriesStats">
     <div>
       <div class="calorieStatsLabel">objectif</div>
@@ -39,11 +46,15 @@
       <tr>
         <td class="journalTableElem lunchTypeRow" colspan="5">{{ lunchInfo["lunchType"].tag.toUpperCase() }} : {{ lunchInfo["totalLunchCals"] }} cals</td>
       </tr>
-      <tr *ngFor="let entry of lunchInfo['entries']">
-        <td class="journalTableElem">{{ entry["time"] }}</td>
+      <tr *ngFor="let entry of lunchInfo['entries']" (click)="onRowClick(entry)" class="entryRow">
+        <td class="journalTableElem journalTimeElem">
+            <span class="trashIcon">
+                <fa-icon [icon]="faTrashCan"></fa-icon>
+            </span>
+            {{ getEntryTime(entry["date"]) }}</td>
         <td class="journalTableElem">{{ entry.name }}</td>
         <td class="journalTableElem">{{ entry["quantity"] }}</td>
-        <td class="journalTableElem">{{ entry["quantityType"] }}</td>
+        <td class="journalTableElem">{{ entry["quantity_type"] }}</td>
         <td class="journalTableElem">{{ entry["calories"] }}</td>
       </tr>
     </tbody>

@@ -47,7 +47,7 @@ textarea#thoughtsTextArea{
 
 }
 
-.validateThoughtModal{
+.validateDeleteFoodEntryModal{
     background-color: var(--lightBlue);
     border-color: var(--lightBlue);
     color: var(--bgDarkColor);

@@ -1,10 +1,10 @@
 <div class="modal fade show addFoodRefModal" *ngIf="show">
-    <app-toast-message [show]="isFoodRefSentSuccessToastShow" textMuted="" toastMessage="Food successfully saved"
+    <app-toast-message [show]="isFoodRefSentSuccessToastShow" textMuted="" toastMessage="Food reference successfully saved"
                    [success]="isFoodRefSentSuccessToastShow"></app-toast-message>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header addFoodRefModalHeader">
-                <h5 class="modal-title">Enregistrer/Éditer l'aliment de référence ?</h5>
+                <h5 class="modal-title">Enregistrer l'aliment de référence ?</h5>
                 <button type="button" class="close" aria-label="Close" (click)="onHide.emit()">
                     <span aria-hidden="true">&times;</span>
                 </button>

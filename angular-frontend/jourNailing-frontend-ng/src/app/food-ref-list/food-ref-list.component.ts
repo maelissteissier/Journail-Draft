@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FoodRefService} from "../shared/services/food-ref.service";
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 import {FoodRef} from "../shared/models/food-ref";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
@@ -29,6 +30,7 @@ export class FoodRefListComponent {
 
     foodRefListRetrieved: FoodRef[] = [];
     foodRefList: FoodRef[] = [];
+    faPen = faPen;
 
     onRowClick(data: FoodRef) {
         this.rowClicked.emit(data);

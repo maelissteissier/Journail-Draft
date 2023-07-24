@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {FoodJournalEntry} from "../shared/models/food-journal-entry";
 import {FoodJournalEntryService} from "../shared/services/food-journal-entry.service";
 import {reduce} from "rxjs";
+import {TOAST_LONG_TIMEOUT, TOAST_SHORT_TIMEOUT} from "../shared/timeouts-config";
 
 
 @Component({
@@ -36,7 +37,7 @@ export class AddFoodJournalEntryComponent {
                     this.isFoodEntrySentSuccessToastShow = true;
                     setTimeout(() => {
                         this.isFoodEntrySentSuccessToastShow = false;
-                    }, 3000);
+                    }, TOAST_SHORT_TIMEOUT);
 
                 },
                 error: (error) => {
@@ -46,7 +47,7 @@ export class AddFoodJournalEntryComponent {
                     });
                     setTimeout(() => {
                         this.isFoodEntrySentFailToastShow = false;
-                    }, 5000);
+                    }, TOAST_LONG_TIMEOUT);
                 }
             }
         );

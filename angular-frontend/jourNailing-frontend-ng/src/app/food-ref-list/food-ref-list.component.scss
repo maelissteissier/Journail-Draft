@@ -89,3 +89,11 @@ table thead.theadScroll {
 .calRefCell{
     width: 15px;
 }
+
+.editIcon{
+    color: $bgDarkLighterColor;
+}
+
+tr:hover > .tableLeft.foodNameCell > .editIcon{
+    color: lightgray;
+}

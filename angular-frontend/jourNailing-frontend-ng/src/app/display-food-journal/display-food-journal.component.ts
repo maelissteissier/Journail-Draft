@@ -2,21 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {FoodJournalEntryService} from "../shared/services/food-journal-entry.service";
 import DateUtils from "../shared/DateUtils";
 import {FoodJournalEntry} from "../shared/models/food-journal-entry";
-import {faChevronLeft, faChevronRight, faCirclePlus} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight, faCirclePlus, faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {Router} from "@angular/router";
 
 interface LunchType {
     timeMin: string;
     timeMax: string;
     tag: string;
-}
-
-interface EntryDisplay {
-    time: string;
-    name: string;
-    quantity: number | null;
-    quantityType: string | null;
-    calories: number;
-    thoughts: string;
 }
 
 const LUNCH_TYPE: { [key: string]: LunchType } = {
@@ -32,54 +24,58 @@ const LUNCH_TYPE: { [key: string]: LunchType } = {
     styleUrls: ['./display-food-journal.component.scss']
 })
 export class DisplayFoodJournalComponent implements OnInit {
-    constructor(private foodJournalEntryService: FoodJournalEntryService) {
+    constructor(private foodJournalEntryService: FoodJournalEntryService, private router: Router) {
     }
 
     day: Date = new Date();
     displayDay = DateUtils.getDateStringFromDatetime(this.day);
     foodEntries: FoodJournalEntry[] = [];
-    lunchInfos: { "lunchType": LunchType, "entries": EntryDisplay[], "totalLunchCals": number }[] = [];
+    lunchInfos: { "lunchType": LunchType, "entries": FoodJournalEntry[], "totalLunchCals": number }[] = [];
     totalCalories: number = 0;
     faChevronLeft = faChevronLeft;
     faChevronRight = faChevronRight;
     faCirclePlus = faCirclePlus;
+    faTrashCan = faTrashCan;
+    deleteModalShow: boolean = false;
+    deletingFoodEntry!: FoodJournalEntry;
+    isEditingFoodEntryQuick: boolean = false;
 
     ngOnInit() {
         this.setFoodJournalInfos(new Date());
     }
 
+    reloadCurrentComponent() {
+        const currentUrl = this.router.url;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+        });
+    }
 
-    getFoodEntriesByLunchType(lunchType: LunchType, day: Date): EntryDisplay[] {
+
+    getFoodEntriesByLunchType(lunchType: LunchType, day: Date): FoodJournalEntry[] {
         const lunchTypeMinDate = DateUtils.changeTimeOfDatetime(day, lunchType.timeMin);
         const lunchTypeMaxDate = DateUtils.changeTimeOfDatetime(day, lunchType.timeMax);
 
         return this.foodEntries.sort((a, b) => {
             const dateA = new Date(a.date);
             const dateB = new Date(b.date);
-            if (dateA > dateB){
+            if (dateA > dateB) {
                 return 1
-            } else if (dateA < dateB){
+            } else if (dateA < dateB) {
                 return -1
-            }else{
+            } else {
                 return 0
             }
         })
             .filter(entry => {
                 const entryDate = new Date(entry.date);
                 return entryDate >= lunchTypeMinDate && entryDate < lunchTypeMaxDate
-            })
-            .map(lunchEntry => {
-                const entryDate = new Date(lunchEntry.date);
-                const formattedTime = DateUtils.getTimeStringFromDatetime(entryDate);
-                return {
-                    time: formattedTime,
-                    name: lunchEntry.name,
-                    quantity: lunchEntry.quantity,
-                    quantityType: lunchEntry.quantity_type,
-                    calories: lunchEntry.calories,
-                    thoughts: lunchEntry.thoughts,
-                }
             });
+    }
+
+    getEntryTime(datestring: string): string {
+        let date = new Date(datestring);
+        return DateUtils.getTimeStringFromDatetime(date);
     }
 
     getCellCaloriesByLunchType(lunchType: LunchType, day: Date) {
@@ -99,17 +95,17 @@ export class DisplayFoodJournalComponent implements OnInit {
         return this.foodEntries.reduce((acc, currVal) => acc + currVal.calories, 0);
     }
 
-    addOneDaytoDay(){
+    addOneDaytoDay() {
         this.day.setDate(this.day.getDate() + 1);
         this.setFoodJournalInfos(this.day)
     }
 
-    subOneDaytoDay(){
+    subOneDaytoDay() {
         this.day.setDate(this.day.getDate() - 1);
         this.setFoodJournalInfos(this.day);
     }
 
-    setFoodJournalInfos(newDay: Date){
+    setFoodJournalInfos(newDay: Date) {
         this.day = newDay;
         this.displayDay = DateUtils.getDateStringFromDatetime(this.day);
         this.foodJournalEntryService.fetchFoodJournalEntries(this.day).subscribe({
@@ -121,7 +117,11 @@ export class DisplayFoodJournalComponent implements OnInit {
                 lunchTypes.forEach((lunchType) => {
                     let entries = this.getFoodEntriesByLunchType(LUNCH_TYPE[lunchType], this.day);
                     let calories = this.getCellCaloriesByLunchType(LUNCH_TYPE[lunchType], this.day)
-                    this.lunchInfos.push({"lunchType": LUNCH_TYPE[lunchType], "entries": entries, "totalLunchCals": calories});
+                    this.lunchInfos.push({
+                        "lunchType": LUNCH_TYPE[lunchType],
+                        "entries": entries,
+                        "totalLunchCals": calories
+                    });
                 });
                 this.totalCalories = this.getTotalCalories();
             },
@@ -129,5 +129,15 @@ export class DisplayFoodJournalComponent implements OnInit {
                 console.error('Error fetching Food Journal Entries:', error);
             }
         });
+    }
+
+    closeEditModal() {
+        this.deleteModalShow = false;
+    }
+
+    onRowClick(entry: FoodJournalEntry) {
+        console.log(entry);
+        this.deletingFoodEntry = entry;
+        this.deleteModalShow = true;
     }
 }

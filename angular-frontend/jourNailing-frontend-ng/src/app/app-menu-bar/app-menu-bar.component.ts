@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {faBook, faCirclePlus, faMagnifyingGlass, faHouseChimney} from '@fortawesome/free-solid-svg-icons'
+import {faBook, faCirclePlus, faPen, faHouseChimney} from '@fortawesome/free-solid-svg-icons'
 import {Router} from "@angular/router";
 
 @Component({
@@ -13,7 +13,7 @@ export class AppMenuBarComponent {
 
     faBook = faBook;
     faCirclePlus = faCirclePlus;
-    faMagnifyingGlass = faMagnifyingGlass;
+    faPen = faPen;
     faHouseChimney = faHouseChimney;
 
         handleButtonClick(): void {

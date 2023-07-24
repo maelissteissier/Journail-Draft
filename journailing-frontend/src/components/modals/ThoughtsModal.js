@@ -50,7 +50,7 @@ class ThoughtsModal extends Component {
                                 onClick={this.props.onHide}>
                             <FontAwesomeIcon icon={faXmark}/>
                         </Button>
-                        <Button className={"validateThoughtModal thoughtsModalButtons"}
+                        <Button className={"validateDeleteFoodEntryModal thoughtsModalButtons"}
                                 variant="primary"
                                 onClick={() => {
                                     this.props.onSave(this.state.thoughts);

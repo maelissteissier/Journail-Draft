@@ -1,0 +1,2 @@
+export const TOAST_LONG_TIMEOUT = 5000;
+export const TOAST_SHORT_TIMEOUT = 2000;

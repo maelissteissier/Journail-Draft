@@ -89,11 +89,15 @@ tr.entryRow:hover > .journalTableElem{
     cursor: pointer;
 }
 
-.trashIcon{
+.timeJournal{
+    margin-left: 10px;
+}
+
+.eyeIcon{
     color: $bgDarkColor;
 }
 
-tr.entryRow:hover > .journalTableElem > .trashIcon{
+tr.entryRow:hover > .journalTableElem > .eyeIcon{
     color: lightgray;
 }
 
@@ -108,4 +112,17 @@ tr.entryRow:hover > .journalTableElem > .trashIcon{
         margin: auto;
         font-size: 15px;
     }
+    .eyeIcon{
+        display: none;
+    }
+    .timeJournal{
+        margin-left: 0px;
+    }
+    tr.entryRow:hover > .journalTableElem > .eyeIcon{
+        display: contents;
+    }
+    tr.entryRow:hover > .journalTableElem > .timeJournal{
+        display: none;
+    }
+
 }

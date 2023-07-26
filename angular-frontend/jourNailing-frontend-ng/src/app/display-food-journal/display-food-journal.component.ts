@@ -5,6 +5,7 @@ import {FoodJournalEntry} from "../shared/models/food-journal-entry";
 import {faChevronLeft, faChevronRight, faCirclePlus} from "@fortawesome/free-solid-svg-icons";
 import {faEye} from "@fortawesome/free-regular-svg-icons"
 import {Router} from "@angular/router";
+import {Page} from "../shared/models/page";
 
 interface LunchType {
     timeMin: string;
@@ -40,6 +41,7 @@ export class DisplayFoodJournalComponent implements OnInit {
     deleteModalShow: boolean = false;
     deletingFoodEntry!: FoodJournalEntry;
     isEditingFoodEntryQuick: boolean = false;
+    page:Page = Page.JOURNAL;
 
     ngOnInit() {
         this.setFoodJournalInfos(new Date());

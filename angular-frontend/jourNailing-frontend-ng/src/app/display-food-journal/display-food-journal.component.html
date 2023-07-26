@@ -1,4 +1,4 @@
-<app-app-menu-bar></app-app-menu-bar>
+<app-app-menu-bar [selectedPage]="page"></app-app-menu-bar>
 <div class="journalLogContainer">
     <app-delete-food-entry-modal
         [show]="deleteModalShow"
@@ -48,10 +48,10 @@
       </tr>
       <tr *ngFor="let entry of lunchInfo['entries']" (click)="onRowClick(entry)" class="entryRow">
         <td class="journalTableElem journalTimeElem">
-            <span class="trashIcon">
+            <span class="eyeIcon">
                 <fa-icon [icon]="faEye"></fa-icon>
             </span>
-            {{ getEntryTime(entry["date"]) }}</td>
+            <span class="timeJournal">{{ getEntryTime(entry["date"]) }}</span></td>
         <td class="journalTableElem">{{ entry.name }}</td>
         <td class="journalTableElem">{{ entry["quantity"] }}</td>
         <td class="journalTableElem">{{ entry["quantity_type"] }}</td>

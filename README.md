@@ -1,2 +1,8 @@
-# JourNailing
-application web de journal alimentaire et calculateur de calories.
+# JOURNAIL
+Application web de journal alimentaire et calculateur de calories.
+
+![Journail App](images/presentation.png)
+
+
+
+

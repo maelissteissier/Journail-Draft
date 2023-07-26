@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {faBook, faCirclePlus, faPen, faHouseChimney} from '@fortawesome/free-solid-svg-icons'
 import {Router} from "@angular/router";
+import {Page} from "../shared/models/page"
 
 @Component({
     selector: 'app-app-menu-bar',
@@ -11,15 +12,13 @@ export class AppMenuBarComponent {
     constructor(private router: Router) {
     }
 
+    page = Page;
     faBook = faBook;
     faCirclePlus = faCirclePlus;
     faPen = faPen;
     faHouseChimney = faHouseChimney;
+    @Input() selectedPage!: Page;
 
-        handleButtonClick(): void {
-        alert('Button clicked!');
-        // Perform additional actions or logic here
-    }
 
     goToAddFoodJournalEntry() {
         this.router.navigate(["add-food-journal-entry"])

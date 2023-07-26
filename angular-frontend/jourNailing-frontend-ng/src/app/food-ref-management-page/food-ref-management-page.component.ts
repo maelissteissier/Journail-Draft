@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FoodRef} from "../shared/models/food-ref";
-import DateUtils from "../shared/DateUtils";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Page} from "../shared/models/page";
 
 @Component({
     selector: 'app-food-ref-management-page',
@@ -15,6 +15,7 @@ export class FoodRefManagementPageComponent {
     isAddFoodRefModalOpen: boolean = false;
     newFoodRef!: FoodRef;
     editFood: boolean = true;
+    page:Page = Page.FOOD_REF;
 
 
     closeAddFoodRefModal() {

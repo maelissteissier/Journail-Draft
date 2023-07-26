@@ -25,6 +25,12 @@
     width: 50%;
 }
 
+.chosenAddType{
+    background-color: $roseeDarker !important;
+    border-color: $roseeDarker !important;
+    color: $bgDarkColor !important;
+}
+
 .calculationAddButton {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -34,14 +40,14 @@
 }
 
 .calculationAddButton:hover, .calculationAddButton:hover {
-    background-color: $roseeDarker;
-    border-color: $roseeDarker;
+    background-color: $roseeDarkerDarker;
+    border-color: $roseeDarkerDarker;
     color: $bgDarkColor;
 }
 
 .calculationAddButton:not(:disabled):not(:disabled):active {
-    background-color: $roseeDarker;
-    border-color: $roseeDarker;
+    background-color: $roseeDarkerDarker;
+    border-color: $roseeDarkerDarker;
     color: $bgLighterColor;
 }
 
@@ -58,14 +64,14 @@
 
 
 .quickAddButton:hover, .quickAddButton:hover {
-    background-color: $roseeDarker;
-    border-color: $roseeDarker;
+    background-color: $roseeDarkerDarker;
+    border-color: $roseeDarkerDarker;
     color: $bgDarkColor;
 }
 
 .quickAddButton:not(:disabled):not(:disabled):active {
-    background-color: $roseeDarker;
-    border-color: $roseeDarker;
+    background-color: $roseeDarkerDarker;
+    border-color: $roseeDarkerDarker;
     color: $bgLighterColor;
 }
 

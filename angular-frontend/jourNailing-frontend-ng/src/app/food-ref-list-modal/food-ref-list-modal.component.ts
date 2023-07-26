@@ -16,10 +16,6 @@ export class FoodRefListModalComponent {
     isModal: boolean = true;
 
 
-    handleBackdropClick() {
-        this.onHide.emit();
-    }
-
     handleRowClicked(data: FoodRef) {
         this.rowClicked.emit(data);
         this.onHide.emit();

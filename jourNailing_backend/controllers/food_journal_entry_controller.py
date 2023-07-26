@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, abort
 from jourNailing_backend.database.database import db, FoodJournalEntry, JournalCategory, FoodRef
 from jourNailing_backend.database.food_ref_service import save_food_ref_from_json
+from jourNailing_backend.num_utils import is_number
 from datetime import datetime, timedelta
 import pytz
 
@@ -64,9 +65,9 @@ def food_journal_entry_validation(food_journal_entry_json):
             if new_entry.name == "":
                 errors.append("foodname must not be empty")
 
-            if (not isinstance(new_entry.quantity, int) and new_entry.quantity != None) \
-                    or not isinstance(new_entry.calories, int):
-                errors.append('original_calory or original_quantity not an int')
+            if (not is_number(new_entry.quantity) and new_entry.quantity != None) \
+                    or not is_number(new_entry.calories):
+                errors.append('original_calory or original_quantity not a number')
         except ValueError:
             errors.append('Invalid date format')
     return new_entry, None if len(errors) == 0 else errors

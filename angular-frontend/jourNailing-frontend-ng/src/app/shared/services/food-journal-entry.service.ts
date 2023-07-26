@@ -10,7 +10,7 @@ import DateUtils from "../DateUtils";
 export class FoodJournalEntryService {
     foodLogs: FoodJournalEntry[] = [];
 
-    baseURL: string = environment.baseUrl;
+    apiURL: string = environment.apiUrl;
 
     constructor(
         private http: HttpClient
@@ -18,21 +18,21 @@ export class FoodJournalEntryService {
     }
 
     saveFoodEntry(foodEntryData: FoodJournalEntry) {
-        return this.http.post(`${this.baseURL}/api/food-journal-entry`, foodEntryData);
+        return this.http.post(`${this.apiURL}/api/food-journal-entry`, foodEntryData);
     }
 
     fetchFoodJournalEntries(date: Date){
         const formattedDate = DateUtils.getDateStringFromDatetime(date);
-        return this.http.get(`${this.baseURL}/api/food-journal-entries/date?date=${formattedDate}`)
+        return this.http.get(`${this.apiURL}/api/food-journal-entries/date?date=${formattedDate}`)
 
     }
 
     editFoodJournalEntry(foodEntryData: FoodJournalEntry){
-        return this.http.put(`${this.baseURL}/api/food-journal-entry/${foodEntryData.id}`, foodEntryData);
+        return this.http.put(`${this.apiURL}/api/food-journal-entry/${foodEntryData.id}`, foodEntryData);
     }
 
     deleteFoodJournalEntry(id: number | null){
-        return this.http.delete(`${this.baseURL}/api/food-journal-entry/${id}`)
+        return this.http.delete(`${this.apiURL}/api/food-journal-entry/${id}`)
     }
 }
 

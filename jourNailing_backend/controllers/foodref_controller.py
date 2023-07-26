@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, abort
 from jourNailing_backend.database.database import db, FoodRef
+from jourNailing_backend.num_utils import is_number
 from jourNailing_backend.database.food_ref_service import save_food_ref_from_json
 
 foodref_bp = Blueprint('foodref', __name__)
@@ -73,8 +74,8 @@ def edit_food_ref(food_ref_id):
     food_ref.quantity_type = data.get('quantity_type')
 
     # Ensure fields are integers
-    if not isinstance(food_ref.original_calory, int) or not isinstance(food_ref.original_quantity, int):
-        return jsonify({'error': 'original_calory or original_quantity not an int'}), 400
+    if not is_number(food_ref.original_calory) or not is_number(food_ref.original_quantity):
+        return jsonify({'error': 'original_calory or original_quantity not a number'}), 400
 
     try:
         # Commit the changes to the database

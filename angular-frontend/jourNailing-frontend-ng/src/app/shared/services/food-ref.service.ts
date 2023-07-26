@@ -9,21 +9,21 @@ import {environment} from "../../../environments/environment";
 })
 
 export class FoodRefService {
-  private baseURL = environment.baseUrl;
+  private apiURL = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   getFoodRef(): Observable<FoodRef[]> {
-    const url = `${this.baseURL}/api/foodrefs`;
+    const url = `${this.apiURL}/api/foodrefs`;
     return this.http.get<FoodRef[]>(url);
   }
 
   editFoodRef(foodRefData: FoodRef, id: any): Observable<FoodRef[]> {
-    const url = `${this.baseURL}/api/foodref/${id}`;
+    const url = `${this.apiURL}/api/foodref/${id}`;
     return this.http.put<FoodRef[]>(url, foodRefData);
   }
 
   saveFoodRef(foodRefData: FoodRef) : Observable<any> {
-    return this.http.post(`${this.baseURL}/api/foodref`, foodRefData);
+    return this.http.post(`${this.apiURL}/api/foodref`, foodRefData);
   }
 }

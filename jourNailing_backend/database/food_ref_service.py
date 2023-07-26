@@ -1,4 +1,5 @@
 from jourNailing_backend.database.database import FoodRef
+from jourNailing_backend.num_utils import is_number
 
 
 def save_food_ref_from_json(json_data, database):
@@ -13,8 +14,8 @@ def save_food_ref_from_json(json_data, database):
     quantity_type = json_data.get('quantity_type', "")
 
     # Ensure fields are integers
-    if not isinstance(original_calory, int) or not isinstance(original_quantity, int):
-        return None, {'errors': ['original_calory or original_quantity not an int']}
+    if not is_number(original_calory) or not is_number(original_quantity):
+        return None, {'errors': ['original_calory or original_quantity not a number']}
 
     # Create a new FoodRef object
     new_food_ref = FoodRef(name=name, original_calory=original_calory, original_quantity=original_quantity, quantity_type=quantity_type)

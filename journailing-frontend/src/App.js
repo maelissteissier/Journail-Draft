@@ -13,7 +13,7 @@ import {getDateStringFromDatetime} from "./DateUtils";
 
 const fetchFoodRefList = async () => {
     try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/foodrefs`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch FoodRefs');
@@ -32,7 +32,7 @@ const fetchFoodJournalLog = async (date) => {
     const formattedDate = getDateStringFromDatetime(date);
 
     try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/food-journal-entries/date?date=${formattedDate}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food-journal-entries/date?date=${formattedDate}`);
         if (!response.ok) {
             throw new Error('Failed to fetch food journal entries');
         }

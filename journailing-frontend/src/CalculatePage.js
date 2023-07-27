@@ -168,7 +168,7 @@ class CalculatePage extends Component {
             });
         }
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/food-journal-entry`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food-journal-entry`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

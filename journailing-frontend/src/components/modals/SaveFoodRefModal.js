@@ -52,7 +52,7 @@ class SaveFoodRefModal extends Component {
         };
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/foodrefs`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/foodrefs`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -2,7 +2,7 @@
 
 Application web de journal alimentaire et calculateur de calories.
 
-### CECI EST UNE VERSION BROUILLON
+### CECI EST UNE VERSION D'EXPLORATION
 Créée avec un backend **Flask** et un frontend **React** avec un 
 objectif de découverte personnelle et d'exploration.
 
